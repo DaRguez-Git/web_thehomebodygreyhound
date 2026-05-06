@@ -88,6 +88,20 @@ a:hover {
   color: var(--ink);
 }
 
+.lang-switch {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  padding-left: 16px;
+  margin-left: 4px;
+  border-left: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+.lang-switch:hover {
+  color: var(--ink);
+}
+
 /* Layout */
 main {
   max-width: var(--max-width);

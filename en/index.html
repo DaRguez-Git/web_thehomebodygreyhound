@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Homebody Greyhound — Calmly crafted apps</title>
+  <meta name="description" content="The Homebody Greyhound is a small independent app studio. We make simple, honest, well-finished things." />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="alternate" hreflang="es" href="../index.html" />
+  <link rel="alternate" hreflang="en" href="index.html" />
+  <link rel="alternate" hreflang="x-default" href="../index.html" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="brand" aria-label="The Homebody Greyhound — home">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a class="lang-switch" href="../index.html" hreflang="es" lang="es" aria-label="Cambiar a español">ES</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <img
+        class="hero-logo"
+        src="../assets/TheHomebodyGreyhound_logo.png"
+        alt="The Homebody Greyhound — a resting greyhound"
+        width="1280"
+        height="800"
+      />
+      <p class="eyebrow">Independent app studio</p>
+      <h1>Simple apps, built with calm.</h1>
+      <p class="lede">
+        A small studio that designs and develops apps. No grand promises, no vanity metrics.
+        Just careful, finished software that's nice to use.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#work">See work</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <h2>Work</h2>
+      <p class="section-intro">
+        Our own apps and commissioned ones. Each one made to do one thing well.
+      </p>
+      <ul class="work-list">
+        <li class="work-item">
+          <div class="work-item-head">
+            <div class="work-icon">
+              <img src="../assets/Oficio_logo.jpg" alt="Oficio app icon" width="48" height="48" />
+            </div>
+            <div>
+              <h3>Oficio</h3>
+              <p class="work-tag">Coming soon</p>
+            </div>
+          </div>
+          <p class="work-lede">
+            Your personal dashboard, built your way. Whatever you need at hand —
+            calendar, news, weather— right where you want it.
+          </p>
+          <ul class="work-features">
+            <li><strong>Modular.</strong> You decide what to set up and how. Your dashboard, your pace.</li>
+            <li><strong>Truly private.</strong> Your data lives on your device and in the services you connect. It never goes through our servers.</li>
+            <li><strong>Bring your own AI.</strong> Plug in your own agent via API to summarise your day, search your schedule, or lend a hand when you ask. Experimental support for local AI is in the works.</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section id="about" class="section alt">
+      <h2>About the studio</h2>
+      <div class="prose">
+        <p>
+          <strong>The Homebody Greyhound</strong> comes from a simple idea: a homebody greyhound. Calm at home,
+          fast when it counts. That's how I work: no needless rush, but no wasted time either.
+        </p>
+        <p>
+          I believe in doing few things, doing them well, and explaining them clearly. There's no marketing team
+          behind this page, no magic formulas. If an app doesn't add value, it doesn't ship.
+        </p>
+        <p>
+          If what you see fits what you need, drop me a line. If not, no worries.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p class="section-intro">
+        The most direct way: an email. I reply personally.
+      </p>
+      <p class="contact">
+        <a href="mailto:info@thehomebodygreyhound.com">info@thehomebodygreyhound.com</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Made with calm.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
