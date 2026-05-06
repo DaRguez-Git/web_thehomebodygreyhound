@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Homebody Greyhound — Apps hechas con calma</title>
+  <meta name="description" content="The Homebody Greyhound es un pequeño estudio independiente de desarrollo de apps. Hacemos cosas sencillas, honestas y bien terminadas." />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="#" class="brand" aria-label="The Homebody Greyhound — inicio">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M16 40 C 22 36, 26 30, 30 30 L 38 30 C 42 30, 44 28, 46 24 L 50 22 L 48 26 L 44 30 C 46 34, 46 38, 42 42 L 36 44 L 30 44 L 24 46 Z" fill="currentColor"/>
+        <circle cx="46" cy="24" r="1.2" fill="#f6f3ee"/>
+      </svg>
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a href="#trabajo">Trabajo</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Estudio independiente de apps</p>
+      <h1>Apps sencillas, hechas con calma.</h1>
+      <p class="lede">
+        Soy un estudio pequeño que diseña y desarrolla aplicaciones. Sin promesas grandilocuentes,
+        sin métricas vacías. Solo software cuidado, terminado, y agradable de usar.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#trabajo">Ver trabajo</a>
+        <a class="btn ghost" href="#contacto">Hablar conmigo</a>
+      </div>
+    </section>
+
+    <section id="trabajo" class="section">
+      <h2>Trabajo</h2>
+      <p class="section-intro">
+        Apps propias y por encargo. Cada una pensada para hacer una cosa bien.
+      </p>
+      <ul class="work-list">
+        <li class="work-item">
+          <h3>Próximamente</h3>
+          <p>La primera app del estudio está en preparación. Aquí aparecerá cuando esté lista — no antes.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="sobre" class="section alt">
+      <h2>Sobre el estudio</h2>
+      <div class="prose">
+        <p>
+          <strong>The Homebody Greyhound</strong> nace de una idea simple: un galgo casero. Tranquilo en casa,
+          rápido cuando hace falta. Así trabajo: sin prisa innecesaria, pero sin perder el tiempo.
+        </p>
+        <p>
+          Creo en hacer pocas cosas, hacerlas bien y explicarlas con claridad. No hay equipo de marketing
+          detrás de esta página, ni fórmulas mágicas. Si una app no aporta valor, no se lanza.
+        </p>
+        <p>
+          Si lo que ves encaja con lo que necesitas, escríbeme. Si no, no pasa nada.
+        </p>
+      </div>
+    </section>
+
+    <section id="contacto" class="section">
+      <h2>Contacto</h2>
+      <p class="section-intro">
+        La forma más directa: un correo. Respondo personalmente.
+      </p>
+      <p class="contact">
+        <a href="mailto:hola@homebodygreyhound.com">hola@homebodygreyhound.com</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Hecho con calma.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
