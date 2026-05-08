@@ -11,8 +11,8 @@ Output layout
   /oficio/help/<slug>/                Spanish help page per slug
   /en/oficio/help/                    English help index
   /en/oficio/help/<slug>/             English help page per slug
-  /legal/privacy/                     Spanish privacy policy
-  /en/legal/privacy/                  English privacy policy
+  /homebody/terms/                    Spanish privacy policy
+  /en/homebody/terms/                 English privacy policy
 
 The script is idempotent: it overwrites whatever was previously
 generated. Run from the repo root:
@@ -35,8 +35,8 @@ HELP_OUT_ES = ROOT / "oficio" / "help"
 HELP_OUT_EN = ROOT / "en" / "oficio" / "help"
 PRIVACY_SRC_ES = ROOT / "assets" / "PRIVACY_POLICY.md"
 PRIVACY_SRC_EN = ROOT / "assets" / "PRIVACY_POLICY_EN.md"
-PRIVACY_OUT_ES = ROOT / "legal" / "privacy"
-PRIVACY_OUT_EN = ROOT / "en" / "legal" / "privacy"
+PRIVACY_OUT_ES = ROOT / "homebody" / "terms"
+PRIVACY_OUT_EN = ROOT / "en" / "homebody" / "terms"
 
 
 @dataclass(frozen=True)
@@ -77,7 +77,7 @@ LOCALE_ES = Locale(
     footer="Hecho con calma.",
     home_href="../../../index.html",
     home_href_index="../../index.html",
-    legal_breadcrumb="Legal",
+    legal_breadcrumb="Homebody",
     legal_title="Política de privacidad",
 )
 
@@ -100,7 +100,7 @@ LOCALE_EN = Locale(
     footer="Made unhurriedly.",
     home_href="../../../index.html",
     home_href_index="../../index.html",
-    legal_breadcrumb="Legal",
+    legal_breadcrumb="Homebody",
     legal_title="Privacy policy",
 )
 
@@ -492,16 +492,16 @@ def build_legal(locale: Locale, src: Path, out_dir: Path) -> None:
         if locale.code == "es"
         else "Privacy policy for the Oficio app."
     )
-    # hreflang for legal — file at <lang>/legal/privacy/index.html
+    # hreflang for legal — file at <lang>/homebody/terms/index.html
     if locale.code == "es":
         l_alt_es = "index.html"
-        l_alt_en = "../../en/legal/privacy/index.html"
+        l_alt_en = "../../en/homebody/terms/index.html"
         l_other = l_alt_en
         l_other_lang = "en"
         l_other_label = "EN"
         l_other_aria = "Switch to English"
     else:
-        l_alt_es = "../../../legal/privacy/index.html"
+        l_alt_es = "../../../homebody/terms/index.html"
         l_alt_en = "index.html"
         l_other = l_alt_es
         l_other_lang = "es"
@@ -529,7 +529,7 @@ def build_legal(locale: Locale, src: Path, out_dir: Path) -> None:
         alt_other_aria=l_other_aria,
     )
     (out_dir / "index.html").write_text(html, encoding="utf-8")
-    print(f"  ✓ [{locale.code}] legal/privacy/index.html")
+    print(f"  ✓ [{locale.code}] homebody/terms/index.html")
 
 
 def main() -> None:
