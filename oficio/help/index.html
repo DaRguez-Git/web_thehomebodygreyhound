@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayuda de Oficio | The Homebody Greyhound</title>
+  <meta name="description" content="Guías para configurar las integraciones de la app Oficio: APIs de medios, salud y tiempo." />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="stylesheet" href="../../styles.css" />
+</head>
+<body class="help-page">
+  <header class="site-header">
+    <a href="../../index.html" class="brand" aria-label="The Homebody Greyhound — inicio">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a href="../../index.html#trabajo">Trabajo</a>
+      <a href="../../index.html#sobre">Sobre</a>
+      <a href="../../index.html#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="help-main">
+    <p class="help-crumbs">
+      <a href="../../index.html">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <span>Ayuda de Oficio</span>
+    </p>
+    <article class="prose">
+      <h1>Ayuda de Oficio</h1>
+      <p class="lede">
+        Cada bloque te explica cómo configurar una integración: dónde sacar la
+        API key, qué cuesta, y los pequeños matices que evitan los errores más
+        comunes. Si una entrada dice <em>sin API key</em>, basta con activar el
+        toggle en la app.
+      </p>
+      <ul class="help-index">
+        <li><a href="anthropic-ai/index.html"><strong>Anthropic Claude (módulo IA)</strong><span>Configurar tu propia API key para el agente de IA.</span></a></li>
+        <li><a href="tmdb/index.html"><strong>TMDb — películas y series</strong><span>Autocompletado de películas y series en la Bitácora.</span></a></li>
+        <li><a href="igdb/index.html"><strong>IGDB — videojuegos</strong><span>Autocompletado de videojuegos en la Bitácora.</span></a></li>
+        <li><a href="lastfm/index.html"><strong>Last.fm — música escuchada</strong><span>Tus tops y escuchas recientes en la Bitácora.</span></a></li>
+        <li><a href="open-library/index.html"><strong>Open Library — libros</strong><span>Autocompletado de libros sin necesidad de API key.</span></a></li>
+        <li><a href="musicbrainz/index.html"><strong>MusicBrainz — discografía</strong><span>Metadatos musicales abiertos sin API key.</span></a></li>
+        <li><a href="bgg/index.html"><strong>BoardGameGeek — juegos de mesa</strong><span>Catálogo de juegos de mesa sin API key.</span></a></li>
+        <li><a href="health/index.html"><strong>Salud (Health Connect / HealthKit)</strong><span>Pasos, peso, sueño y ejercicio desde el sistema.</span></a></li>
+        <li><a href="weather/index.html"><strong>Tiempo (WeatherAPI)</strong><span>Tiempo actual y previsión, ya configurado.</span></a></li>
+      </ul>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Hecho con calma.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

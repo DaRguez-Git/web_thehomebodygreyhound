@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cómo configurar TMDb en Oficio — Ayuda de Oficio | The Homebody Greyhound</title>
+  <meta name="description" content="Para qué sirve: TMDb (The Movie Database) alimenta la búsqueda de películas y series en la Bitácora cultural — al añadir una entrada de tipo Película o…" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../styles.css" />
+</head>
+<body class="help-page">
+  <header class="site-header">
+    <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound — inicio">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a href="../../../index.html#trabajo">Trabajo</a>
+      <a href="../index.html">Ayuda de Oficio</a>
+      <a href="../../../index.html#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="help-main">
+    <p class="help-crumbs">
+      <a href="../../../index.html">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html">Ayuda de Oficio</a>
+      <span aria-hidden="true">›</span>
+      <span>Cómo configurar TMDb en Oficio</span>
+    </p>
+    <article class="prose help-prose">
+      <h1>Cómo configurar TMDb en Oficio</h1>
+      <p><strong>Para qué sirve</strong>: TMDb (The Movie Database) alimenta la búsqueda de películas y series en la Bitácora cultural — al añadir una entrada de tipo <em>Película</em> o <em>Serie</em>, Oficio consulta TMDb para autocompletar título, año, póster y sinopsis.</p>
+<h2>Pasos</h2>
+<ol>
+<li>Crea una cuenta gratuita en <a href="https://www.themoviedb.org/signup">themoviedb.org</a>.</li>
+<li>Verifica tu email (te llega un enlace).</li>
+<li>Una vez logueado, abre tu perfil → <strong>Ajustes → API</strong> (o ve directamente a <a href="https://www.themoviedb.org/settings/api">themoviedb.org/settings/api</a>).</li>
+<li>Pulsa <strong>Solicita una API Key</strong> y elige tipo <strong>Developer</strong> (gratuita; <em>Commercial</em> requiere aprobación manual y no la necesitas).</li>
+<li>Rellena el formulario: aplicación de uso personal, país, descripción corta. Acepta los términos.</li>
+<li>Una vez aprobada (instantáneo para Developer), verás dos credenciales:
+   - <strong>API Key (v3 auth)</strong>: tipo <code>1234abcd...</code>. <strong>No es la que necesitas.</strong>
+   - <strong>API Read Access Token (v4 auth)</strong>: tipo <code>eyJhbGciOiJI...</code>. <strong>Esta es la que necesita Oficio.</strong></li>
+<li>Copia el v4 token y pégalo en Oficio: <strong>Ajustes → APIs externas → TMDb → Configurar</strong>.</li>
+<li>Pulsa <strong>Probar conexión</strong> para verificar.</li>
+</ol>
+<h2>Coste y límites</h2>
+<p>Gratis para uso personal. Sin coste por petición. Rate limit: ~50 peticiones por segundo, suficiente para cualquier uso normal (Oficio cachea resultados, así que no notarás el límite).</p>
+<h2>Avisos</h2>
+<ul>
+<li><strong>v3 vs v4</strong>: TMDb te da DOS tipos de credencial. Oficio usa el <strong>v4 token</strong> (también llamado <em>API Read Access Token</em>) que empieza por <code>eyJ…</code> porque es un JWT. Si copias la v3 (cadena corta de letras+números) por error, obtendrás errores 401.</li>
+<li><strong>No hace falta solicitar API Commercial</strong>. La Developer es la gratuita y la suficiente. Solo si distribuyes la app a terceros con tu propia key — y ese no es tu caso, porque cada usuario pone la suya.</li>
+</ul>
+    </article>
+    <p class="help-back">
+      <a href="../index.html">← Volver al índice de ayuda</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Hecho con calma.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

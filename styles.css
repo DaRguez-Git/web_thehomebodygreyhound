@@ -331,6 +331,21 @@ h2 {
   font-weight: 600;
 }
 
+.work-link {
+  margin: 18px 0 0;
+  font-size: 14px;
+}
+
+.work-link a {
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.work-link a:hover {
+  text-decoration: underline;
+}
+
 /* Contact */
 .contact {
   font-family: var(--font-serif);
@@ -349,6 +364,168 @@ h2 {
 
 .site-footer p {
   margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+/* Help pages (Oficio) */
+.help-main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px 24px 24px;
+}
+
+.help-crumbs {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0 0 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.help-crumbs a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.help-crumbs a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.help-prose h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(28px, 4.5vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  margin: 0 0 24px;
+  max-width: 22ch;
+}
+
+.help-prose h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 22px;
+  margin: 36px 0 12px;
+  letter-spacing: -0.005em;
+}
+
+.help-prose h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 18px;
+  margin: 24px 0 8px;
+}
+
+.help-prose p,
+.help-prose li {
+  max-width: 64ch;
+}
+
+.help-prose p {
+  margin: 0 0 14px;
+}
+
+.help-prose ol,
+.help-prose ul {
+  margin: 0 0 18px;
+  padding-left: 22px;
+}
+
+.help-prose li {
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.help-prose code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 0.9em;
+  background: var(--bg-alt);
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+
+.help-prose pre {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+
+.help-prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.help-prose strong {
+  color: var(--ink);
+}
+
+.help-prose a {
+  color: var(--accent);
+}
+
+.help-back {
+  margin: 40px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.help-back a {
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+.help-back a:hover {
+  color: var(--ink);
+}
+
+/* Help index */
+.help-index {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.help-index a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.help-index a:hover {
+  border-color: var(--ink);
+  background: var(--bg);
+}
+
+.help-index strong {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.help-index span {
   color: var(--ink-soft);
   font-size: 14px;
 }
