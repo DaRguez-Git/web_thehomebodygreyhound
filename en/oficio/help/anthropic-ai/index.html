@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to set up Anthropic AI in Oficio — The Homebody Greyhound</title>
+  <meta name="description" content="What it does: with your Anthropic API key, Oficio's AI module becomes an assistant that can read and modify all your modules (tasks, journal, pantry, et…" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <link rel="alternate" hreflang="es" href="../../../../oficio/help/anthropic-ai/index.html" />
+  <link rel="alternate" hreflang="en" href="index.html" />
+  <link rel="alternate" hreflang="x-default" href="../../../../oficio/help/anthropic-ai/index.html" />
+</head>
+<body class="help-page">
+  <header class="site-header">
+    <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="../../../index.html#trabajo">Work</a>
+      <a href="../index.html">Oficio help</a>
+      <a href="../../../index.html#contacto">Contact</a>
+      <a class="lang-switch" href="../../../../oficio/help/anthropic-ai/index.html" hreflang="es" lang="es" aria-label="Cambiar a español">ES</a>
+    </nav>
+  </header>
+
+  <main class="help-main">
+    <p class="help-crumbs">
+      <a href="../../../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html">Oficio help</a>
+      <span aria-hidden="true">›</span>
+      <span>How to set up Anthropic AI in Oficio</span>
+    </p>
+    <article class="prose help-prose">
+      <h1>How to set up Anthropic AI in Oficio</h1>
+      <p><strong>What it does</strong>: with your Anthropic API key, Oficio's AI module becomes an assistant that can read and modify all your modules (tasks, journal, pantry, etc.) using local tools.</p>
+<h2>Steps</h2>
+<ol>
+<li>Go to <a href="https://console.anthropic.com/">console.anthropic.com</a> and create an account (with email or Google).</li>
+<li>Once inside, head to <strong>Settings → API Keys</strong> (or use the <strong>API Keys</strong> entry in the side menu).</li>
+<li>Click <strong>Create Key</strong> and give it a name you'll recognise later (e.g. <em>Oficio</em>).</li>
+<li>Copy the key that appears; it starts with <code>sk-ant-…</code>. Copy it before closing the dialog: <strong>it is shown only once</strong> (you can regenerate it later if you lose it).</li>
+<li>Before you can use it, go to <strong>Settings → Plans &amp; Billing</strong> and add credit (minimum $5). Without credit the key fails with a 401 error.</li>
+<li>Paste the key into Oficio: <strong>Settings → AI → API key</strong> and tap <strong>Test connection</strong> to confirm it works.</li>
+</ol>
+<h2>Cost and limits</h2>
+<p>Pay as you go, no subscription. Varies per model:</p>
+<ul>
+<li><strong>Haiku</strong>: cheapest, ~$0.25 per million input tokens and ~$1.25 per million output tokens. For typical personal use in Oficio (short queries, no more than 10–20 messages a day) it usually costs <strong>less than €1/month</strong>.</li>
+<li><strong>Sonnet</strong>: balanced cost and capability, ~$3 / $15 per million.</li>
+<li><strong>Opus</strong>: most capable but most expensive, ~$15 / $75 per million.</li>
+</ul>
+<p>You can switch model at any time from <strong>Settings → AI → Model</strong>.</p>
+<h2>Heads-up</h2>
+<ul>
+<li><strong><code>console.anthropic.com</code> ≠ <code>claude.ai</code></strong>. Even if you already have an account on <code>claude.ai</code> for chatting, you need a separate account on <code>console.anthropic.com</code> to get an API key. The <code>claude.ai</code> one does not work.</li>
+<li><strong>You must add credit before the first call</strong>. This is the most common mistake: you create the account, generate a key, paste it into the app, and everything fails with 401 — because the account has $0 balance.</li>
+<li><strong>The API key lives encrypted on your device</strong>. Oficio stores it in Keychain (iOS) or EncryptedSharedPreferences (Android). To revoke it, go back to the Anthropic console and delete it there; in Oficio just tap <strong>Delete key</strong> in Settings → AI.</li>
+</ul>
+    </article>
+    <p class="help-back">
+      <a href="../index.html">← Back to the help index</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Made unhurriedly.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

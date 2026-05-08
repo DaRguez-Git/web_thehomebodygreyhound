@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de privacidad de Oficio — The Homebody Greyhound</title>
+  <meta name="description" content="Política de privacidad de la app Oficio." />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="alternate" hreflang="es" href="index.html" />
+  <link rel="alternate" hreflang="en" href="../../en/legal/privacy/index.html" />
+  <link rel="alternate" hreflang="x-default" href="index.html" />
+</head>
+<body class="help-page">
+  <header class="site-header">
+    <a href="../../index.html" class="brand" aria-label="The Homebody Greyhound">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a href="../../index.html#trabajo">Trabajo</a>
+      <a href="../../index.html#sobre">Sobre</a>
+      <a href="../../index.html#contacto">Contacto</a>
+      <a class="lang-switch" href="../../en/legal/privacy/index.html" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
+    </nav>
+  </header>
+
+  <main class="help-main">
+    <p class="help-crumbs">
+      <a href="../../index.html">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <span>Legal</span>
+      <span aria-hidden="true">›</span>
+      <span>Política de privacidad de Oficio</span>
+    </p>
+    <article class="prose help-prose">
+      <h1>Política de privacidad de Oficio</h1>
+      <p><strong>Última actualización</strong>: <!-- AÑADIR FECHA DE PUBLICACIÓN, formato AAAA-MM-DD --></p>
+<h2>Quién es el responsable</h2>
+<p>Esta app la desarrolla <strong>TheHomebodyGreyhound</strong> (en adelante, "el desarrollador").
+Para cualquier consulta relacionada con esta política o el tratamiento
+de tus datos puedes escribir a <strong><!-- [TU-EMAIL-DE-CONTACTO] --></strong>.</p>
+<h2>Resumen rápido</h2>
+<ul>
+<li><strong>Oficio funciona offline por diseño.</strong> Tus tareas, diario, despensa,
+  notas, recetas, plan semanal, lista de la compra, cultura y resto de
+  módulos viven exclusivamente en el almacenamiento local de tu
+  dispositivo. El módulo Salud lee y escribe contra el store del
+  sistema (Health Connect / HealthKit), también en local.</li>
+<li><strong>No hay servidor de Oficio.</strong> No registramos cuentas. No
+  recogemos analítica. No mostramos publicidad. No vendemos datos.</li>
+<li><strong>Hay dos casos en los que Oficio sí envía algo a un tercero</strong>, y
+  siempre porque tú activas la función expresamente:<ol>
+<li>Pronóstico del Tiempo: consulta a <strong>WeatherAPI</strong>.</li>
+<li>Asistente de IA (módulo opcional): consulta a <strong>Anthropic</strong>.</li>
+</ol>
+</li>
+<li>En ambos casos puedes prescindir de la función y la app sigue siendo
+  100% local.</li>
+</ul>
+<h2>Qué datos guarda Oficio en tu dispositivo</h2>
+<p>Toda la información que introduces en la app se guarda en el dispositivo:</p>
+<ul>
+<li><strong>Base de datos local cifrada por el SO</strong>: tareas, entradas de
+  diario, productos de despensa, notas, libretas, feeds y artículos
+  RSS, eventos del calendario que tú creas, recetas (incluyendo
+  fotos), entradas culturales, plan semanal y lista de la compra.</li>
+<li><strong>Preferencias</strong> (<code>SharedPreferences</code>): elección de tema, módulos
+  activos, orden de la barra inferior, ubicaciones favoritas,
+  personalización de la pantalla de inicio, día seleccionado en cada
+  módulo.</li>
+<li><strong>Almacenamiento seguro</strong> (Keychain en iOS, EncryptedSharedPreferences
+  en Android): claves API que tú configures en módulos opcionales
+  (Bitácora cultural, Asistente de IA).</li>
+<li><strong>Archivos en el directorio de la app</strong>: fotos de recetas que
+  añadas (carpeta <code>recipe_photos/</code>).</li>
+</ul>
+<p>Estos datos no salen del dispositivo salvo que tú uses <strong>explícitamente</strong>
+las funciones de exportación (Ajustes → "Compartir copia de seguridad" /
+"Copiar al portapapeles"), en cuyo caso el contenido va donde tú decides
+(otro app, email, almacenamiento personal en la nube…).</p>
+<h2>Servicios de terceros que sí reciben datos cuando los usas</h2>
+<h3>1. WeatherAPI (weatherapi.com)</h3>
+<ul>
+<li><strong>Cuándo</strong>: cuando abres el módulo Tiempo o consultas el pronóstico
+  desde la pantalla de inicio.</li>
+<li><strong>Qué se envía</strong>: las <strong>coordenadas</strong> (latitud y longitud) de la
+  ubicación que tienes seleccionada o estás buscando, y el <strong>texto
+  literal</strong> que tecleas en el buscador de ubicaciones.</li>
+<li><strong>Qué NO se envía</strong>: ningún dato de tareas, diario, despensa, etc.</li>
+<li><strong>Frecuencia</strong>: como máximo cada 10 minutos (caché local) por cada
+  ubicación consultada.</li>
+<li><strong>Términos del proveedor</strong>:
+  https://www.weatherapi.com/privacy.aspx</li>
+</ul>
+<h3>2. Anthropic (Claude) — solo si activas el módulo IA</h3>
+<ul>
+<li><strong>Cuándo</strong>: cuando envías un mensaje en el chat del módulo IA. Si
+  no usas ese módulo, no se hace ninguna llamada.</li>
+<li><strong>Qué se envía</strong>: el texto que escribes y, si la IA decide invocar
+  alguna de sus herramientas para responderte, los <strong>resultados de
+  esa herramienta</strong> sobre tus datos (por ejemplo: si preguntas "¿qué
+  he escrito en el diario sobre vacaciones?", la herramienta lee tu
+  diario y manda los fragmentos relevantes a Anthropic).</li>
+<li><strong>Qué NO se envía</strong>: nada que la IA no haya pedido vía herramienta.
+  Tu base de datos completa nunca se manda.</li>
+<li><strong>Política del proveedor</strong>: Anthropic declara en su API que <strong>no
+  entrena sus modelos con los datos enviados por la API por defecto</strong>.
+  Ver https://www.anthropic.com/legal/privacy</li>
+<li><strong>Cómo desactivarlo</strong>: borra la API key en Ajustes → IA, o
+  desactiva el módulo IA en Ajustes → Módulos.</li>
+</ul>
+<blockquote>
+<p>Si en el futuro Oficio admite otros proveedores de IA (OpenAI,
+Google Gemini, etc.), esta política se actualizará para nombrarlos
+y enlazar sus respectivas políticas. La elección del proveedor será
+siempre tuya y por defecto el módulo está sin proveedor configurado.</p>
+</blockquote>
+<h2>Permisos del sistema que la app pide</h2>
+<p>Oficio solo pide los permisos estrictamente necesarios para el módulo
+que estés usando:</p>
+<ul>
+<li><strong>Calendario</strong> (Android: <code>READ_CALENDAR</code>/<code>WRITE_CALENDAR</code>, iOS:
+  <code>NSCalendarsUsageDescription</code>): necesario para el módulo Calendario.
+  Lee y crea eventos en el calendario nativo del dispositivo. No hay
+  envío a la nube — todo lo gestiona el calendario del SO.</li>
+<li><strong>Notificaciones</strong> (Android 13+: <code>POST_NOTIFICATIONS</code>): para el
+  resumen matutino opcional. La notificación se programa en local.</li>
+<li><strong>Alarmas exactas</strong> (<code>SCHEDULE_EXACT_ALARM</code>, <code>USE_EXACT_ALARM</code>):
+  para que la notificación matutina se dispare a la hora elegida
+  incluso con el modo "Doze" de Android.</li>
+<li><strong>Ubicación</strong> (<code>ACCESS_COARSE_LOCATION</code>, <code>ACCESS_FINE_LOCATION</code>):
+  solo se solicita si pulsas "Usar mi ubicación" en el módulo
+  Tiempo. La coordenada se manda a WeatherAPI; no se almacena
+  histórico ni se comparte con nadie más.</li>
+<li><strong>Cámara</strong> (<code>NSCameraUsageDescription</code>) y <strong>fotos</strong>
+  (<code>NSPhotoLibraryUsageDescription</code>): para añadir fotos a las recetas.
+  La foto se copia al directorio de la app y nunca se sube a ningún
+  servidor.</li>
+<li><strong>Salud</strong> (Android: permisos <code>health.READ_*</code> y <code>health.WRITE_WEIGHT</code>
+  vía Health Connect, iOS: <code>NSHealthShareUsageDescription</code> y
+  <code>NSHealthUpdateUsageDescription</code> vía HealthKit): solo se solicitan
+  si activas el módulo Salud y entras en él. Oficio lee tus pasos,
+  peso, sueño y ejercicio del store de salud del sistema y los
+  muestra en la app. Cuando registras una nueva medición de peso, se
+  guarda en el mismo store del sistema para que también aparezca en
+  la app de Salud nativa. <strong>Estos datos no se envían a ningún
+  servidor</strong>: la lectura y escritura ocurren en el dispositivo
+  contra Health Connect (Android) o HealthKit (iOS).</li>
+<li><strong>Internet</strong>: necesario para WeatherAPI, IA y descargar feeds RSS.</li>
+</ul>
+<p>Ningún permiso se usa para fines de seguimiento.</p>
+<h2>Cookies, identificadores y publicidad</h2>
+<p>Oficio no usa cookies, no incluye SDKs de analítica ni de publicidad,
+no genera ni almacena identificadores publicitarios (Google AAID, Apple
+IDFA), y no envía telemetría de uso.</p>
+<h2>Cuánto tiempo se conservan los datos</h2>
+<p>Mientras la app esté instalada en tu dispositivo y tú no los borres
+manualmente. Si desinstalas la app, el sistema operativo borra
+también la base de datos local y las claves del almacenamiento
+seguro.</p>
+<h2>Tus derechos</h2>
+<ul>
+<li><strong>Acceso y exportación</strong>: cualquier dato es exportable desde
+  Ajustes → "Compartir copia de seguridad" o "Copiar al
+  portapapeles". El formato es JSON legible.</li>
+<li><strong>Borrado</strong>: puedes eliminar datos individuales desde la propia
+  app. Para borrar todo de golpe, desinstala la app o borra los
+  datos desde Ajustes del SO → Apps → Oficio → Almacenamiento.</li>
+<li><strong>Rectificación y oposición</strong>: al ser tú quien introduce los datos
+  y al no haber un servidor central, no hay un proceso administrativo
+  que solicitar — tú modificas o borras directamente en la app.</li>
+</ul>
+<p>Para asuntos relacionados con datos que ya hayas enviado a un
+tercero (WeatherAPI, Anthropic), debes contactar con ese tercero
+directamente; sus políticas y procedimientos están enlazados arriba.</p>
+<h2>Menores de edad</h2>
+<p>Oficio no está específicamente dirigida a menores de 13 años (o la
+edad mínima de tu jurisdicción). No recogemos información personal
+identificable; no obstante, si eres tutor de un menor que use la app,
+te recomendamos supervisar las funciones que requieren conexión
+(Tiempo, IA).</p>
+<h2>Cambios en esta política</h2>
+<p>Si la política cambia (por ejemplo, al añadir otro proveedor de IA),
+publicaremos la nueva versión con una fecha de "Última actualización"
+y, si el cambio es material, lo comunicaremos en una próxima
+actualización de la app.</p>
+<h2>Contacto</h2>
+<p><strong><!-- [TU-EMAIL-DE-CONTACTO] --></strong></p>
+<p>Esta política se rige por la legislación española y, donde aplique,
+por el Reglamento General de Protección de Datos de la UE (RGPD).</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Hecho con calma.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

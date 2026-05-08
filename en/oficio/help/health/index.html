@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to enable the Health module in Oficio — The Homebody Greyhound</title>
+  <meta name="description" content="What it does: the Health module reads your steps, weight, sleep and exercise from the system's health store (Health Connect on Android, HealthKit on iOS…" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <link rel="alternate" hreflang="es" href="../../../../oficio/help/health/index.html" />
+  <link rel="alternate" hreflang="en" href="index.html" />
+  <link rel="alternate" hreflang="x-default" href="../../../../oficio/help/health/index.html" />
+</head>
+<body class="help-page">
+  <header class="site-header">
+    <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="../../../index.html#trabajo">Work</a>
+      <a href="../index.html">Oficio help</a>
+      <a href="../../../index.html#contacto">Contact</a>
+      <a class="lang-switch" href="../../../../oficio/help/health/index.html" hreflang="es" lang="es" aria-label="Cambiar a español">ES</a>
+    </nav>
+  </header>
+
+  <main class="help-main">
+    <p class="help-crumbs">
+      <a href="../../../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html">Oficio help</a>
+      <span aria-hidden="true">›</span>
+      <span>How to enable the Health module in Oficio</span>
+    </p>
+    <article class="prose help-prose">
+      <h1>How to enable the Health module in Oficio</h1>
+      <p><strong>What it does</strong>: the Health module reads your steps, weight, sleep and exercise from the system's health store (Health Connect on Android, HealthKit on iOS) and shows them in the app. When you log a weight, it writes back to the same store so it also shows up in the native Health app.</p>
+<h2>Steps</h2>
+<p><strong>No account or API key needed.</strong> Everything is local.</p>
+<ol>
+<li>Open Oficio → <strong>Settings → Modules</strong>. The <em>Health</em> module is <strong>off by default</strong> (intentionally, so it doesn't ask for sensitive permissions if you're not going to use it).</li>
+<li>Flip the <em>Health</em> toggle. It will appear in the bottom bar (or under the <strong>More</strong> button if you have many modules enabled).</li>
+<li>Open the module. You'll see a welcome screen with a <strong>Grant access</strong> button.</li>
+<li>Tap <strong>Grant access</strong>. The operating system opens its own permission dialog:
+   - <strong>Android</strong>: the native Health Connect dialog lists the 5 types Oficio wants to read/write (steps, weight read, weight write, sleep, active exercise). You can grant all or only some.
+   - <strong>iOS</strong>: the native HealthKit dialog with the same types.</li>
+<li>You're returned to Oficio automatically. The four cards (steps, weight, sleep, exercise) populate with your data.</li>
+</ol>
+<p>To log a new weight measurement from Oficio, in the <em>Weight</em> card tap the <strong>+</strong> icon top-right → enter the weight → <strong>Save</strong>. It will appear both in Oficio and in the native Health app.</p>
+<h2>Cost and limits</h2>
+<p>Free. <strong>Zero network</strong>: reads and writes happen against the OS store on your own device. The data does not leave the phone.</p>
+<h2>Heads-up</h2>
+<ul>
+<li><strong>Android 7 or below</strong>: the module won't work — Health Connect requires Android 8.0 minimum. The module screen will say "Health Connect not available".</li>
+<li><strong>Android 8–13</strong>: Health Connect ships as a separate app. The first time you tap <em>Grant access</em>, Android will send you to the Play Store to install it. Then come back to Oficio and the flow continues.</li>
+<li><strong>Android 14+</strong>: Health Connect is built-in. Works out of the box.</li>
+<li><strong>iOS</strong>: physical devices only. Xcode's simulator has no HealthKit, so the module will appear empty.</li>
+<li><strong>Without prior data, there is nothing to show</strong>. If you have never used a wearable, smart scale, or activity app, the cards will say "No data…". To have something to look at, hook up your usual wearable or app (Samsung Health / Google Fit / Apple Health) and let it feed the store.</li>
+<li><strong>Partial granting is possible</strong>. If you only grant steps and refuse the rest, the other cards stay empty; the app won't bother you again with the dialog.</li>
+</ul>
+    </article>
+    <p class="help-back">
+      <a href="../index.html">← Back to the help index</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Made unhurriedly.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

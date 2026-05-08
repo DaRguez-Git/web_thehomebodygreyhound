@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to set up IGDB in Oficio — The Homebody Greyhound</title>
+  <meta name="description" content="What it does: IGDB (Internet Game Database) is Oficio's source for video-game search — when you add a Video game entry to the Cultural Log, IGDB fills i…" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <link rel="alternate" hreflang="es" href="../../../../oficio/help/igdb/index.html" />
+  <link rel="alternate" hreflang="en" href="index.html" />
+  <link rel="alternate" hreflang="x-default" href="../../../../oficio/help/igdb/index.html" />
+</head>
+<body class="help-page">
+  <header class="site-header">
+    <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="../../../index.html#trabajo">Work</a>
+      <a href="../index.html">Oficio help</a>
+      <a href="../../../index.html#contacto">Contact</a>
+      <a class="lang-switch" href="../../../../oficio/help/igdb/index.html" hreflang="es" lang="es" aria-label="Cambiar a español">ES</a>
+    </nav>
+  </header>
+
+  <main class="help-main">
+    <p class="help-crumbs">
+      <a href="../../../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html">Oficio help</a>
+      <span aria-hidden="true">›</span>
+      <span>How to set up IGDB in Oficio</span>
+    </p>
+    <article class="prose help-prose">
+      <h1>How to set up IGDB in Oficio</h1>
+      <p><strong>What it does</strong>: IGDB (Internet Game Database) is Oficio's source for video-game search — when you add a <em>Video game</em> entry to the Cultural Log, IGDB fills in title, year, cover art and platforms.</p>
+<h2>Steps</h2>
+<p>IGDB uses Twitch's account system for authentication. Even if you don't use Twitch as a social network, you need to register an "application" in their developer console.</p>
+<ol>
+<li>Go to <a href="https://dev.twitch.tv/">dev.twitch.tv</a> with your Twitch account (create one first if you don't have it).</li>
+<li>Verify your account has <strong>2FA enabled</strong> (Twitch requires it to register apps; if not, <strong>Account Security → Set Up Two-Factor Authentication</strong>).</li>
+<li>Once 2FA is set, open <a href="https://dev.twitch.tv/console/apps">dev.twitch.tv/console/apps</a>.</li>
+<li>Click <strong>Register Your Application</strong> and fill in:
+   - <strong>Name</strong>: <em>Oficio</em> (or whatever you like; it must be unique on Twitch).
+   - <strong>OAuth Redirect URLs</strong>: <code>http://localhost</code>. Yes, exactly: <code>http</code> and <code>localhost</code>. You won't actually use this redirect — but the form requires one.
+   - <strong>Category</strong>: <em>Application Integration</em>.
+   - <strong>Client Type</strong>: <em>Confidential</em>.</li>
+<li>Click <strong>Create</strong>. You'll land on the app detail page.</li>
+<li>Copy the <strong>Client ID</strong> shown on that page.</li>
+<li>Click <strong>New Secret</strong> to generate a Client Secret. Copy it <strong>immediately</strong> — it is not shown again.</li>
+<li>Paste both into Oficio: <strong>Settings → External APIs → IGDB → Configure</strong>.</li>
+<li>Tap <strong>Test connection</strong> to verify.</li>
+</ol>
+<h2>Cost and limits</h2>
+<p>Free. Rate limit: 4 requests per second. Oficio caches aggressively to stay well below it.</p>
+<p>The internal access token IGDB requires expires every ~60 days; Oficio refreshes it automatically when needed.</p>
+<h2>Heads-up</h2>
+<ul>
+<li><strong>Registration goes through Twitch, not IGDB</strong>. IGDB has been owned by Twitch since 2019 and they share authentication. It looks odd but <code>dev.twitch.tv</code> is the right URL.</li>
+<li><strong>The Client Secret is shown ONCE</strong>. If you lose it, go back to the app's console and click <strong>New Secret</strong> to generate a new one (the previous secret is invalidated).</li>
+<li><strong>2FA is mandatory</strong> on the Twitch account in order to create apps. If Twitch refuses to let you create an app, that is usually why.</li>
+</ul>
+    </article>
+    <p class="help-back">
+      <a href="../index.html">← Back to the help index</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Made unhurriedly.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

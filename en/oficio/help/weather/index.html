@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Weather module in Oficio — The Homebody Greyhound</title>
+  <meta name="description" content="What it does: the Weather module shows current weather + the next 24 hours + the next 7 days for any location. The query goes to WeatherAPI with a 10-mi…" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <link rel="alternate" hreflang="es" href="../../../../oficio/help/weather/index.html" />
+  <link rel="alternate" hreflang="en" href="index.html" />
+  <link rel="alternate" hreflang="x-default" href="../../../../oficio/help/weather/index.html" />
+</head>
+<body class="help-page">
+  <header class="site-header">
+    <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="../../../index.html#trabajo">Work</a>
+      <a href="../index.html">Oficio help</a>
+      <a href="../../../index.html#contacto">Contact</a>
+      <a class="lang-switch" href="../../../../oficio/help/weather/index.html" hreflang="es" lang="es" aria-label="Cambiar a español">ES</a>
+    </nav>
+  </header>
+
+  <main class="help-main">
+    <p class="help-crumbs">
+      <a href="../../../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html">Oficio help</a>
+      <span aria-hidden="true">›</span>
+      <span>The Weather module in Oficio</span>
+    </p>
+    <article class="prose help-prose">
+      <h1>The Weather module in Oficio</h1>
+      <p><strong>What it does</strong>: the Weather module shows current weather + the next 24 hours + the next 7 days for any location. The query goes to WeatherAPI with a 10-minute cache.</p>
+<h2>Steps</h2>
+<p><strong>You don't need to configure anything.</strong> The WeatherAPI key is bundled in the app — Oficio takes care of the quota.</p>
+<ol>
+<li>Enable the <em>Weather</em> module from <strong>Settings → Modules</strong> (it's enabled by default).</li>
+<li>Open the module. By default it shows a preset location (Madrid).</li>
+<li>To change it, use the search icon and type your city, or tap <strong>Use my location</strong> to detect it via GPS (the first time it will ask for the location permission; that permission is used only for this, no history is stored).</li>
+<li>You can save several favourite locations and switch between them.</li>
+</ol>
+<h2>Cost and limits</h2>
+<p><strong>Free for you</strong>. The WeatherAPI quota is paid by the studio's developer (1 million requests per month on the free tier). Oficio caches each query for 10 minutes to stay clear of the limit — typical personal use is ~50 requests a day.</p>
+<h2>Heads-up</h2>
+<ul>
+<li><strong>Internet required</strong> to refresh. Without a network, Oficio shows the last cached version with a "stale data" notice.</li>
+<li><strong>Location permission is optional</strong>. It's only requested if you tap <em>Use my location</em>. If you type the city by name, it isn't needed. Coordinates are sent to WeatherAPI; Oficio does not keep a history.</li>
+<li><strong>If the monthly quota ever runs out</strong> (massive use across all installs), Oficio will switch to a fallback provider or ask you to plug in your own key. This is not a problem today and you don't need to do anything.</li>
+</ul>
+    </article>
+    <p class="help-back">
+      <a href="../index.html">← Back to the help index</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Made unhurriedly.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oficio — Privacy Policy — The Homebody Greyhound</title>
+  <meta name="description" content="Privacy policy for the Oficio app." />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="alternate" hreflang="es" href="../../../legal/privacy/index.html" />
+  <link rel="alternate" hreflang="en" href="index.html" />
+  <link rel="alternate" hreflang="x-default" href="../../../legal/privacy/index.html" />
+</head>
+<body class="help-page">
+  <header class="site-header">
+    <a href="../../index.html" class="brand" aria-label="The Homebody Greyhound">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="../../index.html#trabajo">Work</a>
+      <a href="../../index.html#sobre">About</a>
+      <a href="../../index.html#contacto">Contact</a>
+      <a class="lang-switch" href="../../../legal/privacy/index.html" hreflang="es" lang="es" aria-label="Cambiar a español">ES</a>
+    </nav>
+  </header>
+
+  <main class="help-main">
+    <p class="help-crumbs">
+      <a href="../../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <span>Legal</span>
+      <span aria-hidden="true">›</span>
+      <span>Oficio — Privacy Policy</span>
+    </p>
+    <article class="prose help-prose">
+      <h1>Oficio — Privacy Policy</h1>
+      <p><strong>Last updated</strong>: <!-- ADD PUBLICATION DATE, format YYYY-MM-DD --></p>
+<h2>Who is responsible</h2>
+<p>This app is developed by <strong>TheHomebodyGreyhound</strong> (the "developer"). For any
+question about this policy or how your data is handled, contact
+<strong><!-- [YOUR-CONTACT-EMAIL] --></strong>.</p>
+<h2>At a glance</h2>
+<ul>
+<li><strong>Oficio is offline by design.</strong> Your tasks, journal, pantry, notes,
+  recipes, weekly plan, shopping list, cultural log and the rest of
+  the modules live exclusively in your device's local storage. The
+  Health module reads and writes against the system's store (Health
+  Connect / HealthKit), also on device.</li>
+<li><strong>There is no Oficio server.</strong> We don't register accounts. We
+  don't collect analytics. We don't show ads. We don't sell data.</li>
+<li><strong>Two cases where Oficio does send data to a third party</strong>, and
+  always because you explicitly enable the feature:<ol>
+<li>Weather forecast: query to <strong>WeatherAPI</strong>.</li>
+<li>AI assistant (optional module): query to <strong>Anthropic</strong>.</li>
+</ol>
+</li>
+<li>In both cases you can choose not to use the feature and the app
+  remains 100% local.</li>
+</ul>
+<h2>What Oficio stores on your device</h2>
+<p>Everything you enter into the app is stored on the device:</p>
+<ul>
+<li><strong>Local database</strong> (encrypted by the OS): tasks, journal entries,
+  pantry items, notes, notebooks, RSS feeds and articles, calendar
+  events you create, recipes (including photos), cultural entries,
+  weekly meal plan and shopping list.</li>
+<li><strong>Preferences</strong> (<code>SharedPreferences</code>): theme choice, enabled
+  modules, bottom-bar order, favourite locations, home-screen
+  customization, currently selected day in each module.</li>
+<li><strong>Secure storage</strong> (Keychain on iOS, EncryptedSharedPreferences
+  on Android): API keys you configure for optional modules
+  (Cultural Log, AI Assistant).</li>
+<li><strong>Files in the app's directory</strong>: recipe photos you add (folder
+  <code>recipe_photos/</code>).</li>
+</ul>
+<p>This data does not leave the device unless you <strong>explicitly</strong> use
+the export functions (Settings → "Share backup" / "Copy to
+clipboard"), in which case the content goes wherever you choose
+(another app, email, your own cloud storage…).</p>
+<h2>Third-party services that do receive data when you use them</h2>
+<h3>1. WeatherAPI (weatherapi.com)</h3>
+<ul>
+<li><strong>When</strong>: when you open the Weather module or check the forecast
+  from the home screen.</li>
+<li><strong>What is sent</strong>: the <strong>coordinates</strong> (latitude/longitude) of the
+  location you have selected or are searching for, and the
+  <strong>literal text</strong> you type in the location search.</li>
+<li><strong>What is NOT sent</strong>: no data from tasks, journal, pantry, etc.</li>
+<li><strong>Frequency</strong>: at most once every 10 minutes (local cache) per
+  queried location.</li>
+<li><strong>Provider's policy</strong>:
+  https://www.weatherapi.com/privacy.aspx</li>
+</ul>
+<h3>2. Anthropic (Claude) — only if you enable the AI module</h3>
+<ul>
+<li><strong>When</strong>: when you send a message in the AI module's chat. If you
+  do not use that module, no calls are made.</li>
+<li><strong>What is sent</strong>: the text you type and, if the AI invokes one of
+  its tools to answer you, the <strong>results of that tool</strong> over your
+  data (e.g. if you ask "what did I write in my journal about
+  vacations?", the tool reads your journal and sends the relevant
+  fragments to Anthropic).</li>
+<li><strong>What is NOT sent</strong>: anything the AI hasn't requested via a
+  tool. Your full database is never sent.</li>
+<li><strong>Provider's policy</strong>: Anthropic states in its API terms that it
+  does <strong>not train its models on data sent through the API by
+  default</strong>. See https://www.anthropic.com/legal/privacy</li>
+<li><strong>How to disable it</strong>: delete the API key in Settings → AI, or
+  disable the AI module in Settings → Modules.</li>
+</ul>
+<blockquote>
+<p>If Oficio adds other AI providers in the future (OpenAI, Google
+Gemini, etc.), this policy will be updated to name them and link
+their respective policies. Choosing a provider will always be
+your decision, and by default the module ships without any
+provider configured.</p>
+</blockquote>
+<h2>System permissions the app requests</h2>
+<p>Oficio only requests the permissions strictly required for the
+module you are using:</p>
+<ul>
+<li><strong>Calendar</strong> (Android: <code>READ_CALENDAR</code>/<code>WRITE_CALENDAR</code>, iOS:
+  <code>NSCalendarsUsageDescription</code>): required for the Calendar module.
+  Reads and creates events in the device's native calendar. No
+  cloud transfer — the OS calendar handles everything.</li>
+<li><strong>Notifications</strong> (Android 13+: <code>POST_NOTIFICATIONS</code>): for the
+  optional morning summary. The notification is scheduled locally.</li>
+<li><strong>Exact alarms</strong> (<code>SCHEDULE_EXACT_ALARM</code>, <code>USE_EXACT_ALARM</code>): so
+  the morning notification fires at the chosen time even with
+  Android's "Doze" mode active.</li>
+<li><strong>Location</strong> (<code>ACCESS_COARSE_LOCATION</code>, <code>ACCESS_FINE_LOCATION</code>):
+  only requested if you tap "Use my location" in the Weather
+  module. The coordinate is sent to WeatherAPI; no history is
+  stored and it is not shared with anyone else.</li>
+<li><strong>Camera</strong> (<code>NSCameraUsageDescription</code>) and <strong>photos</strong>
+  (<code>NSPhotoLibraryUsageDescription</code>): to add photos to recipes. The
+  photo is copied to the app's directory and never uploaded to any
+  server.</li>
+<li><strong>Health</strong> (Android: <code>health.READ_*</code> and <code>health.WRITE_WEIGHT</code>
+  permissions through Health Connect; iOS:
+  <code>NSHealthShareUsageDescription</code> and <code>NSHealthUpdateUsageDescription</code>
+  through HealthKit): only requested if you enable the Health module
+  and open it. Oficio reads your steps, weight, sleep and exercise
+  from the system's health store and displays them in the app. When
+  you log a new weight measurement, it is written back to the same
+  system store so it also shows up in the native Health app. <strong>This
+  data is not sent to any server</strong>: reads and writes happen on
+  device against Health Connect (Android) or HealthKit (iOS).</li>
+<li><strong>Internet</strong>: required for WeatherAPI, AI and to download RSS
+  feeds.</li>
+</ul>
+<p>No permission is used for tracking purposes.</p>
+<h2>Cookies, identifiers and advertising</h2>
+<p>Oficio uses no cookies, includes no analytics or advertising SDKs,
+generates and stores no advertising identifiers (Google AAID, Apple
+IDFA), and sends no usage telemetry.</p>
+<h2>How long is data kept</h2>
+<p>For as long as the app is installed on your device and you do not
+delete it manually. If you uninstall the app, the operating system
+also wipes the local database and the keys in secure storage.</p>
+<h2>Your rights</h2>
+<ul>
+<li><strong>Access and export</strong>: any data is exportable from Settings →
+  "Share backup" or "Copy to clipboard". Format is human-readable
+  JSON.</li>
+<li><strong>Deletion</strong>: you can delete individual items from within the app.
+  To wipe everything at once, uninstall the app or clear app data
+  from OS Settings → Apps → Oficio → Storage.</li>
+<li><strong>Rectification and objection</strong>: since you enter the data and
+  there is no central server, there is no administrative procedure
+  to request — you modify or delete directly in the app.</li>
+</ul>
+<p>For matters concerning data already sent to a third party
+(WeatherAPI, Anthropic), please contact that third party directly;
+their policies and procedures are linked above.</p>
+<h2>Children</h2>
+<p>Oficio is not specifically aimed at children under 13 (or the
+minimum age in your jurisdiction). We do not collect personally
+identifiable information; nonetheless, if you are the guardian of a
+minor using the app, we recommend supervising features that require
+a network connection (Weather, AI).</p>
+<h2>Changes to this policy</h2>
+<p>If the policy changes (for example, on adding another AI provider),
+we will publish the new version with an updated "Last updated"
+date and, if the change is material, will communicate it in an
+upcoming app release.</p>
+<h2>Contact</h2>
+<p><strong><!-- [YOUR-CONTACT-EMAIL] --></strong></p>
+<p>This policy is governed by Spanish law and, where applicable, by
+the EU General Data Protection Regulation (GDPR).</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Made unhurriedly.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

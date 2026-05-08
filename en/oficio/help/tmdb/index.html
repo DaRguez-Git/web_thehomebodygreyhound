@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to set up TMDb in Oficio — The Homebody Greyhound</title>
+  <meta name="description" content="What it does: TMDb (The Movie Database) powers movie and series search in the Cultural Log — when you add a Film or Series entry, Oficio queries TMDb to…" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <link rel="alternate" hreflang="es" href="../../../../oficio/help/tmdb/index.html" />
+  <link rel="alternate" hreflang="en" href="index.html" />
+  <link rel="alternate" hreflang="x-default" href="../../../../oficio/help/tmdb/index.html" />
+</head>
+<body class="help-page">
+  <header class="site-header">
+    <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="../../../index.html#trabajo">Work</a>
+      <a href="../index.html">Oficio help</a>
+      <a href="../../../index.html#contacto">Contact</a>
+      <a class="lang-switch" href="../../../../oficio/help/tmdb/index.html" hreflang="es" lang="es" aria-label="Cambiar a español">ES</a>
+    </nav>
+  </header>
+
+  <main class="help-main">
+    <p class="help-crumbs">
+      <a href="../../../index.html">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html">Oficio help</a>
+      <span aria-hidden="true">›</span>
+      <span>How to set up TMDb in Oficio</span>
+    </p>
+    <article class="prose help-prose">
+      <h1>How to set up TMDb in Oficio</h1>
+      <p><strong>What it does</strong>: TMDb (The Movie Database) powers movie and series search in the Cultural Log — when you add a <em>Film</em> or <em>Series</em> entry, Oficio queries TMDb to autocomplete title, year, poster and synopsis.</p>
+<h2>Steps</h2>
+<ol>
+<li>Create a free account at <a href="https://www.themoviedb.org/signup">themoviedb.org</a>.</li>
+<li>Verify your email (you'll receive a link).</li>
+<li>Once logged in, open your profile → <strong>Settings → API</strong> (or jump straight to <a href="https://www.themoviedb.org/settings/api">themoviedb.org/settings/api</a>).</li>
+<li>Click <strong>Request an API Key</strong> and choose type <strong>Developer</strong> (free; <em>Commercial</em> requires manual approval and you don't need it).</li>
+<li>Fill in the form: personal use application, country, short description. Accept the terms.</li>
+<li>Once approved (instant for Developer), you'll see two credentials:
+   - <strong>API Key (v3 auth)</strong>: looks like <code>1234abcd...</code>. <strong>This is NOT the one you need.</strong>
+   - <strong>API Read Access Token (v4 auth)</strong>: looks like <code>eyJhbGciOiJI...</code>. <strong>This is the one Oficio needs.</strong></li>
+<li>Copy the v4 token and paste it into Oficio: <strong>Settings → External APIs → TMDb → Configure</strong>.</li>
+<li>Tap <strong>Test connection</strong> to verify.</li>
+</ol>
+<h2>Cost and limits</h2>
+<p>Free for personal use. No per-request cost. Rate limit: ~50 requests per second, plenty for any normal use (Oficio caches results, so you won't notice the limit).</p>
+<h2>Heads-up</h2>
+<ul>
+<li><strong>v3 vs v4</strong>: TMDb gives you TWO types of credential. Oficio uses the <strong>v4 token</strong> (also called <em>API Read Access Token</em>) starting with <code>eyJ…</code> because it is a JWT. If you copy the v3 (short alphanumeric string) by mistake you'll get 401 errors.</li>
+<li><strong>No need to request the Commercial API</strong>. Developer is the free, sufficient one. Only request Commercial if you ship the app to third parties using your own key — and that's not your case, since each user enters their own.</li>
+</ul>
+    </article>
+    <p class="help-back">
+      <a href="../index.html">← Back to the help index</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Made unhurriedly.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
