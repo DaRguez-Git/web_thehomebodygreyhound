@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cómo configurar la IA de Anthropic en Oficio — Ayuda de Oficio | The Homebody Greyhound</title>
+  <meta name="description" content="Para qué sirve: con tu API key de Anthropic, el módulo IA de Oficio se convierte en un asistente que puede consultar y modificar todos tus módulos (tare…" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../styles.css" />
+</head>
+<body class="help-page">
+  <header class="site-header">
+    <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound — inicio">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a href="../../../index.html#trabajo">Trabajo</a>
+      <a href="../index.html">Ayuda de Oficio</a>
+      <a href="../../../index.html#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="help-main">
+    <p class="help-crumbs">
+      <a href="../../../index.html">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html">Ayuda de Oficio</a>
+      <span aria-hidden="true">›</span>
+      <span>Cómo configurar la IA de Anthropic en Oficio</span>
+    </p>
+    <article class="prose help-prose">
+      <h1>Cómo configurar la IA de Anthropic en Oficio</h1>
+      <p><strong>Para qué sirve</strong>: con tu API key de Anthropic, el módulo IA de Oficio se convierte en un asistente que puede consultar y modificar todos tus módulos (tareas, diario, despensa, etc.) usando herramientas locales.</p>
+<h2>Pasos</h2>
+<ol>
+<li>Entra en <a href="https://console.anthropic.com/">console.anthropic.com</a> y crea una cuenta (con email o Google).</li>
+<li>Una vez dentro, ve a <strong>Settings → API Keys</strong> (o directamente al apartado <strong>API Keys</strong> del menú lateral).</li>
+<li>Pulsa <strong>Create Key</strong>, dale un nombre que reconozcas más tarde (p. ej. <em>Oficio</em>).</li>
+<li>Copia la key que aparece; empieza por <code>sk-ant-…</code>. Cópiala antes de cerrar el diálogo: <strong>no se vuelve a mostrar</strong> (aunque sí puedes regenerarla más tarde).</li>
+<li>Antes de poder usarla, ve a <strong>Settings → Plans &amp; Billing</strong> y añade saldo (mínimo $5). Sin saldo, la key falla con un error 401.</li>
+<li>Pega la key en Oficio: <strong>Ajustes → IA → API key</strong> y pulsa <strong>Probar conexión</strong> para verificar que funciona.</li>
+</ol>
+<h2>Coste y límites</h2>
+<p>Pago por uso, sin suscripción. Varía según el modelo:</p>
+<ul>
+<li><strong>Haiku</strong>: el más barato, ~$0,25 por millón de tokens de entrada y ~$1,25 por millón de tokens de salida. Para uso personal en Oficio (consultas cortas, no más de 10–20 mensajes al día) suele costar <strong>menos de 1€/mes</strong>.</li>
+<li><strong>Sonnet</strong>: equilibrio entre coste y capacidad, ~$3 / $15 por millón.</li>
+<li><strong>Opus</strong>: el más capaz pero más caro, ~$15 / $75 por millón.</li>
+</ul>
+<p>Puedes cambiar de modelo en cualquier momento desde <strong>Ajustes → IA → Modelo</strong>.</p>
+<h2>Avisos</h2>
+<ul>
+<li><strong><code>console.anthropic.com</code> ≠ <code>claude.ai</code></strong>. Aunque ya tengas cuenta en <code>claude.ai</code> para chatear, necesitas crear una cuenta separada en <code>console.anthropic.com</code> para sacar API key. La de <code>claude.ai</code> no sirve.</li>
+<li><strong>Hay que añadir saldo antes de la primera llamada</strong>. Es un fallo común: creas cuenta, generas key, la pegas en la app, y todo da error 401 — porque la cuenta tiene 0$ de saldo.</li>
+<li><strong>La API key vive cifrada en tu dispositivo</strong>. Oficio la guarda en el Keychain (iOS) o EncryptedSharedPreferences (Android). Si quieres revocarla, vuelve al panel de Anthropic y bórrala desde ahí; en Oficio basta con pulsar <strong>Borrar key</strong> en Ajustes → IA.</li>
+</ul>
+    </article>
+    <p class="help-back">
+      <a href="../index.html">← Volver al índice de ayuda</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Hecho con calma.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

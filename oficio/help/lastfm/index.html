@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cómo configurar Last.fm en Oficio — Ayuda de Oficio | The Homebody Greyhound</title>
+  <meta name="description" content="Para qué sirve: Last.fm guarda tu histórico de escuchas musicales (scrobbles). Con tu API key + nombre de usuario, Oficio puede mostrar tus tops, escuch…" />
+  <meta name="theme-color" content="#f6f3ee" />
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../styles.css" />
+</head>
+<body class="help-page">
+  <header class="site-header">
+    <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound — inicio">
+      <span class="brand-name">The Homebody Greyhound</span>
+    </a>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a href="../../../index.html#trabajo">Trabajo</a>
+      <a href="../index.html">Ayuda de Oficio</a>
+      <a href="../../../index.html#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="help-main">
+    <p class="help-crumbs">
+      <a href="../../../index.html">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html">Ayuda de Oficio</a>
+      <span aria-hidden="true">›</span>
+      <span>Cómo configurar Last.fm en Oficio</span>
+    </p>
+    <article class="prose help-prose">
+      <h1>Cómo configurar Last.fm en Oficio</h1>
+      <p><strong>Para qué sirve</strong>: Last.fm guarda tu histórico de escuchas musicales (<em>scrobbles</em>). Con tu API key + nombre de usuario, Oficio puede mostrar tus tops, escuchas recientes y enlazar álbumes en la Bitácora cultural.</p>
+<h2>Pasos</h2>
+<ol>
+<li>Si no tienes cuenta de Last.fm, créala en <a href="https://www.last.fm/join">last.fm/join</a>. Apunta tu <strong>nick</strong> (no el email — luego lo necesitas).</li>
+<li>Configura un cliente de scrobble (Spotify integrado, Pano Scrobbler en Android, etc.) para que tus escuchas aparezcan en tu perfil. Sin scrobbles, Last.fm no tiene nada que enseñarte.</li>
+<li>Con la cuenta lista, ve a <a href="https://www.last.fm/api/account/create">last.fm/api/account/create</a> (logueado).</li>
+<li>Rellena el formulario:
+   - <strong>Application name</strong>: <em>Oficio</em> (o lo que quieras).
+   - <strong>Application description</strong>: cualquier cosa, p. ej. <em>Personal media tracker</em>.
+   - <strong>Application homepage URL</strong>: lo que quieras (puedes poner tu blog o <code>https://oficio.app</code>).
+   - <strong>Callback URL</strong>: déjalo vacío.</li>
+<li>Acepta los términos y pulsa <strong>Submit</strong>.</li>
+<li>La página siguiente te muestra:
+   - <strong>API key</strong>: cópiala. Es la que necesita Oficio.
+   - <strong>Shared secret</strong>: ignóralo. Solo se usa para escribir scrobbles, y Oficio solo lee.</li>
+<li>Pega la key en Oficio: <strong>Ajustes → APIs externas → Last.fm → Configurar</strong>:
+   - <strong>API Key</strong>: la del paso anterior.
+   - <strong>Usuario</strong>: tu nick de Last.fm (no el email).</li>
+<li>Pulsa <strong>Probar conexión</strong>. Si va bien, Last.fm devolverá info de tu perfil.</li>
+</ol>
+<h2>Coste y límites</h2>
+<p>Gratis. Rate limit: 5 peticiones por segundo y aproximadamente 1.000 al día por cuenta de aplicación. Oficio cachea las consultas; no notarás el límite.</p>
+<h2>Avisos</h2>
+<ul>
+<li><strong>El "Usuario" es el nick, no el email</strong>. Es el error #1 en este servicio: pones tu email en el campo <em>Usuario</em> y el test falla con "User not found". Tu nick es el que sale en la URL de tu perfil — <code>last.fm/user/&lt;TU_NICK&gt;</code>.</li>
+<li><strong>Si tu cuenta no tiene scrobbles, no hay nada que mostrar</strong>. La API key responderá correctamente, pero los listados saldrán vacíos hasta que alguna app empiece a registrar tus escuchas.</li>
+<li><strong>No hace falta el <code>Shared secret</code></strong> para uso de Oficio (solo lectura). Si te lo pide algún manual, ignóralo en este caso.</li>
+</ul>
+    </article>
+    <p class="help-back">
+      <a href="../index.html">← Volver al índice de ayuda</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Hecho con calma.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
