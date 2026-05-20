@@ -3,40 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ayuda de Oficio — The Homebody Greyhound</title>
-  <meta name="description" content="Guías para configurar las integraciones de la app Oficio." />
-  <meta name="theme-color" content="#f6f3ee" />
+  <title>Manuales de Oficio — The Homebody Greyhound</title>
+  <meta name="description" content="Manuales para configurar las integraciones de la app Oficio." />
+  <meta name="theme-color" content="#faf8f3" />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="stylesheet" href="../../styles.css" />
   <link rel="alternate" hreflang="es" href="index.html" />
   <link rel="alternate" hreflang="en" href="../../en/oficio/help/index.html" />
   <link rel="alternate" hreflang="x-default" href="index.html" />
 </head>
-<body class="help-page">
+<body>
   <header class="site-header">
-    <a href="../../index.html" class="brand" aria-label="The Homebody Greyhound">
-      <span class="brand-name">The Homebody Greyhound</span>
-    </a>
-    <nav class="site-nav" aria-label="Navegación principal">
-      <a href="../../index.html#trabajo">Trabajo</a>
-      <a href="../../index.html#sobre">Sobre</a>
-      <a href="../../index.html#contacto">Contacto</a>
-      <a class="lang-switch" href="../../en/oficio/help/index.html" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
-    </nav>
+    <div class="site-header__inner">
+      <a href="../../index.html" class="brand" aria-label="The Homebody Greyhound — inicio">
+        <img class="brand-mark" src="../../favicon.svg" alt="" width="26" height="26" />
+        <span class="brand-name">The Homebody Greyhound</span>
+      </a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="../../index.html">Inicio</a>
+        <a href="../../aplicaciones/index.html">Aplicaciones</a>
+        <a href="../../about/index.html">Sobre</a>
+        <a class="lang-switch" href="../../en/oficio/help/index.html" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="help-main">
-    <p class="help-crumbs">
+  <main class="doc-main">
+    <p class="crumbs">
       <a href="../../index.html">Inicio</a>
       <span aria-hidden="true">›</span>
-      <span>Ayuda de Oficio</span>
+      <a href="../../oficio/index.html">Oficio</a>
+      <span aria-hidden="true">›</span>
+      <span>Manuales</span>
     </p>
-    <article class="prose">
-      <h1>Ayuda de Oficio</h1>
-      <p class="lede">
-        Cada bloque te explica cómo configurar una integración: dónde sacar la API key, qué cuesta, y los pequeños matices que evitan los errores más comunes. Si una entrada dice <em>sin API key</em>, basta con activar el toggle en la app.
-      </p>
-      <ul class="help-index">
+    <article class="doc">
+      <h1>Manuales de Oficio</h1>
+      <p class="lede">Cada manual te explica cómo configurar una integración: dónde sacar la API key, qué cuesta, y los pequeños matices que evitan los errores más comunes. Si una entrada dice <em>sin API key</em>, basta con activar el toggle en la app.</p>
+      <ul class="guide-list">
         <li><a href="anthropic-ai/index.html"><strong>Anthropic Claude (módulo IA)</strong><span>Configurar tu propia API key para el agente de IA.</span></a></li>
         <li><a href="tmdb/index.html"><strong>TMDb — películas y series</strong><span>Autocompletado de películas y series en la Bitácora.</span></a></li>
         <li><a href="igdb/index.html"><strong>IGDB — videojuegos</strong><span>Autocompletado de videojuegos en la Bitácora.</span></a></li>
@@ -48,10 +51,23 @@
         <li><a href="weather/index.html"><strong>Tiempo (WeatherAPI)</strong><span>Tiempo actual y previsión, ya configurado.</span></a></li>
       </ul>
     </article>
+
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Hecho con calma.</p>
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <span class="brand-name">The Homebody Greyhound</span>
+        <p class="footer-tagline">Apps sencillas, hechas con calma.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Pie de página">
+        <a href="../../index.html">Inicio</a>
+        <a href="../../aplicaciones/index.html">Aplicaciones</a>
+        <a href="../../oficio/index.html">Oficio</a>
+        <a href="mailto:info@thehomebodygreyhound.com">info@thehomebodygreyhound.com</a>
+      </nav>
+    </div>
+    <p class="footer-legal">&copy; <span id="year">2026</span> The Homebody Greyhound</p>
   </footer>
 
   <script>

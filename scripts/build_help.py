@@ -7,12 +7,15 @@ shared chrome.
 Output layout
 -------------
 
-  /oficio/help/                       Spanish help index
-  /oficio/help/<slug>/                Spanish help page per slug
-  /en/oficio/help/                    English help index
-  /en/oficio/help/<slug>/             English help page per slug
-  /homebody/terms/                    Spanish privacy policy
-  /en/homebody/terms/                 English privacy policy
+  /oficio/help/                       Spanish manuals index
+  /oficio/help/<slug>/                Spanish manual page per slug
+  /oficio/terms/                      Spanish privacy policy
+  /en/oficio/help/                    English manuals index
+  /en/oficio/help/<slug>/             English manual page per slug
+  /en/oficio/terms/                   English privacy policy
+
+Every generated page lives under the Oficio app, so its manuals and
+legal pages are reachable from /oficio/ rather than a global footer.
 
 The script is idempotent: it overwrites whatever was previously
 generated. Run from the repo root:
@@ -35,73 +38,85 @@ HELP_OUT_ES = ROOT / "oficio" / "help"
 HELP_OUT_EN = ROOT / "en" / "oficio" / "help"
 PRIVACY_SRC_ES = ROOT / "assets" / "PRIVACY_POLICY.md"
 PRIVACY_SRC_EN = ROOT / "assets" / "PRIVACY_POLICY_EN.md"
-PRIVACY_OUT_ES = ROOT / "homebody" / "terms"
-PRIVACY_OUT_EN = ROOT / "en" / "homebody" / "terms"
+PRIVACY_OUT_ES = ROOT / "oficio" / "terms"
+PRIVACY_OUT_EN = ROOT / "en" / "oficio" / "terms"
+
+SITE_TITLE = "The Homebody Greyhound"
+EMAIL = "info@thehomebodygreyhound.com"
 
 
 @dataclass(frozen=True)
 class Locale:
-    code: str  # html lang attribute
-    site_title: str
-    nav_work: str
-    nav_help: str
-    nav_contact: str
-    breadcrumb_home: str
-    breadcrumb_help: str
-    help_index_title: str
-    help_index_lede: str
+    code: str
+    home_word: str          # brand aria-label suffix
+    nav_label: str          # aria-label for the primary nav
+    footer_label: str       # aria-label for the footer nav
+    nav_home: str
+    nav_apps: str
+    nav_about: str
+    footer_about: str
+    footer_tagline: str
+    lang_label: str         # text on the language switch
+    lang_hreflang: str      # the *other* language code
+    lang_aria: str
+    crumb_home: str
+    crumb_manuals: str
+    crumb_privacy: str
+    manuals_title: str
+    manuals_lede: str
     back_to_index: str
-    footer: str
-    home_href: str  # how to link to the language home from help/<slug>/
-    home_href_index: str  # how to link to the language home from help/
-    legal_breadcrumb: str
-    legal_title: str
 
 
 LOCALE_ES = Locale(
     code="es",
-    site_title="The Homebody Greyhound",
-    nav_work="Trabajo",
-    nav_help="Ayuda de Oficio",
-    nav_contact="Contacto",
-    breadcrumb_home="Inicio",
-    breadcrumb_help="Ayuda de Oficio",
-    help_index_title="Ayuda de Oficio",
-    help_index_lede=(
-        "Cada bloque te explica cómo configurar una integración: dónde sacar "
+    home_word="inicio",
+    nav_label="Navegación principal",
+    footer_label="Pie de página",
+    nav_home="Inicio",
+    nav_apps="Aplicaciones",
+    nav_about="Sobre",
+    footer_about="Sobre el estudio",
+    footer_tagline="Apps sencillas, hechas con calma.",
+    lang_label="EN",
+    lang_hreflang="en",
+    lang_aria="Switch to English",
+    crumb_home="Inicio",
+    crumb_manuals="Manuales",
+    crumb_privacy="Privacidad",
+    manuals_title="Manuales de Oficio",
+    manuals_lede=(
+        "Cada manual te explica cómo configurar una integración: dónde sacar "
         "la API key, qué cuesta, y los pequeños matices que evitan los "
         "errores más comunes. Si una entrada dice <em>sin API key</em>, "
         "basta con activar el toggle en la app."
     ),
-    back_to_index="← Volver al índice de ayuda",
-    footer="Hecho con calma.",
-    home_href="../../../index.html",
-    home_href_index="../../index.html",
-    legal_breadcrumb="Homebody",
-    legal_title="Política de privacidad",
+    back_to_index="← Volver a los manuales de Oficio",
 )
 
 LOCALE_EN = Locale(
     code="en",
-    site_title="The Homebody Greyhound",
-    nav_work="Work",
-    nav_help="Oficio help",
-    nav_contact="Contact",
-    breadcrumb_home="Home",
-    breadcrumb_help="Oficio help",
-    help_index_title="Oficio help",
-    help_index_lede=(
-        "Each entry explains how to set up an integration: where to get "
+    home_word="home",
+    nav_label="Main navigation",
+    footer_label="Footer",
+    nav_home="Home",
+    nav_apps="Apps",
+    nav_about="About",
+    footer_about="About the studio",
+    footer_tagline="Simple apps, built with calm.",
+    lang_label="ES",
+    lang_hreflang="es",
+    lang_aria="Cambiar a español",
+    crumb_home="Home",
+    crumb_manuals="Manuals",
+    crumb_privacy="Privacy",
+    manuals_title="Oficio manuals",
+    manuals_lede=(
+        "Each manual explains how to set up an integration: where to get "
         "the API key, what it costs, and the small gotchas that prevent "
         "the most common errors. If an entry says <em>no API key</em>, "
         "just flip the toggle in the app."
     ),
-    back_to_index="← Back to the help index",
-    footer="Made unhurriedly.",
-    home_href="../../../index.html",
-    home_href_index="../../index.html",
-    legal_breadcrumb="Homebody",
-    legal_title="Privacy policy",
+    back_to_index="← Back to the Oficio manuals",
 )
 
 
@@ -202,53 +217,87 @@ def make_description(body_html: str, fallback: str) -> str:
     return text.replace('"', "&quot;")
 
 
-PAGE_TEMPLATE = """<!DOCTYPE html>
-<html lang="{lang}">
+def section_prefix(loc: Locale, root: str) -> str:
+    """Path prefix to the locale's home folder (root for ES, root+en/ for EN)."""
+    return root if loc.code == "es" else root + "en/"
+
+
+def site_header(loc: Locale, root: str, lang_alt: str) -> str:
+    sec = section_prefix(loc, root)
+    return f"""  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="{sec}index.html" class="brand" aria-label="{SITE_TITLE} — {loc.home_word}">
+        <img class="brand-mark" src="{root}favicon.svg" alt="" width="26" height="26" />
+        <span class="brand-name">{SITE_TITLE}</span>
+      </a>
+      <nav class="site-nav" aria-label="{loc.nav_label}">
+        <a href="{sec}index.html">{loc.nav_home}</a>
+        <a href="{sec}aplicaciones/index.html">{loc.nav_apps}</a>
+        <a href="{sec}about/index.html">{loc.nav_about}</a>
+        <a class="lang-switch" href="{lang_alt}" hreflang="{loc.lang_hreflang}" lang="{loc.lang_hreflang}" aria-label="{loc.lang_aria}">{loc.lang_label}</a>
+      </nav>
+    </div>
+  </header>"""
+
+
+def site_footer(loc: Locale, root: str) -> str:
+    sec = section_prefix(loc, root)
+    return f"""  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <span class="brand-name">{SITE_TITLE}</span>
+        <p class="footer-tagline">{loc.footer_tagline}</p>
+      </div>
+      <nav class="footer-nav" aria-label="{loc.footer_label}">
+        <a href="{sec}index.html">{loc.nav_home}</a>
+        <a href="{sec}aplicaciones/index.html">{loc.nav_apps}</a>
+        <a href="{sec}oficio/index.html">Oficio</a>
+        <a href="mailto:{EMAIL}">{EMAIL}</a>
+      </nav>
+    </div>
+    <p class="footer-legal">&copy; <span id="year">2026</span> {SITE_TITLE}</p>
+  </footer>"""
+
+
+def page(
+    *,
+    loc: Locale,
+    root: str,
+    title: str,
+    description: str,
+    alt_es: str,
+    alt_en: str,
+    lang_alt: str,
+    crumbs: str,
+    article: str,
+    after_article: str = "",
+) -> str:
+    return f"""<!DOCTYPE html>
+<html lang="{loc.code}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title} — {site_title}</title>
+  <title>{title} — {SITE_TITLE}</title>
   <meta name="description" content="{description}" />
-  <meta name="theme-color" content="#f6f3ee" />
-  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
-  <link rel="stylesheet" href="../../../styles.css" />
+  <meta name="theme-color" content="#faf8f3" />
+  <link rel="icon" type="image/svg+xml" href="{root}favicon.svg" />
+  <link rel="stylesheet" href="{root}styles.css" />
   <link rel="alternate" hreflang="es" href="{alt_es}" />
   <link rel="alternate" hreflang="en" href="{alt_en}" />
   <link rel="alternate" hreflang="x-default" href="{alt_es}" />
 </head>
-<body class="help-page">
-  <header class="site-header">
-    <a href="{home_href}" class="brand" aria-label="{site_title}">
-      <span class="brand-name">{site_title}</span>
-    </a>
-    <nav class="site-nav" aria-label="{nav_label}">
-      <a href="{home_href}#trabajo">{nav_work}</a>
-      <a href="../index.html">{nav_help}</a>
-      <a href="{home_href}#contacto">{nav_contact}</a>
-      <a class="lang-switch" href="{alt_other}" hreflang="{alt_other_lang}" lang="{alt_other_lang}" aria-label="{alt_other_aria}">{alt_other_label}</a>
-    </nav>
-  </header>
+<body>
+{site_header(loc, root, lang_alt)}
 
-  <main class="help-main">
-    <p class="help-crumbs">
-      <a href="{home_href}">{breadcrumb_home}</a>
-      <span aria-hidden="true">›</span>
-      <a href="../index.html">{breadcrumb_help}</a>
-      <span aria-hidden="true">›</span>
-      <span>{title}</span>
+  <main class="doc-main">
+    <p class="crumbs">
+{crumbs}
     </p>
-    <article class="prose help-prose">
-      <h1>{title}</h1>
-      {body}
-    </article>
-    <p class="help-back">
-      <a href="../index.html">{back_to_index}</a>
-    </p>
+{article}
+{after_article}
   </main>
 
-  <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span> {site_title}. {footer}</p>
-  </footer>
+{site_footer(loc, root)}
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -258,282 +307,185 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 """
 
 
-INDEX_TEMPLATE = """<!DOCTYPE html>
-<html lang="{lang}">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{help_index_title} — {site_title}</title>
-  <meta name="description" content="{description}" />
-  <meta name="theme-color" content="#f6f3ee" />
-  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
-  <link rel="stylesheet" href="../../styles.css" />
-  <link rel="alternate" hreflang="es" href="{alt_es}" />
-  <link rel="alternate" hreflang="en" href="{alt_en}" />
-  <link rel="alternate" hreflang="x-default" href="{alt_es}" />
-</head>
-<body class="help-page">
-  <header class="site-header">
-    <a href="{home_href}" class="brand" aria-label="{site_title}">
-      <span class="brand-name">{site_title}</span>
-    </a>
-    <nav class="site-nav" aria-label="{nav_label}">
-      <a href="{home_href}#trabajo">{nav_work}</a>
-      <a href="{home_href}#sobre">{nav_about}</a>
-      <a href="{home_href}#contacto">{nav_contact}</a>
-      <a class="lang-switch" href="{alt_other}" hreflang="{alt_other_lang}" lang="{alt_other_lang}" aria-label="{alt_other_aria}">{alt_other_label}</a>
-    </nav>
-  </header>
-
-  <main class="help-main">
-    <p class="help-crumbs">
-      <a href="{home_href}">{breadcrumb_home}</a>
-      <span aria-hidden="true">›</span>
-      <span>{breadcrumb_help}</span>
-    </p>
-    <article class="prose">
-      <h1>{help_index_title}</h1>
-      <p class="lede">
-        {help_index_lede}
-      </p>
-      <ul class="help-index">
-{items}
-      </ul>
-    </article>
-  </main>
-
-  <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span> {site_title}. {footer}</p>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
-"""
+def crumb_link(href: str, text: str) -> str:
+    return f'      <a href="{href}">{text}</a>'
 
 
-LEGAL_TEMPLATE = """<!DOCTYPE html>
-<html lang="{lang}">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title} — {site_title}</title>
-  <meta name="description" content="{description}" />
-  <meta name="theme-color" content="#f6f3ee" />
-  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
-  <link rel="stylesheet" href="../../styles.css" />
-  <link rel="alternate" hreflang="es" href="{alt_es}" />
-  <link rel="alternate" hreflang="en" href="{alt_en}" />
-  <link rel="alternate" hreflang="x-default" href="{alt_es}" />
-</head>
-<body class="help-page">
-  <header class="site-header">
-    <a href="{home_href}" class="brand" aria-label="{site_title}">
-      <span class="brand-name">{site_title}</span>
-    </a>
-    <nav class="site-nav" aria-label="{nav_label}">
-      <a href="{home_href}#trabajo">{nav_work}</a>
-      <a href="{home_href}#sobre">{nav_about}</a>
-      <a href="{home_href}#contacto">{nav_contact}</a>
-      <a class="lang-switch" href="{alt_other}" hreflang="{alt_other_lang}" lang="{alt_other_lang}" aria-label="{alt_other_aria}">{alt_other_label}</a>
-    </nav>
-  </header>
-
-  <main class="help-main">
-    <p class="help-crumbs">
-      <a href="{home_href}">{breadcrumb_home}</a>
-      <span aria-hidden="true">›</span>
-      <span>{legal_breadcrumb}</span>
-      <span aria-hidden="true">›</span>
-      <span>{title}</span>
-    </p>
-    <article class="prose help-prose">
-      <h1>{title}</h1>
-      {body}
-    </article>
-  </main>
-
-  <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span> {site_title}. {footer}</p>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
-"""
+def crumb_text(text: str) -> str:
+    return f"      <span>{text}</span>"
 
 
-def build_help(locale: Locale, src_dir: Path, out_dir: Path) -> None:
+SEP = '      <span aria-hidden="true">›</span>'
+
+
+def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     items: list[str] = []
-    nav_about = "Sobre" if locale.code == "es" else "About"
-    nav_label = (
-        "Navegación principal" if locale.code == "es" else "Primary navigation"
-    )
+    other = "en/" if loc.code == "es" else ""
 
     for slug, label_es, summary_es, label_en, summary_en in TOPICS:
         src = src_dir / f"{slug}.md"
         if not src.exists():
-            print(f"  ! [{locale.code}] missing {src.name}, skipping")
+            print(f"  ! [{loc.code}] missing {src.name}, skipping")
             continue
         title, body_html = render_markdown(src.read_text(encoding="utf-8"))
         page_dir = out_dir / slug
         page_dir.mkdir(parents=True, exist_ok=True)
-        # hreflang siblings — relative to <lang>/oficio/help/<slug>/index.html
-        if locale.code == "es":
-            alt_es = "index.html"  # self
-            alt_en = f"../../../en/oficio/help/{slug}/index.html"
-            alt_other = alt_en
-            alt_other_lang = "en"
-            alt_other_label = "EN"
-            alt_other_aria = "Switch to English"
+
+        root = "../../../" if loc.code == "es" else "../../../../"
+        sec = section_prefix(loc, root)
+        if loc.code == "es":
+            alt_es = "index.html"
+            alt_en = f"{root}en/oficio/help/{slug}/index.html"
         else:
-            alt_es = f"../../../../oficio/help/{slug}/index.html"
-            alt_en = "index.html"  # self
-            alt_other = alt_es
-            alt_other_lang = "es"
-            alt_other_label = "ES"
-            alt_other_aria = "Cambiar a español"
-        html = PAGE_TEMPLATE.format(
-            lang=locale.code,
-            title=title,
-            description=make_description(body_html, "Oficio help."),
-            body=body_html,
-            site_title=locale.site_title,
-            nav_label=nav_label,
-            nav_work=locale.nav_work,
-            nav_help=locale.nav_help,
-            nav_contact=locale.nav_contact,
-            breadcrumb_home=locale.breadcrumb_home,
-            breadcrumb_help=locale.breadcrumb_help,
-            back_to_index=locale.back_to_index,
-            footer=locale.footer,
-            home_href=locale.home_href,
+            alt_es = f"{root}oficio/help/{slug}/index.html"
+            alt_en = "index.html"
+        lang_alt = alt_en if loc.code == "es" else alt_es
+
+        crumbs = "\n".join(
+            [
+                crumb_link(f"{sec}index.html", loc.crumb_home),
+                SEP,
+                crumb_link(f"{sec}oficio/index.html", "Oficio"),
+                SEP,
+                crumb_link("../index.html", loc.crumb_manuals),
+                SEP,
+                crumb_text(title),
+            ]
+        )
+        article = f"""    <article class="doc">
+      <h1>{title}</h1>
+      <div class="doc-prose">
+{body_html}
+      </div>
+    </article>"""
+        after = (
+            f'    <p class="doc-back">\n'
+            f'      <a href="../index.html">{loc.back_to_index}</a>\n'
+            f"    </p>"
+        )
+        html = page(
+            loc=loc,
+            root=root,
+            title=f"{title}",
+            description=make_description(body_html, "Oficio."),
             alt_es=alt_es,
             alt_en=alt_en,
-            alt_other=alt_other,
-            alt_other_lang=alt_other_lang,
-            alt_other_label=alt_other_label,
-            alt_other_aria=alt_other_aria,
+            lang_alt=lang_alt,
+            crumbs=crumbs,
+            article=article,
+            after_article=after,
         )
         (page_dir / "index.html").write_text(html, encoding="utf-8")
-        label = label_es if locale.code == "es" else label_en
-        summary = summary_es if locale.code == "es" else summary_en
+        label = label_es if loc.code == "es" else label_en
+        summary = summary_es if loc.code == "es" else summary_en
         items.append(
             f'        <li><a href="{slug}/index.html"><strong>{label}</strong>'
             f"<span>{summary}</span></a></li>"
         )
-        print(f"  ✓ [{locale.code}] {slug}/index.html")
+        print(f"  ✓ [{loc.code}] oficio/help/{slug}/index.html")
 
-    index_description = (
-        "Guías para configurar las integraciones de la app Oficio."
-        if locale.code == "es"
-        else "Setup guides for the Oficio app integrations."
-    )
-    # hreflang for the help index — file at <lang>/oficio/help/index.html
-    if locale.code == "es":
+    # Manuals index
+    root = "../../" if loc.code == "es" else "../../../"
+    sec = section_prefix(loc, root)
+    if loc.code == "es":
         idx_alt_es = "index.html"
-        idx_alt_en = "../../en/oficio/help/index.html"
-        idx_other = idx_alt_en
-        idx_other_lang = "en"
-        idx_other_label = "EN"
-        idx_other_aria = "Switch to English"
+        idx_alt_en = f"{root}en/oficio/help/index.html"
     else:
-        idx_alt_es = "../../../oficio/help/index.html"
+        idx_alt_es = f"{root}oficio/help/index.html"
         idx_alt_en = "index.html"
-        idx_other = idx_alt_es
-        idx_other_lang = "es"
-        idx_other_label = "ES"
-        idx_other_aria = "Cambiar a español"
-    (out_dir / "index.html").write_text(
-        INDEX_TEMPLATE.format(
-            lang=locale.code,
-            site_title=locale.site_title,
-            description=index_description,
-            nav_label=nav_label,
-            nav_work=locale.nav_work,
-            nav_about=nav_about,
-            nav_contact=locale.nav_contact,
-            breadcrumb_home=locale.breadcrumb_home,
-            breadcrumb_help=locale.breadcrumb_help,
-            help_index_title=locale.help_index_title,
-            help_index_lede=locale.help_index_lede,
-            footer=locale.footer,
-            home_href=locale.home_href_index,
-            items="\n".join(items),
-            alt_es=idx_alt_es,
-            alt_en=idx_alt_en,
-            alt_other=idx_other,
-            alt_other_lang=idx_other_lang,
-            alt_other_label=idx_other_label,
-            alt_other_aria=idx_other_aria,
-        ),
-        encoding="utf-8",
+    idx_lang_alt = idx_alt_en if loc.code == "es" else idx_alt_es
+
+    crumbs = "\n".join(
+        [
+            crumb_link(f"{sec}index.html", loc.crumb_home),
+            SEP,
+            crumb_link(f"{sec}oficio/index.html", "Oficio"),
+            SEP,
+            crumb_text(loc.crumb_manuals),
+        ]
     )
-    print(f"  ✓ [{locale.code}] index.html (help index)")
+    article = f"""    <article class="doc">
+      <h1>{loc.manuals_title}</h1>
+      <p class="lede">{loc.manuals_lede}</p>
+      <ul class="guide-list">
+{chr(10).join(items)}
+      </ul>
+    </article>"""
+    index_description = (
+        "Manuales para configurar las integraciones de la app Oficio."
+        if loc.code == "es"
+        else "Manuals for setting up the Oficio app integrations."
+    )
+    html = page(
+        loc=loc,
+        root=root,
+        title=loc.manuals_title,
+        description=index_description,
+        alt_es=idx_alt_es,
+        alt_en=idx_alt_en,
+        lang_alt=idx_lang_alt,
+        crumbs=crumbs,
+        article=article,
+    )
+    (out_dir / "index.html").write_text(html, encoding="utf-8")
+    print(f"  ✓ [{loc.code}] oficio/help/index.html (manuals index)")
 
 
-def build_legal(locale: Locale, src: Path, out_dir: Path) -> None:
+def build_legal(loc: Locale, src: Path, out_dir: Path) -> None:
     if not src.exists():
-        print(f"  ! [{locale.code}] missing {src.name}, skipping legal")
+        print(f"  ! [{loc.code}] missing {src.name}, skipping legal")
         return
     out_dir.mkdir(parents=True, exist_ok=True)
     title, body_html = render_markdown(src.read_text(encoding="utf-8"))
-    nav_about = "Sobre" if locale.code == "es" else "About"
-    nav_label = (
-        "Navegación principal" if locale.code == "es" else "Primary navigation"
-    )
+
+    root = "../../" if loc.code == "es" else "../../../"
+    sec = section_prefix(loc, root)
+    if loc.code == "es":
+        alt_es = "index.html"
+        alt_en = f"{root}en/oficio/terms/index.html"
+    else:
+        alt_es = f"{root}oficio/terms/index.html"
+        alt_en = "index.html"
+    lang_alt = alt_en if loc.code == "es" else alt_es
+
     description = (
         "Política de privacidad de la app Oficio."
-        if locale.code == "es"
+        if loc.code == "es"
         else "Privacy policy for the Oficio app."
     )
-    # hreflang for legal — file at <lang>/homebody/terms/index.html
-    if locale.code == "es":
-        l_alt_es = "index.html"
-        l_alt_en = "../../en/homebody/terms/index.html"
-        l_other = l_alt_en
-        l_other_lang = "en"
-        l_other_label = "EN"
-        l_other_aria = "Switch to English"
-    else:
-        l_alt_es = "../../../homebody/terms/index.html"
-        l_alt_en = "index.html"
-        l_other = l_alt_es
-        l_other_lang = "es"
-        l_other_label = "ES"
-        l_other_aria = "Cambiar a español"
-    html = LEGAL_TEMPLATE.format(
-        lang=locale.code,
+    crumbs = "\n".join(
+        [
+            crumb_link(f"{sec}index.html", loc.crumb_home),
+            SEP,
+            crumb_link(f"{sec}oficio/index.html", "Oficio"),
+            SEP,
+            crumb_text(loc.crumb_privacy),
+        ]
+    )
+    article = f"""    <article class="doc">
+      <h1>{title}</h1>
+      <div class="doc-prose">
+{body_html}
+      </div>
+    </article>"""
+    html = page(
+        loc=loc,
+        root=root,
         title=title,
         description=description,
-        site_title=locale.site_title,
-        nav_label=nav_label,
-        nav_work=locale.nav_work,
-        nav_about=nav_about,
-        nav_contact=locale.nav_contact,
-        breadcrumb_home=locale.breadcrumb_home,
-        legal_breadcrumb=locale.legal_breadcrumb,
-        body=body_html,
-        footer=locale.footer,
-        home_href=locale.home_href_index,
-        alt_es=l_alt_es,
-        alt_en=l_alt_en,
-        alt_other=l_other,
-        alt_other_lang=l_other_lang,
-        alt_other_label=l_other_label,
-        alt_other_aria=l_other_aria,
+        alt_es=alt_es,
+        alt_en=alt_en,
+        lang_alt=lang_alt,
+        crumbs=crumbs,
+        article=article,
     )
     (out_dir / "index.html").write_text(html, encoding="utf-8")
-    print(f"  ✓ [{locale.code}] homebody/terms/index.html")
+    print(f"  ✓ [{loc.code}] oficio/terms/index.html")
 
 
 def main() -> None:
-    print("Building help pages…")
+    print("Building manual pages…")
     build_help(LOCALE_ES, HELP_SRC_ES, HELP_OUT_ES)
     build_help(LOCALE_EN, HELP_SRC_EN, HELP_OUT_EN)
     print("Building legal pages…")

@@ -5,37 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to set up Anthropic AI in Oficio — The Homebody Greyhound</title>
   <meta name="description" content="What it does: with your Anthropic API key, Oficio's AI module becomes an assistant that can read and modify all your modules (tasks, journal, pantry, et…" />
-  <meta name="theme-color" content="#f6f3ee" />
-  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
-  <link rel="stylesheet" href="../../../styles.css" />
+  <meta name="theme-color" content="#faf8f3" />
+  <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg" />
+  <link rel="stylesheet" href="../../../../styles.css" />
   <link rel="alternate" hreflang="es" href="../../../../oficio/help/anthropic-ai/index.html" />
   <link rel="alternate" hreflang="en" href="index.html" />
   <link rel="alternate" hreflang="x-default" href="../../../../oficio/help/anthropic-ai/index.html" />
 </head>
-<body class="help-page">
+<body>
   <header class="site-header">
-    <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound">
-      <span class="brand-name">The Homebody Greyhound</span>
-    </a>
-    <nav class="site-nav" aria-label="Primary navigation">
-      <a href="../../../index.html#trabajo">Work</a>
-      <a href="../index.html">Oficio help</a>
-      <a href="../../../index.html#contacto">Contact</a>
-      <a class="lang-switch" href="../../../../oficio/help/anthropic-ai/index.html" hreflang="es" lang="es" aria-label="Cambiar a español">ES</a>
-    </nav>
+    <div class="site-header__inner">
+      <a href="../../../../en/index.html" class="brand" aria-label="The Homebody Greyhound — home">
+        <img class="brand-mark" src="../../../../favicon.svg" alt="" width="26" height="26" />
+        <span class="brand-name">The Homebody Greyhound</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="../../../../en/index.html">Home</a>
+        <a href="../../../../en/aplicaciones/index.html">Apps</a>
+        <a href="../../../../en/about/index.html">About</a>
+        <a class="lang-switch" href="../../../../oficio/help/anthropic-ai/index.html" hreflang="es" lang="es" aria-label="Cambiar a español">ES</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="help-main">
-    <p class="help-crumbs">
-      <a href="../../../index.html">Home</a>
+  <main class="doc-main">
+    <p class="crumbs">
+      <a href="../../../../en/index.html">Home</a>
       <span aria-hidden="true">›</span>
-      <a href="../index.html">Oficio help</a>
+      <a href="../../../../en/oficio/index.html">Oficio</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html">Manuals</a>
       <span aria-hidden="true">›</span>
       <span>How to set up Anthropic AI in Oficio</span>
     </p>
-    <article class="prose help-prose">
+    <article class="doc">
       <h1>How to set up Anthropic AI in Oficio</h1>
-      <p><strong>What it does</strong>: with your Anthropic API key, Oficio's AI module becomes an assistant that can read and modify all your modules (tasks, journal, pantry, etc.) using local tools.</p>
+      <div class="doc-prose">
+<p><strong>What it does</strong>: with your Anthropic API key, Oficio's AI module becomes an assistant that can read and modify all your modules (tasks, journal, pantry, etc.) using local tools.</p>
 <h2>Steps</h2>
 <ol>
 <li>Go to <a href="https://console.anthropic.com/">console.anthropic.com</a> and create an account (with email or Google).</li>
@@ -59,14 +65,27 @@
 <li><strong>You must add credit before the first call</strong>. This is the most common mistake: you create the account, generate a key, paste it into the app, and everything fails with 401 — because the account has $0 balance.</li>
 <li><strong>The API key lives encrypted on your device</strong>. Oficio stores it in Keychain (iOS) or EncryptedSharedPreferences (Android). To revoke it, go back to the Anthropic console and delete it there; in Oficio just tap <strong>Delete key</strong> in Settings → AI.</li>
 </ul>
+      </div>
     </article>
-    <p class="help-back">
-      <a href="../index.html">← Back to the help index</a>
+    <p class="doc-back">
+      <a href="../index.html">← Back to the Oficio manuals</a>
     </p>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Made unhurriedly.</p>
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <span class="brand-name">The Homebody Greyhound</span>
+        <p class="footer-tagline">Simple apps, built with calm.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="../../../../en/index.html">Home</a>
+        <a href="../../../../en/aplicaciones/index.html">Apps</a>
+        <a href="../../../../en/oficio/index.html">Oficio</a>
+        <a href="mailto:info@thehomebodygreyhound.com">info@thehomebodygreyhound.com</a>
+      </nav>
+    </div>
+    <p class="footer-legal">&copy; <span id="year">2026</span> The Homebody Greyhound</p>
   </footer>
 
   <script>

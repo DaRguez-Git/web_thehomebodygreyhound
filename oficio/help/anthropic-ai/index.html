@@ -5,37 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cómo configurar la IA de Anthropic en Oficio — The Homebody Greyhound</title>
   <meta name="description" content="Para qué sirve: con tu API key de Anthropic, el módulo IA de Oficio se convierte en un asistente que puede consultar y modificar todos tus módulos (tare…" />
-  <meta name="theme-color" content="#f6f3ee" />
+  <meta name="theme-color" content="#faf8f3" />
   <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
   <link rel="stylesheet" href="../../../styles.css" />
   <link rel="alternate" hreflang="es" href="index.html" />
   <link rel="alternate" hreflang="en" href="../../../en/oficio/help/anthropic-ai/index.html" />
   <link rel="alternate" hreflang="x-default" href="index.html" />
 </head>
-<body class="help-page">
+<body>
   <header class="site-header">
-    <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound">
-      <span class="brand-name">The Homebody Greyhound</span>
-    </a>
-    <nav class="site-nav" aria-label="Navegación principal">
-      <a href="../../../index.html#trabajo">Trabajo</a>
-      <a href="../index.html">Ayuda de Oficio</a>
-      <a href="../../../index.html#contacto">Contacto</a>
-      <a class="lang-switch" href="../../../en/oficio/help/anthropic-ai/index.html" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
-    </nav>
+    <div class="site-header__inner">
+      <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound — inicio">
+        <img class="brand-mark" src="../../../favicon.svg" alt="" width="26" height="26" />
+        <span class="brand-name">The Homebody Greyhound</span>
+      </a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="../../../index.html">Inicio</a>
+        <a href="../../../aplicaciones/index.html">Aplicaciones</a>
+        <a href="../../../about/index.html">Sobre</a>
+        <a class="lang-switch" href="../../../en/oficio/help/anthropic-ai/index.html" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="help-main">
-    <p class="help-crumbs">
+  <main class="doc-main">
+    <p class="crumbs">
       <a href="../../../index.html">Inicio</a>
       <span aria-hidden="true">›</span>
-      <a href="../index.html">Ayuda de Oficio</a>
+      <a href="../../../oficio/index.html">Oficio</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html">Manuales</a>
       <span aria-hidden="true">›</span>
       <span>Cómo configurar la IA de Anthropic en Oficio</span>
     </p>
-    <article class="prose help-prose">
+    <article class="doc">
       <h1>Cómo configurar la IA de Anthropic en Oficio</h1>
-      <p><strong>Para qué sirve</strong>: con tu API key de Anthropic, el módulo IA de Oficio se convierte en un asistente que puede consultar y modificar todos tus módulos (tareas, diario, despensa, etc.) usando herramientas locales.</p>
+      <div class="doc-prose">
+<p><strong>Para qué sirve</strong>: con tu API key de Anthropic, el módulo IA de Oficio se convierte en un asistente que puede consultar y modificar todos tus módulos (tareas, diario, despensa, etc.) usando herramientas locales.</p>
 <h2>Pasos</h2>
 <ol>
 <li>Entra en <a href="https://console.anthropic.com/">console.anthropic.com</a> y crea una cuenta (con email o Google).</li>
@@ -59,14 +65,27 @@
 <li><strong>Hay que añadir saldo antes de la primera llamada</strong>. Es un fallo común: creas cuenta, generas key, la pegas en la app, y todo da error 401 — porque la cuenta tiene 0$ de saldo.</li>
 <li><strong>La API key vive cifrada en tu dispositivo</strong>. Oficio la guarda en el Keychain (iOS) o EncryptedSharedPreferences (Android). Si quieres revocarla, vuelve al panel de Anthropic y bórrala desde ahí; en Oficio basta con pulsar <strong>Borrar key</strong> en Ajustes → IA.</li>
 </ul>
+      </div>
     </article>
-    <p class="help-back">
-      <a href="../index.html">← Volver al índice de ayuda</a>
+    <p class="doc-back">
+      <a href="../index.html">← Volver a los manuales de Oficio</a>
     </p>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Hecho con calma.</p>
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <span class="brand-name">The Homebody Greyhound</span>
+        <p class="footer-tagline">Apps sencillas, hechas con calma.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Pie de página">
+        <a href="../../../index.html">Inicio</a>
+        <a href="../../../aplicaciones/index.html">Aplicaciones</a>
+        <a href="../../../oficio/index.html">Oficio</a>
+        <a href="mailto:info@thehomebodygreyhound.com">info@thehomebodygreyhound.com</a>
+      </nav>
+    </div>
+    <p class="footer-legal">&copy; <span id="year">2026</span> The Homebody Greyhound</p>
   </footer>
 
   <script>

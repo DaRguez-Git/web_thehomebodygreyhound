@@ -5,37 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cómo configurar Last.fm en Oficio — The Homebody Greyhound</title>
   <meta name="description" content="Para qué sirve: Last.fm guarda tu histórico de escuchas musicales (scrobbles). Con tu API key + nombre de usuario, Oficio puede mostrar tus tops, escuch…" />
-  <meta name="theme-color" content="#f6f3ee" />
+  <meta name="theme-color" content="#faf8f3" />
   <link rel="icon" type="image/svg+xml" href="../../../favicon.svg" />
   <link rel="stylesheet" href="../../../styles.css" />
   <link rel="alternate" hreflang="es" href="index.html" />
   <link rel="alternate" hreflang="en" href="../../../en/oficio/help/lastfm/index.html" />
   <link rel="alternate" hreflang="x-default" href="index.html" />
 </head>
-<body class="help-page">
+<body>
   <header class="site-header">
-    <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound">
-      <span class="brand-name">The Homebody Greyhound</span>
-    </a>
-    <nav class="site-nav" aria-label="Navegación principal">
-      <a href="../../../index.html#trabajo">Trabajo</a>
-      <a href="../index.html">Ayuda de Oficio</a>
-      <a href="../../../index.html#contacto">Contacto</a>
-      <a class="lang-switch" href="../../../en/oficio/help/lastfm/index.html" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
-    </nav>
+    <div class="site-header__inner">
+      <a href="../../../index.html" class="brand" aria-label="The Homebody Greyhound — inicio">
+        <img class="brand-mark" src="../../../favicon.svg" alt="" width="26" height="26" />
+        <span class="brand-name">The Homebody Greyhound</span>
+      </a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="../../../index.html">Inicio</a>
+        <a href="../../../aplicaciones/index.html">Aplicaciones</a>
+        <a href="../../../about/index.html">Sobre</a>
+        <a class="lang-switch" href="../../../en/oficio/help/lastfm/index.html" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="help-main">
-    <p class="help-crumbs">
+  <main class="doc-main">
+    <p class="crumbs">
       <a href="../../../index.html">Inicio</a>
       <span aria-hidden="true">›</span>
-      <a href="../index.html">Ayuda de Oficio</a>
+      <a href="../../../oficio/index.html">Oficio</a>
+      <span aria-hidden="true">›</span>
+      <a href="../index.html">Manuales</a>
       <span aria-hidden="true">›</span>
       <span>Cómo configurar Last.fm en Oficio</span>
     </p>
-    <article class="prose help-prose">
+    <article class="doc">
       <h1>Cómo configurar Last.fm en Oficio</h1>
-      <p><strong>Para qué sirve</strong>: Last.fm guarda tu histórico de escuchas musicales (<em>scrobbles</em>). Con tu API key + nombre de usuario, Oficio puede mostrar tus tops, escuchas recientes y enlazar álbumes en la Bitácora cultural.</p>
+      <div class="doc-prose">
+<p><strong>Para qué sirve</strong>: Last.fm guarda tu histórico de escuchas musicales (<em>scrobbles</em>). Con tu API key + nombre de usuario, Oficio puede mostrar tus tops, escuchas recientes y enlazar álbumes en la Bitácora cultural.</p>
 <h2>Pasos</h2>
 <ol>
 <li>Si no tienes cuenta de Last.fm, créala en <a href="https://www.last.fm/join">last.fm/join</a>. Apunta tu <strong>nick</strong> (no el email — luego lo necesitas).</li>
@@ -63,14 +69,27 @@
 <li><strong>Si tu cuenta no tiene scrobbles, no hay nada que mostrar</strong>. La API key responderá correctamente, pero los listados saldrán vacíos hasta que alguna app empiece a registrar tus escuchas.</li>
 <li><strong>No hace falta el <code>Shared secret</code></strong> para uso de Oficio (solo lectura). Si te lo pide algún manual, ignóralo en este caso.</li>
 </ul>
+      </div>
     </article>
-    <p class="help-back">
-      <a href="../index.html">← Volver al índice de ayuda</a>
+    <p class="doc-back">
+      <a href="../index.html">← Volver a los manuales de Oficio</a>
     </p>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Hecho con calma.</p>
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <span class="brand-name">The Homebody Greyhound</span>
+        <p class="footer-tagline">Apps sencillas, hechas con calma.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Pie de página">
+        <a href="../../../index.html">Inicio</a>
+        <a href="../../../aplicaciones/index.html">Aplicaciones</a>
+        <a href="../../../oficio/index.html">Oficio</a>
+        <a href="mailto:info@thehomebodygreyhound.com">info@thehomebodygreyhound.com</a>
+      </nav>
+    </div>
+    <p class="footer-legal">&copy; <span id="year">2026</span> The Homebody Greyhound</p>
   </footer>
 
   <script>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oficio — The Homebody Greyhound</title>
+  <meta name="description" content="Oficio is your modular, private personal dashboard: calendar, news, weather, journal and more. Setup manuals and privacy policy." />
+  <meta name="theme-color" content="#faf8f3" />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="alternate" hreflang="es" href="../../oficio/index.html" />
+  <link rel="alternate" hreflang="en" href="index.html" />
+  <link rel="alternate" hreflang="x-default" href="../../oficio/index.html" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="../index.html" class="brand" aria-label="The Homebody Greyhound — home">
+        <img class="brand-mark" src="../../favicon.svg" alt="" width="26" height="26" />
+        <span class="brand-name">The Homebody Greyhound</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../aplicaciones/index.html">Apps</a>
+        <a href="../about/index.html">About</a>
+        <a class="lang-switch" href="../../oficio/index.html" hreflang="es" lang="es" aria-label="Cambiar a español">ES</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section section--tight">
+      <div class="wrap">
+        <p class="crumbs">
+          <a href="../index.html">Home</a>
+          <span aria-hidden="true">›</span>
+          <a href="../aplicaciones/index.html">Apps</a>
+          <span aria-hidden="true">›</span>
+          <span>Oficio</span>
+        </p>
+
+        <div class="app-hero">
+          <span class="app-hero__icon">
+            <img src="../../assets/Oficio_logo.jpg" alt="Oficio app icon" width="92" height="92" />
+          </span>
+          <div class="app-hero__text">
+            <p class="eyebrow">App · <span class="badge">Coming soon</span></p>
+            <h1>Oficio</h1>
+            <p class="app-hero__tagline">Your personal dashboard, built your way.</p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <p>
+            Whatever you need at hand — calendar, news, weather, journal,
+            pantry, recipes, weekly plan, culture log — right where you want to
+            see it. A dashboard built at your own pace that lives on your
+            device.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">What makes Oficio different</p>
+          <h2>Simple, modular and yours.</h2>
+        </div>
+        <ul class="feature-grid">
+          <li class="feature">
+            <h3>Modular</h3>
+            <p>You decide which modules to enable and how to arrange them. Your dashboard, your pace.</p>
+          </li>
+          <li class="feature">
+            <h3>Truly private</h3>
+            <p>Your data lives on your device and in the services you connect. It never goes through our servers.</p>
+          </li>
+          <li class="feature">
+            <h3>Bring your own AI</h3>
+            <p>Plug in your own agent via API to summarise your day or lend a hand. Experimental local-AI support is in the works.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Manuals</p>
+          <h2>Setup guides.</h2>
+          <p class="section-intro">
+            Each integration — TMDb, IGDB, Last.fm, Open Library and the rest —
+            has its own guide: where to get the API key, what it costs and the
+            most common mistakes to avoid.
+          </p>
+        </div>
+        <div class="link-card-grid">
+          <a class="link-card" href="help/index.html">
+            <span class="link-card__title">Oficio manuals</span>
+            <span class="link-card__desc">
+              All the guides for setting up the app's integrations, step by
+              step.
+            </span>
+            <span class="link-card__cta">See manuals <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Legal</p>
+          <h2>Privacy and permissions.</h2>
+          <p class="section-intro">
+            Oficio works offline by design. Its privacy policy explains what
+            data it stores on your device, what permissions it asks for, and
+            the only two external services — always optional — that may receive
+            anything.
+          </p>
+        </div>
+        <div class="link-card-grid">
+          <a class="link-card" href="terms/index.html">
+            <span class="link-card__title">Privacy policy</span>
+            <span class="link-card__desc">
+              What data Oficio stores, what permissions it requests and how it
+              handles information. Terms of use for the app.
+            </span>
+            <span class="link-card__cta">Read the policy <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <span class="brand-name">The Homebody Greyhound</span>
+        <p class="footer-tagline">Simple apps, built with calm.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="../index.html">Home</a>
+        <a href="../aplicaciones/index.html">Apps</a>
+        <a href="../about/index.html">About the studio</a>
+        <a href="mailto:info@thehomebodygreyhound.com">info@thehomebodygreyhound.com</a>
+      </nav>
+    </div>
+    <p class="footer-legal">&copy; <span id="year">2026</span> The Homebody Greyhound</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

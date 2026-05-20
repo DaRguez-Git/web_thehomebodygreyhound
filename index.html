@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Homebody Greyhound — Apps hechas con calma</title>
   <meta name="description" content="The Homebody Greyhound es un pequeño estudio independiente de desarrollo de apps. Hacemos cosas sencillas, honestas y bien terminadas." />
-  <meta name="theme-color" content="#f6f3ee" />
+  <meta name="theme-color" content="#faf8f3" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="alternate" hreflang="es" href="index.html" />
@@ -14,105 +14,117 @@
 </head>
 <body>
   <header class="site-header">
-    <a href="#" class="brand" aria-label="The Homebody Greyhound — inicio">
-      <span class="brand-name">The Homebody Greyhound</span>
-    </a>
-    <nav class="site-nav" aria-label="Navegación principal">
-      <a href="#trabajo">Trabajo</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#contacto">Contacto</a>
-      <a class="lang-switch" href="en/index.html" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
-    </nav>
+    <div class="site-header__inner">
+      <a href="index.html" class="brand" aria-label="The Homebody Greyhound — inicio">
+        <img class="brand-mark" src="favicon.svg" alt="" width="26" height="26" />
+        <span class="brand-name">The Homebody Greyhound</span>
+      </a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="index.html" aria-current="page">Inicio</a>
+        <a href="aplicaciones/index.html">Aplicaciones</a>
+        <a href="about/index.html">Sobre</a>
+        <a class="lang-switch" href="en/index.html" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
+      </nav>
+    </div>
   </header>
 
   <main>
     <section class="hero">
-      <img
-        class="hero-logo"
-        src="assets/TheHomebodyGreyhound_logo.png"
-        alt="The Homebody Greyhound — galgo descansando"
-        width="1280"
-        height="800"
-      />
-      <p class="eyebrow">Estudio independiente de apps</p>
-      <h1>Apps sencillas, hechas con calma (y un poco de <em>IA</em>yuda).</h1>
-      <p class="lede">
-        Un estudio pequeño que diseña y desarrolla aplicaciones. Sin promesas grandilocuentes,
-        sin métricas vacías. Solo software cuidado, terminado, y agradable de usar.
-      </p>
-      <div class="hero-actions">
-        <a class="btn primary" href="#trabajo">Ver trabajo</a>
-        <a class="btn ghost" href="#contacto">Hablar conmigo</a>
+      <div class="wrap">
+        <p class="eyebrow">Estudio independiente de apps</p>
+        <h1>Apps sencillas, hechas con calma (y un poco de <em>IA</em>yuda).</h1>
+        <p class="lede">
+          Un estudio pequeño que diseña y desarrolla aplicaciones. Sin promesas
+          grandilocuentes, sin métricas vacías. Solo software cuidado, terminado
+          y agradable de usar.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="aplicaciones/index.html">Ver aplicaciones</a>
+          <a class="btn btn--ghost" href="about/index.html">Sobre el estudio</a>
+        </div>
+        <figure class="hero-figure">
+          <img
+            class="hero-illustration"
+            src="assets/TheHomebodyGreyhound_logo.png"
+            alt="Ilustración a tinta de un galgo descansando"
+            width="1280"
+            height="800"
+          />
+        </figure>
       </div>
     </section>
 
-    <section id="trabajo" class="section">
-      <h2>Trabajo</h2>
-      <p class="section-intro">
-        Apps propias y por encargo. Cada una pensada para hacer una cosa bien.
-      </p>
-      <ul class="work-list">
-        <li class="work-item">
-          <div class="work-item-head">
-            <div class="work-icon">
-              <img src="assets/Oficio_logo.jpg" alt="Icono de la app Oficio" width="48" height="48" />
-            </div>
-            <div>
-              <h3>Oficio</h3>
-              <p class="work-tag">Próximamente</p>
-            </div>
-          </div>
-          <p class="work-lede">
-            Tu agenda personal, montada a tu medida. Lo que necesites tener a mano —
-            calendario, noticias, tiempo— donde tú quieras verlo.
+    <section class="section section--alt">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Aplicaciones</p>
+          <h2>Cada app, su propia página.</h2>
+          <p class="section-intro">
+            Pocas apps, cada una pensada para hacer una cosa bien. Sus manuales
+            y su política de privacidad viven en su propia página, no perdidos
+            en un pie de página.
           </p>
-          <ul class="work-features">
-            <li><strong>Modular.</strong> Tú decides qué configurar y cómo. Tu panel, tu ritmo.</li>
-            <li><strong>Privada de verdad.</strong> Tus datos viven en tu dispositivo y en los servicios que tú enlazas. No pasan por nuestros servidores.</li>
-            <li><strong>Con tu IA, si quieres.</strong> Conecta tu propio agente por API para que te resuma el día, busque en tu agenda o te eche una mano cuando lo pidas. Soporte experimental para IA local en preparación.</li>
-          </ul>
-          <p class="work-link">
-            <a href="oficio/help/index.html">Guías de configuración →</a>
-          </p>
-        </li>
-      </ul>
-    </section>
-
-    <section id="sobre" class="section alt">
-      <h2>Sobre el estudio</h2>
-      <div class="prose">
-        <p>
-          <strong>The Homebody Greyhound</strong> nace de una idea simple: un galgo casero. Tranquilo en casa,
-          rápido cuando hace falta. Así trabajo: sin prisa innecesaria, pero sin perder el tiempo.
-        </p>
-        <p>
-          Creo en hacer pocas cosas, hacerlas bien y explicarlas con claridad. No hay equipo de marketing
-          detrás de esta página, ni fórmulas mágicas. Si una app no aporta valor, no se lanza.
-        </p>
-        <p>
-          Si lo que ves encaja con lo que necesitas, escríbeme. Si no, no pasa nada.
-        </p>
+        </div>
+        <div class="card-grid">
+          <a class="app-card" href="oficio/index.html">
+            <span class="app-card__icon">
+              <img src="assets/Oficio_logo.jpg" alt="" width="64" height="64" />
+            </span>
+            <span class="app-card__body">
+              <span class="app-card__title-row">
+                <span class="app-card__name">Oficio</span>
+                <span class="badge">Próximamente</span>
+              </span>
+              <span class="app-card__tagline">Tu agenda personal, a tu medida.</span>
+              <span class="app-card__desc">
+                Un panel modular para tener a mano lo que necesites —
+                calendario, noticias, tiempo— con privacidad de verdad.
+              </span>
+              <span class="app-card__cta">Ver Oficio <span aria-hidden="true">→</span></span>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 
-    <section id="contacto" class="section">
-      <h2>Contacto</h2>
-      <p class="section-intro">
-        La forma más directa: un correo. Respondo personalmente.
-      </p>
-      <p class="contact">
-        <a href="mailto:info@thehomebodygreyhound.com">info@thehomebodygreyhound.com</a>
-      </p>
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">El estudio</p>
+          <h2>Un galgo casero.</h2>
+        </div>
+        <div class="prose">
+          <p>
+            <strong>The Homebody Greyhound</strong> nace de una idea simple:
+            tranquilo en casa, rápido cuando hace falta. Así trabajo —
+            sin prisa innecesaria, pero sin perder el tiempo.
+          </p>
+          <p>
+            Creo en hacer pocas cosas, hacerlas bien y explicarlas con claridad.
+            Si una app no aporta valor, no se lanza.
+          </p>
+          <p>
+            <a href="about/index.html">Más sobre el estudio →</a>
+          </p>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year">2026</span> The Homebody Greyhound. Hecho con calma.</p>
-    <p class="footer-links">
-      <a href="oficio/help/index.html">Ayuda de Oficio</a>
-      <span aria-hidden="true">·</span>
-      <a href="homebody/terms/index.html">Términos</a>
-    </p>
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <span class="brand-name">The Homebody Greyhound</span>
+        <p class="footer-tagline">Apps sencillas, hechas con calma.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Pie de página">
+        <a href="index.html">Inicio</a>
+        <a href="aplicaciones/index.html">Aplicaciones</a>
+        <a href="about/index.html">Sobre el estudio</a>
+        <a href="mailto:info@thehomebodygreyhound.com">info@thehomebodygreyhound.com</a>
+      </nav>
+    </div>
+    <p class="footer-legal">&copy; <span id="year">2026</span> The Homebody Greyhound</p>
   </footer>
 
   <script>
