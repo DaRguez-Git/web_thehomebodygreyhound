@@ -75,19 +75,6 @@ body {
     opacity: 0;
   }
 }
-@keyframes chip-glow {
-  0%,
-  100% {
-    color: var(--color-silver);
-    border-color: var(--color-hair);
-    background: rgba(255, 255, 255, 0.02);
-  }
-  50% {
-    color: #ffffff;
-    border-color: var(--color-hair-bright);
-    background: rgba(255, 255, 255, 0.06);
-  }
-}
 @keyframes pulse-ring {
   0% {
     transform: scale(1);

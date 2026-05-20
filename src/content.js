@@ -29,7 +29,7 @@ export const content = {
       tag: 'Aplicación · Próximamente',
       title: 'Oficio: tu agenda personal, a tu medida.',
       sub: 'Lo que necesites tener a mano —calendario, noticias, tiempo, diario, recetas— donde tú quieras verlo. Un panel que se monta a tu ritmo y vive en tu dispositivo.',
-      cta: 'Saber más',
+      cta: 'Conocer Oficio',
       codeLabel: 'oficio',
       uiLabel: 'Vista previa',
       uiTitle: 'Panel de Oficio',
@@ -46,7 +46,6 @@ export const content = {
       perf: {
         title: 'Software terminado',
         body: 'Nada de versiones a medias: pocas funciones, todas acabadas.',
-        caption: 'Una app se lanza cuando está lista.',
       },
       stack: {
         title: 'Herramientas sólidas',
@@ -55,7 +54,6 @@ export const content = {
       security: {
         title: 'Privacidad de verdad',
         body: 'Sin cuentas, sin analítica, sin publicidad. Tus datos viven en tu dispositivo.',
-        status: 'Sin rastreo',
       },
       design: {
         title: 'Pocas cosas',
@@ -235,7 +233,7 @@ export const content = {
       tag: 'App · Coming soon',
       title: 'Oficio: your personal dashboard, built your way.',
       sub: 'Whatever you need at hand — calendar, news, weather, journal, recipes — right where you want to see it. A dashboard built at your own pace that lives on your device.',
-      cta: 'Learn more',
+      cta: 'Explore Oficio',
       codeLabel: 'oficio',
       uiLabel: 'Preview',
       uiTitle: 'Oficio dashboard',
@@ -252,7 +250,6 @@ export const content = {
       perf: {
         title: 'Finished software',
         body: 'No half-built versions: few features, all of them done.',
-        caption: "An app ships when it's ready.",
       },
       stack: {
         title: 'Solid tools',
@@ -261,7 +258,6 @@ export const content = {
       security: {
         title: 'Real privacy',
         body: 'No accounts, no analytics, no ads. Your data lives on your device.',
-        status: 'No tracking',
       },
       design: {
         title: 'Few things',
