@@ -11,11 +11,11 @@ function Logo() {
       aria-label="The Homebody Greyhound"
     >
       <img
-        src="/favicon.svg"
+        src="/logo.png"
         alt=""
-        width="26"
-        height="26"
-        className="rounded-md ring-1 ring-hair"
+        width="44"
+        height="22"
+        className="h-[22px] w-auto"
       />
       <span className="text-[13.5px] font-semibold tracking-[-0.01em] text-white">
         The Homebody Greyhound

@@ -85,8 +85,8 @@ a {
 }
 
 .brand-mark {
-  border-radius: 6px;
-  box-shadow: 0 0 0 1px var(--hair);
+  height: 22px;
+  width: auto;
 }
 
 .brand-name {

@@ -235,7 +235,7 @@ def site_header(loc: Locale, root: str, lang_alt: str) -> str:
     return f"""  <header class="site-header">
     <div class="site-header__inner">
       <a href="{root}index.html" class="brand" aria-label="{SITE_TITLE} — {loc.home_word}">
-        <img class="brand-mark" src="{root}favicon.svg" alt="" width="26" height="26" />
+        <img class="brand-mark" src="{root}logo.png" alt="" width="44" height="22" />
         <span class="brand-name">{SITE_TITLE}</span>
       </a>
       <nav class="site-nav" aria-label="{loc.nav_label}">
@@ -282,7 +282,7 @@ def page(
   <title>{title} — {SITE_TITLE}</title>
   <meta name="description" content="{description}" />
   <meta name="theme-color" content="#030303" />
-  <link rel="icon" type="image/svg+xml" href="{root}favicon.svg" />
+  <link rel="icon" type="image/png" href="{root}favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />

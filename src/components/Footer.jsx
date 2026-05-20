@@ -14,11 +14,11 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2.5">
               <img
-                src="/favicon.svg"
+                src="/logo.png"
                 alt=""
-                width="24"
+                width="48"
                 height="24"
-                className="rounded-md ring-1 ring-hair"
+                className="h-6 w-auto"
               />
               <span className="text-[14px] font-semibold tracking-[-0.01em] text-white">
                 {BRAND}
