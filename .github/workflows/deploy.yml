@@ -1,6 +1,7 @@
 name: Build and deploy site
 
-# Builds the static site and deploys it to GitHub Pages.
+# Builds the React landing page (Vite) and the static manual / legal
+# pages, then deploys everything to GitHub Pages.
 #
 # Manual and legal pages are generated from markdown that lives in
 # the app repository (DaRguez-Git/Vida-app-flutter, docs/web), which
@@ -48,12 +49,23 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build the landing page
+        run: npm run build
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: python -m pip install --quiet markdown
 
       - name: Stage manual and legal sources
@@ -66,21 +78,20 @@ jobs:
           cp _app/docs/web/legal/TERMS.md              assets/TERMS.md
           cp _app/docs/web/legal/TERMS_EN.md           assets/TERMS_EN.md
 
-      - name: Build pages
+      - name: Build manual and legal pages
         run: python3 scripts/build_help.py
 
       - name: Assemble the site
         run: |
           mkdir _site
-          rsync -a \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='_app' \
-            --exclude='_site' \
-            --exclude='scripts' \
-            --exclude='assets/web' \
-            --exclude='assets/*.md' \
-            ./ _site/
+          cp -r dist/. _site/
+          for d in oficio/help oficio/privacy oficio/terms \
+                   en/oficio/help en/oficio/privacy en/oficio/terms; do
+            if [ -d "$d" ]; then
+              mkdir -p "_site/$d"
+              cp -r "$d/." "_site/$d/"
+            fi
+          done
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

@@ -231,23 +231,14 @@ def make_description(body_html: str, fallback: str) -> str:
     return text.replace('"', "&quot;")
 
 
-def section_prefix(loc: Locale, root: str) -> str:
-    """Path prefix to the locale's home folder (root for ES, root+en/ for EN)."""
-    return root if loc.code == "es" else root + "en/"
-
-
 def site_header(loc: Locale, root: str, lang_alt: str) -> str:
-    sec = section_prefix(loc, root)
     return f"""  <header class="site-header">
     <div class="site-header__inner">
-      <a href="{sec}index.html" class="brand" aria-label="{SITE_TITLE} — {loc.home_word}">
+      <a href="{root}index.html" class="brand" aria-label="{SITE_TITLE} — {loc.home_word}">
         <img class="brand-mark" src="{root}favicon.svg" alt="" width="26" height="26" />
         <span class="brand-name">{SITE_TITLE}</span>
       </a>
       <nav class="site-nav" aria-label="{loc.nav_label}">
-        <a href="{sec}index.html">{loc.nav_home}</a>
-        <a href="{sec}aplicaciones/index.html">{loc.nav_apps}</a>
-        <a href="{sec}about/index.html">{loc.nav_about}</a>
         <a class="lang-switch" href="{lang_alt}" hreflang="{loc.lang_hreflang}" lang="{loc.lang_hreflang}" aria-label="{loc.lang_aria}">{loc.lang_label}</a>
       </nav>
     </div>
@@ -255,7 +246,6 @@ def site_header(loc: Locale, root: str, lang_alt: str) -> str:
 
 
 def site_footer(loc: Locale, root: str) -> str:
-    sec = section_prefix(loc, root)
     return f"""  <footer class="site-footer">
     <div class="site-footer__inner">
       <div class="footer-brand">
@@ -263,9 +253,7 @@ def site_footer(loc: Locale, root: str) -> str:
         <p class="footer-tagline">{loc.footer_tagline}</p>
       </div>
       <nav class="footer-nav" aria-label="{loc.footer_label}">
-        <a href="{sec}index.html">{loc.nav_home}</a>
-        <a href="{sec}aplicaciones/index.html">{loc.nav_apps}</a>
-        <a href="{sec}oficio/index.html">Oficio</a>
+        <a href="{root}index.html">{loc.nav_home}</a>
         <a href="mailto:{EMAIL}">{EMAIL}</a>
       </nav>
     </div>
@@ -347,7 +335,6 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
         page_dir.mkdir(parents=True, exist_ok=True)
 
         root = "../../../" if loc.code == "es" else "../../../../"
-        sec = section_prefix(loc, root)
         if loc.code == "es":
             alt_es = "index.html"
             alt_en = f"{root}en/oficio/help/{slug}/index.html"
@@ -358,9 +345,7 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
 
         crumbs = "\n".join(
             [
-                crumb_link(f"{sec}index.html", loc.crumb_home),
-                SEP,
-                crumb_link(f"{sec}oficio/index.html", "Oficio"),
+                crumb_link(f"{root}index.html", loc.crumb_home),
                 SEP,
                 crumb_link("../index.html", loc.crumb_manuals),
                 SEP,
@@ -401,7 +386,6 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
 
     # Manuals index
     root = "../../" if loc.code == "es" else "../../../"
-    sec = section_prefix(loc, root)
     if loc.code == "es":
         idx_alt_es = "index.html"
         idx_alt_en = f"{root}en/oficio/help/index.html"
@@ -412,9 +396,7 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
 
     crumbs = "\n".join(
         [
-            crumb_link(f"{sec}index.html", loc.crumb_home),
-            SEP,
-            crumb_link(f"{sec}oficio/index.html", "Oficio"),
+            crumb_link(f"{root}index.html", loc.crumb_home),
             SEP,
             crumb_text(loc.crumb_manuals),
         ]
@@ -461,7 +443,6 @@ def build_legal(
     title, body_html = render_markdown(src.read_text(encoding="utf-8"))
 
     root = "../../" if loc.code == "es" else "../../../"
-    sec = section_prefix(loc, root)
     if loc.code == "es":
         alt_es = "index.html"
         alt_en = f"{root}en/oficio/{slug}/index.html"
@@ -472,9 +453,7 @@ def build_legal(
 
     crumbs = "\n".join(
         [
-            crumb_link(f"{sec}index.html", loc.crumb_home),
-            SEP,
-            crumb_link(f"{sec}oficio/index.html", "Oficio"),
+            crumb_link(f"{root}index.html", loc.crumb_home),
             SEP,
             crumb_text(crumb_label),
         ]

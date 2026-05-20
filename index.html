@@ -1,101 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Homebody Greyhound — Apps hechas con calma</title>
-  <meta name="description" content="The Homebody Greyhound es un pequeño estudio independiente de desarrollo de apps. Hacemos cosas sencillas, honestas y bien terminadas." />
-  <meta name="theme-color" content="#ffffff" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="alternate" hreflang="es" href="index.html" />
-  <link rel="alternate" hreflang="en" href="en/index.html" />
-  <link rel="alternate" hreflang="x-default" href="index.html" />
-</head>
-<body>
-  <header class="site-header">
-    <div class="site-header__inner">
-      <a href="index.html" class="brand" aria-label="The Homebody Greyhound — inicio">
-        <img class="brand-mark" src="favicon.svg" alt="" width="26" height="26" />
-        <span class="brand-name">The Homebody Greyhound</span>
-      </a>
-      <nav class="site-nav" aria-label="Navegación principal">
-        <a href="index.html" aria-current="page">Inicio</a>
-        <a href="aplicaciones/index.html">Aplicaciones</a>
-        <a href="about/index.html">Sobre</a>
-        <a class="lang-switch" href="en/index.html" hreflang="en" lang="en" aria-label="Switch to English">EN</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <p class="eyebrow">Estudio independiente de apps</p>
-        <h1>Apps sencillas, hechas con calma (y un poco de <em>IA</em>yuda).</h1>
-        <p class="lede">
-          Un estudio pequeño que diseña y desarrolla aplicaciones. Sin promesas
-          grandilocuentes, sin métricas vacías. Solo software cuidado, terminado
-          y agradable de usar.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn--primary" href="aplicaciones/index.html">Ver aplicaciones</a>
-          <a class="btn btn--ghost" href="about/index.html">Sobre el estudio</a>
-        </div>
-        <figure class="hero-figure">
-          <img
-            class="hero-illustration"
-            src="assets/TheHomebodyGreyhound_logo.png"
-            alt="Ilustración a tinta de un galgo descansando"
-            width="1280"
-            height="800"
-          />
-        </figure>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">El estudio</p>
-          <h2>Un galgo casero.</h2>
-        </div>
-        <div class="prose">
-          <p>
-            <strong>The Homebody Greyhound</strong> nace de una idea simple:
-            tranquilo en casa, rápido cuando hace falta. Así trabajo —
-            sin prisa innecesaria, pero sin perder el tiempo.
-          </p>
-          <p>
-            Creo en hacer pocas cosas, hacerlas bien y explicarlas con claridad.
-            Si una app no aporta valor, no se lanza.
-          </p>
-          <p>
-            <a href="about/index.html">Más sobre el estudio →</a>
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <div class="footer-brand">
-        <span class="brand-name">The Homebody Greyhound</span>
-        <p class="footer-tagline">Apps sencillas, hechas con calma.</p>
-      </div>
-      <nav class="footer-nav" aria-label="Pie de página">
-        <a href="index.html">Inicio</a>
-        <a href="aplicaciones/index.html">Aplicaciones</a>
-        <a href="about/index.html">Sobre el estudio</a>
-        <a href="mailto:info@thehomebodygreyhound.com">info@thehomebodygreyhound.com</a>
-      </nav>
-    </div>
-    <p class="footer-legal">&copy; <span id="year">2026</span> The Homebody Greyhound</p>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Homebody Greyhound — Ingeniería de software a medida</title>
+    <meta
+      name="description"
+      content="Estudio de ingeniería de software a medida. Diseño de producto y desarrollo de aplicaciones para empresas que tratan el software como una ventaja competitiva."
+    />
+    <meta name="theme-color" content="#030303" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
