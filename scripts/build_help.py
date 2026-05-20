@@ -293,7 +293,7 @@ def page(
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title} — {SITE_TITLE}</title>
   <meta name="description" content="{description}" />
-  <meta name="theme-color" content="#faf8f3" />
+  <meta name="theme-color" content="#ffffff" />
   <link rel="icon" type="image/svg+xml" href="{root}favicon.svg" />
   <link rel="stylesheet" href="{root}styles.css" />
   <link rel="alternate" hreflang="es" href="{alt_es}" />

@@ -1,39 +1,30 @@
 /* ============================================================
    The Homebody Greyhound — site styles
-   Calm, editorial, ink-forward. One warm accent.
+   Editorial / magazine language: white, black, one bold yellow.
    ============================================================ */
 
 :root {
   /* Colour */
-  --bg:          #faf8f3;
-  --bg-alt:      #f1ede2;
-  --surface:     #ffffff;
-  --ink:         #16150f;
-  --ink-soft:    #56534a;
-  --ink-mute:    #8c8979;
-  --line:        #e6e1d4;
-  --line-soft:   #efebdf;
-  --accent:      #9a4326;
-  --accent-deep: #7b3217;
-  --accent-soft: #f4e8e0;
-  --on-accent:   #ffffff;
+  --bg:        #ffffff;
+  --bg-alt:    #f4f3f0;
+  --ink:       #0a0a0a;
+  --ink-soft:  #525252;
+  --ink-mute:  #767676;
+  --line:      #d9d7d0;
+  --yellow:    #ffcc00;
+  --yellow-deep: #f0bd00;
 
   /* Type */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino,
-    "Book Antiqua", Georgia, "Times New Roman", serif;
+  --font-serif: "Iowan Old Style", Georgia, "Palatino Linotype", Palatino,
+    "Book Antiqua", "Times New Roman", serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
     "Liberation Mono", monospace;
 
   /* Metrics */
-  --w-page:    1080px;
-  --w-prose:   680px;
-  --radius:    16px;
-  --radius-sm: 10px;
-  --shadow-sm: 0 1px 2px rgba(22, 21, 15, 0.05);
-  --shadow-md: 0 16px 38px -18px rgba(22, 21, 15, 0.24),
-    0 4px 12px -6px rgba(22, 21, 15, 0.10);
+  --w-page:  1120px;
+  --w-prose: 680px;
 }
 
 /* --- Reset / base ------------------------------------------- */
@@ -56,7 +47,7 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 17px;
-  line-height: 1.65;
+  line-height: 1.6;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -67,15 +58,16 @@ img {
 }
 
 a {
-  color: var(--accent);
+  color: var(--ink);
   text-decoration: underline;
-  text-decoration-thickness: 1px;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px;
   text-underline-offset: 3px;
-  transition: color 0.15s ease;
+  transition: text-decoration-color 0.15s ease, background 0.15s ease;
 }
 
 a:hover {
-  color: var(--accent-deep);
+  text-decoration-color: var(--ink);
 }
 
 main {
@@ -83,9 +75,8 @@ main {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 3px;
+  outline: 3px solid var(--yellow);
+  outline-offset: 2px;
 }
 
 /* --- Layout helpers ----------------------------------------- */
@@ -101,7 +92,7 @@ main {
 }
 
 .section {
-  padding-block: clamp(56px, 9vw, 104px);
+  padding-block: clamp(52px, 8vw, 96px);
 }
 
 .section--alt {
@@ -109,7 +100,7 @@ main {
 }
 
 .section--tight {
-  padding-block: clamp(44px, 6vw, 72px);
+  padding-block: clamp(40px, 6vw, 64px);
 }
 
 /* --- Header -------------------------------------------------- */
@@ -118,10 +109,8 @@ main {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(250, 248, 243, 0.86);
-  backdrop-filter: saturate(160%) blur(10px);
-  -webkit-backdrop-filter: saturate(160%) blur(10px);
-  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  border-bottom: 1px solid var(--ink);
 }
 
 .site-header__inner {
@@ -131,7 +120,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px 28px;
+  gap: 12px 28px;
   flex-wrap: wrap;
 }
 
@@ -140,73 +129,61 @@ main {
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: var(--ink);
 }
 
 .brand-mark {
   width: 26px;
   height: 26px;
-  border-radius: 7px;
   display: block;
 }
 
 .brand-name {
   font-family: var(--font-serif);
-  font-size: 18px;
-  letter-spacing: 0.005em;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
   color: var(--ink);
 }
 
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 24px;
-  font-size: 15px;
+  gap: 22px;
 }
 
 .site-nav a {
   text-decoration: none;
-  color: var(--ink-soft);
-  padding-block: 4px;
-  position: relative;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding-block: 6px;
+  border-bottom: 3px solid transparent;
 }
 
 .site-nav a:hover {
-  color: var(--ink);
+  border-bottom-color: var(--yellow);
 }
 
 .site-nav a[aria-current="page"] {
-  color: var(--ink);
-}
-
-.site-nav a[aria-current="page"]::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -2px;
-  height: 2px;
-  background: var(--accent);
-  border-radius: 2px;
+  border-bottom-color: var(--yellow);
 }
 
 .lang-switch {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
   letter-spacing: 0.09em;
-  color: var(--ink-soft);
-  padding: 4px 9px !important;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  padding: 4px 8px !important;
 }
 
 .lang-switch:hover {
-  color: var(--ink);
-  border-color: var(--ink-mute);
+  background: var(--yellow);
+  border-bottom-color: var(--ink) !important;
 }
 
-.lang-switch[aria-current="page"]::after {
-  display: none;
+.lang-switch[aria-current="page"] {
+  border-bottom-color: var(--ink) !important;
 }
 
 /* --- Typography --------------------------------------------- */
@@ -215,38 +192,41 @@ h1,
 h2,
 h3 {
   font-family: var(--font-serif);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--ink);
 }
 
 .eyebrow {
-  margin: 0 0 14px;
+  display: inline-block;
+  margin: 0 0 18px;
   font-family: var(--font-sans);
-  font-size: 12.5px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--accent);
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  padding-bottom: 5px;
+  border-bottom: 3px solid var(--yellow);
 }
 
 .lede {
   font-size: 19px;
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--ink-soft);
   margin: 0;
   max-width: 56ch;
 }
 
 .page-title {
-  font-size: clamp(32px, 5vw, 46px);
-  line-height: 1.12;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.08;
   margin: 0 0 20px;
 }
 
 .page-title--sm {
-  font-size: clamp(24px, 3.4vw, 32px);
-  margin: 0 0 10px;
+  font-size: clamp(24px, 3.5vw, 34px);
+  margin: 0 0 12px;
 }
 
 .lede + .prose {
@@ -256,20 +236,23 @@ h3 {
 /* --- Hero --------------------------------------------------- */
 
 .hero {
-  padding-top: clamp(48px, 8vw, 88px);
-  padding-bottom: clamp(40px, 6vw, 64px);
+  padding-top: clamp(44px, 7vw, 80px);
+  padding-bottom: clamp(36px, 5vw, 56px);
 }
 
 .hero h1 {
-  font-size: clamp(36px, 6.4vw, 60px);
-  line-height: 1.08;
+  font-size: clamp(33px, 6.8vw, 66px);
+  line-height: 1.05;
   margin: 0 0 22px;
-  max-width: 16ch;
+  max-width: 17ch;
 }
 
 .hero h1 em {
-  font-style: italic;
-  color: var(--accent);
+  font-style: normal;
+  background: var(--yellow);
+  padding: 0.02em 0.14em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .hero .lede {
@@ -284,8 +267,8 @@ h3 {
 }
 
 .hero-figure {
-  margin: clamp(36px, 6vw, 64px) auto 0;
-  max-width: 780px;
+  margin: clamp(34px, 6vw, 60px) auto 0;
+  max-width: 820px;
 }
 
 .hero-illustration {
@@ -304,43 +287,39 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 22px;
-  border-radius: 999px;
-  font-size: 15px;
-  font-weight: 500;
+  padding: 14px 26px;
   font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   text-decoration: none;
-  border: 1px solid transparent;
+  border: 2px solid var(--ink);
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease,
-    border-color 0.15s ease, transform 0.15s ease;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
+    border-color 0.15s ease;
 }
 
 .btn--primary {
+  background: var(--yellow);
+  color: var(--ink);
+  border-color: var(--yellow);
+}
+
+.btn--primary:hover {
   background: var(--ink);
   color: var(--bg);
   border-color: var(--ink);
 }
 
-.btn--primary:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--on-accent);
-}
-
 .btn--ghost {
   background: transparent;
   color: var(--ink);
-  border-color: var(--line);
 }
 
 .btn--ghost:hover {
-  border-color: var(--ink);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
 }
 
 /* --- Section headings --------------------------------------- */
@@ -351,9 +330,9 @@ h3 {
 }
 
 .section-head h2 {
-  font-size: clamp(26px, 3.6vw, 34px);
-  line-height: 1.18;
-  margin: 0 0 12px;
+  font-size: clamp(27px, 3.8vw, 40px);
+  line-height: 1.12;
+  margin: 0 0 14px;
 }
 
 .section-intro {
@@ -362,34 +341,30 @@ h3 {
   font-size: 17px;
 }
 
-/* --- App cards ---------------------------------------------- */
+/* --- Card grid / app cards ---------------------------------- */
 
 .card-grid {
   display: grid;
-  gap: 18px;
+  gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
 }
 
 .app-card {
   display: flex;
   gap: 18px;
-  max-width: 540px;
+  max-width: 560px;
   padding: 24px;
-  background: var(--surface);
+  background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
+  border-top: 4px solid var(--yellow);
   text-decoration: none;
   color: var(--ink);
-  transition: transform 0.16s ease, box-shadow 0.16s ease,
-    border-color 0.16s ease;
+  transition: border-color 0.15s ease;
 }
 
 .app-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--line-soft);
-  color: var(--ink);
+  border-color: var(--ink);
+  border-top-color: var(--yellow);
 }
 
 .app-card__icon {
@@ -399,7 +374,6 @@ h3 {
 .app-card__icon img {
   width: 64px;
   height: 64px;
-  border-radius: 15px;
   border: 1px solid var(--line);
   display: block;
 }
@@ -419,59 +393,61 @@ h3 {
 
 .app-card__name {
   font-family: var(--font-serif);
-  font-size: 21px;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
 }
 
 .app-card__tagline {
   color: var(--ink);
   font-size: 15.5px;
+  font-weight: 600;
 }
 
 .app-card__desc {
   color: var(--ink-soft);
   font-size: 14.5px;
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 .app-card__cta {
   margin-top: 4px;
-  color: var(--accent);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
 }
 
 .app-card:hover .app-card__cta {
-  color: var(--accent-deep);
+  box-shadow: inset 0 -3px 0 var(--yellow);
 }
 
 /* --- Badge -------------------------------------------------- */
 
 .badge {
   display: inline-block;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent-deep);
-  font-size: 11.5px;
-  font-weight: 600;
+  padding: 3px 9px;
+  background: var(--yellow);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
 }
 
 .badge--quiet {
-  background: var(--bg-alt);
-  color: var(--ink-soft);
+  background: var(--ink);
+  color: var(--bg);
 }
 
-/* --- Notice / empty hint ------------------------------------ */
+/* --- Notice ------------------------------------------------- */
 
 .notice {
-  margin-top: 22px;
+  margin-top: 24px;
   padding: 16px 20px;
-  border: 1px dashed var(--line);
-  border-radius: var(--radius-sm);
-  color: var(--ink-mute);
+  background: var(--bg-alt);
+  border-left: 4px solid var(--yellow);
+  color: var(--ink-soft);
   font-size: 14.5px;
 }
 
@@ -487,21 +463,20 @@ h3 {
 .app-hero__icon img {
   width: 92px;
   height: 92px;
-  border-radius: 21px;
   border: 1px solid var(--line);
-  box-shadow: var(--shadow-sm);
   display: block;
 }
 
 .app-hero__text h1 {
-  font-size: clamp(32px, 5vw, 46px);
-  margin: 10px 0 8px;
-  line-height: 1.1;
+  font-size: clamp(32px, 5vw, 50px);
+  margin: 8px 0 8px;
+  line-height: 1.05;
 }
 
 .app-hero__tagline {
   margin: 0;
   font-size: 18px;
+  font-weight: 600;
   color: var(--ink-soft);
 }
 
@@ -513,7 +488,7 @@ h3 {
 
 .feature-grid {
   display: grid;
-  gap: 16px;
+  gap: 18px;
   grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
   margin: 0;
   padding: 0;
@@ -521,29 +496,29 @@ h3 {
 }
 
 .feature {
-  padding: 22px;
-  background: var(--surface);
+  padding: 24px;
+  background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-top: 4px solid var(--yellow);
 }
 
 .feature h3 {
-  font-size: 18px;
-  margin: 0 0 6px;
+  font-size: 19px;
+  margin: 0 0 8px;
 }
 
 .feature p {
   margin: 0;
   color: var(--ink-soft);
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
-/* --- Link cards (manuals / legal) --------------------------- */
+/* --- Link cards --------------------------------------------- */
 
 .link-card-grid {
   display: grid;
-  gap: 16px;
+  gap: 18px;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
@@ -551,44 +526,44 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-width: 560px;
-  padding: 24px;
-  background: var(--surface);
+  max-width: 580px;
+  padding: 26px;
+  background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
+  border-top: 4px solid var(--yellow);
   text-decoration: none;
   color: var(--ink);
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  transition: border-color 0.15s ease;
 }
 
 .link-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  color: var(--ink);
+  border-color: var(--ink);
+  border-top-color: var(--yellow);
 }
 
 .link-card__title {
   font-family: var(--font-serif);
-  font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
 }
 
 .link-card__desc {
   color: var(--ink-soft);
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 .link-card__cta {
   margin-top: 4px;
-  color: var(--accent);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
 }
 
 .link-card:hover .link-card__cta {
-  color: var(--accent-deep);
+  box-shadow: inset 0 -3px 0 var(--yellow);
 }
 
 /* --- Plain prose -------------------------------------------- */
@@ -606,12 +581,12 @@ h3 {
 }
 
 .prose h2 {
-  font-size: 24px;
+  font-size: 25px;
   margin: 36px 0 10px;
 }
 
 .prose h3 {
-  font-size: 19px;
+  font-size: 20px;
   margin: 26px 0 8px;
 }
 
@@ -633,7 +608,9 @@ h3 {
 
 .contact-line {
   font-family: var(--font-serif);
-  font-size: clamp(22px, 3.4vw, 28px);
+  font-weight: 700;
+  font-size: clamp(22px, 3.4vw, 30px);
+  letter-spacing: -0.01em;
   margin: 18px 0 0;
 }
 
@@ -642,21 +619,27 @@ h3 {
 .backlink {
   display: inline-block;
   margin-top: 8px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
   text-decoration: none;
+  box-shadow: inset 0 -3px 0 var(--yellow);
 }
 
-/* --- Document pages (help / terms) -------------------------- */
+/* --- Document pages (manuals / legal) ----------------------- */
 
 .doc-main {
   max-width: calc(var(--w-prose) + 48px);
   margin-inline: auto;
-  padding: 36px 24px clamp(48px, 7vw, 80px);
+  padding: 32px 24px clamp(48px, 7vw, 76px);
 }
 
 .crumbs {
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--ink-mute);
   margin: 0 0 26px;
   display: flex;
@@ -672,7 +655,7 @@ h3 {
 
 .crumbs a:hover {
   color: var(--ink);
-  text-decoration: underline;
+  box-shadow: inset 0 -2px 0 var(--yellow);
 }
 
 .crumbs span[aria-hidden] {
@@ -680,8 +663,8 @@ h3 {
 }
 
 .doc h1 {
-  font-size: clamp(28px, 4.6vw, 38px);
-  line-height: 1.18;
+  font-size: clamp(30px, 4.6vw, 44px);
+  line-height: 1.1;
   margin: 0 0 20px;
   max-width: 24ch;
 }
@@ -695,16 +678,12 @@ h3 {
 }
 
 .doc-prose h2 {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: 23px;
+  font-size: 24px;
   margin: 38px 0 12px;
 }
 
 .doc-prose h3 {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: 18px;
+  font-size: 19px;
   margin: 26px 0 8px;
 }
 
@@ -720,7 +699,7 @@ h3 {
 
 .doc-prose li {
   margin-bottom: 6px;
-  line-height: 1.62;
+  line-height: 1.6;
 }
 
 .doc-prose strong {
@@ -732,14 +711,12 @@ h3 {
   font-size: 0.88em;
   background: var(--bg-alt);
   padding: 1px 6px;
-  border-radius: 5px;
   border: 1px solid var(--line);
 }
 
 .doc-prose pre {
   background: var(--bg-alt);
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
   padding: 14px 16px;
   overflow-x: auto;
   font-size: 14px;
@@ -756,56 +733,58 @@ h3 {
 .doc-prose blockquote {
   margin: 0 0 18px;
   padding: 2px 0 2px 18px;
-  border-left: 3px solid var(--accent-soft);
+  border-left: 4px solid var(--yellow);
   color: var(--ink-soft);
 }
 
 .doc-back {
-  margin: 40px 0 0;
+  margin: 44px 0 0;
   padding-top: 22px;
-  border-top: 1px solid var(--line);
-  font-size: 14px;
+  border-top: 1px solid var(--ink);
 }
 
 .doc-back a {
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
   text-decoration: none;
-  font-weight: 600;
+  box-shadow: inset 0 -3px 0 var(--yellow);
 }
 
-/* --- Guide index list --------------------------------------- */
+/* --- Manual index list -------------------------------------- */
 
 .guide-list {
   list-style: none;
   margin: 30px 0 0;
   padding: 0;
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
 .guide-list a {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 17px 20px;
-  background: var(--surface);
+  padding: 18px 20px;
+  background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--line);
   text-decoration: none;
   color: var(--ink);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.14s ease, box-shadow 0.14s ease;
+  transition: border-color 0.15s ease;
 }
 
 .guide-list a:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  color: var(--ink);
+  border-color: var(--ink);
+  border-left-color: var(--yellow);
 }
 
 .guide-list strong {
   font-family: var(--font-serif);
-  font-weight: 500;
-  font-size: 17px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.01em;
 }
 
 .guide-list span {
@@ -817,15 +796,15 @@ h3 {
 
 .site-footer {
   flex-shrink: 0;
-  background: var(--bg-alt);
-  border-top: 1px solid var(--line);
+  background: var(--ink);
+  color: #c7c7c7;
   margin-top: auto;
 }
 
 .site-footer__inner {
   max-width: var(--w-page);
   margin-inline: auto;
-  padding: 44px 24px;
+  padding: 48px 24px;
   display: flex;
   flex-wrap: wrap;
   gap: 24px 48px;
@@ -833,42 +812,46 @@ h3 {
 }
 
 .footer-brand {
-  max-width: 30ch;
+  max-width: 32ch;
 }
 
 .footer-brand .brand-name {
-  font-size: 19px;
+  color: #ffffff;
+  border-bottom: 3px solid var(--yellow);
+  padding-bottom: 4px;
 }
 
 .footer-tagline {
-  margin: 6px 0 0;
-  color: var(--ink-soft);
+  margin: 14px 0 0;
+  color: #9a9a9a;
   font-size: 14.5px;
 }
 
 .footer-nav {
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  font-size: 14.5px;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .footer-nav a {
-  color: var(--ink-soft);
+  color: #c7c7c7;
   text-decoration: none;
 }
 
 .footer-nav a:hover {
-  color: var(--ink);
-  text-decoration: underline;
+  color: var(--yellow);
 }
 
 .footer-legal {
   max-width: var(--w-page);
   margin-inline: auto;
   padding: 0 24px 40px;
-  color: var(--ink-mute);
-  font-size: 13px;
+  color: #8a8a8a;
+  font-size: 12.5px;
 }
 
 /* --- Small screens ------------------------------------------ */
@@ -881,11 +864,14 @@ h3 {
     padding-block: 12px;
   }
   .site-nav {
-    gap: 16px;
-    font-size: 14px;
+    gap: 14px;
+  }
+  .site-nav a {
+    font-size: 12px;
+    letter-spacing: 0.05em;
   }
   .brand-name {
-    font-size: 16px;
+    font-size: 17px;
   }
   .app-card {
     flex-direction: column;
