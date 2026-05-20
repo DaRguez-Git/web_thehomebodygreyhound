@@ -3,6 +3,7 @@ import { useLang } from '../i18n.jsx'
 import { content } from '../content.js'
 import { useScrollProgress } from '../hooks'
 import SectionHeading from './SectionHeading.jsx'
+import Reveal from './Reveal.jsx'
 
 const clamp = (n) => Math.min(1, Math.max(0, n))
 
@@ -236,6 +237,21 @@ export default function Showcase() {
             </div>
           </div>
         </div>
+
+        <Reveal className="mt-10 text-center">
+          <a
+            href="/oficio/"
+            className="group inline-flex items-center gap-2 text-[14.5px] text-silver transition-colors hover:text-white"
+          >
+            {t.cta}
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </a>
+        </Reveal>
       </div>
     </section>
   )

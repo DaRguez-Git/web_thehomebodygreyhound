@@ -281,8 +281,11 @@ def page(
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title} — {SITE_TITLE}</title>
   <meta name="description" content="{description}" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#030303" />
   <link rel="icon" type="image/svg+xml" href="{root}favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{root}styles.css" />
   <link rel="alternate" hreflang="es" href="{alt_es}" />
   <link rel="alternate" hreflang="en" href="{alt_en}" />
@@ -347,6 +350,8 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
             [
                 crumb_link(f"{root}index.html", loc.crumb_home),
                 SEP,
+                crumb_link(f"{root}oficio/index.html", "Oficio"),
+                SEP,
                 crumb_link("../index.html", loc.crumb_manuals),
                 SEP,
                 crumb_text(title),
@@ -397,6 +402,8 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
     crumbs = "\n".join(
         [
             crumb_link(f"{root}index.html", loc.crumb_home),
+            SEP,
+            crumb_link(f"{root}oficio/index.html", "Oficio"),
             SEP,
             crumb_text(loc.crumb_manuals),
         ]
@@ -454,6 +461,8 @@ def build_legal(
     crumbs = "\n".join(
         [
             crumb_link(f"{root}index.html", loc.crumb_home),
+            SEP,
+            crumb_link(f"{root}oficio/index.html", "Oficio"),
             SEP,
             crumb_text(crumb_label),
         ]

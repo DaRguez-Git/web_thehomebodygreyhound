@@ -25,18 +25,18 @@ function readInitialLang() {
   return nav.toLowerCase().startsWith('en') ? 'en' : 'es'
 }
 
-export function LanguageProvider({ children }) {
+export function LanguageProvider({ children, titles = DOC_TITLE }) {
   const [lang, setLang] = useState(readInitialLang)
 
   useEffect(() => {
     document.documentElement.lang = lang
-    document.title = DOC_TITLE[lang]
+    document.title = titles[lang]
     try {
       window.localStorage.setItem(STORAGE_KEY, lang)
     } catch {
       /* ignore */
     }
-  }, [lang])
+  }, [lang, titles])
 
   const toggle = useCallback(() => {
     setLang((current) => (current === 'es' ? 'en' : 'es'))

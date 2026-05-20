@@ -5,10 +5,10 @@ export const content = {
   es: {
     nav: {
       links: [
-        { id: 'producto', label: 'Oficio' },
-        { id: 'servicios', label: 'El estudio' },
-        { id: 'proceso', label: 'Cómo trabajo' },
-        { id: 'contacto', label: 'Contacto' },
+        { href: '/oficio/', label: 'Oficio' },
+        { href: '/#servicios', label: 'El estudio' },
+        { href: '/#proceso', label: 'Cómo trabajo' },
+        { href: '/#contacto', label: 'Contacto' },
       ],
       cta: 'Hablemos',
       langLabel: 'EN',
@@ -29,6 +29,7 @@ export const content = {
       tag: 'Aplicación · Próximamente',
       title: 'Oficio: tu agenda personal, a tu medida.',
       sub: 'Lo que necesites tener a mano —calendario, noticias, tiempo, diario, recetas— donde tú quieras verlo. Un panel que se monta a tu ritmo y vive en tu dispositivo.',
+      cta: 'Conocer Oficio',
       codeLabel: 'oficio',
       uiLabel: 'Vista previa',
       uiTitle: 'Panel de Oficio',
@@ -107,6 +108,73 @@ export const content = {
       cta: 'Escríbeme',
       mailSubject: 'Hola — The Homebody Greyhound',
     },
+    oficio: {
+      crumbHome: 'Inicio',
+      crumbSelf: 'Oficio',
+      badge: 'Próximamente',
+      eyebrow: 'Aplicación',
+      title: 'Oficio',
+      tagline: 'Tu agenda personal, montada a tu medida.',
+      intro:
+        'Lo que necesites tener a mano —calendario, noticias, tiempo, diario, despensa, recetas, plan semanal, cultura— donde tú quieras verlo. Un panel que se monta a tu ritmo y vive en tu dispositivo.',
+      featuresTag: 'Qué hace especial a Oficio',
+      featuresTitle: 'Sencilla, modular y tuya.',
+      features: [
+        {
+          title: 'Modular',
+          body: 'Tú decides qué módulos activar y cómo ordenarlos. Tu panel, tu ritmo.',
+        },
+        {
+          title: 'Privada de verdad',
+          body: 'Tus datos viven en tu dispositivo y en los servicios que tú enlazas. No pasan por nuestros servidores.',
+        },
+        {
+          title: 'Con tu IA, si quieres',
+          body: 'Conecta tu propio agente por API para que te resuma el día o te eche una mano. Soporte experimental para IA local en preparación.',
+        },
+      ],
+      modulesTag: 'Módulos',
+      modulesTitle: 'Lo que quieras tener a mano.',
+      modulesSub: 'Activa solo lo que uses. Cada módulo es independiente.',
+      modules: [
+        'Calendario',
+        'Noticias',
+        'Tiempo',
+        'Diario',
+        'Despensa',
+        'Recetas',
+        'Plan semanal',
+        'Cultura',
+      ],
+      manualsTag: 'Manuales',
+      manualsTitle: 'Guías de configuración.',
+      manualsSub:
+        'Cada integración —TMDb, IGDB, Last.fm, Open Library y el resto— tiene su propia guía: dónde sacar la API key, qué cuesta y los errores más comunes que conviene evitar.',
+      manualsCard: {
+        title: 'Manuales de Oficio',
+        body: 'Todas las guías para configurar las integraciones de la app, paso a paso.',
+        cta: 'Ver manuales',
+        href: '/oficio/help/',
+      },
+      legalTag: 'Legal',
+      legalTitle: 'Privacidad y términos.',
+      legalSub:
+        'Oficio funciona offline por diseño. Aquí tienes los documentos legales de la app: qué datos guarda y bajo qué condiciones puedes usarla.',
+      legalCards: [
+        {
+          title: 'Política de privacidad',
+          body: 'Qué datos guarda Oficio en tu dispositivo, qué permisos solicita y los servicios externos opcionales.',
+          cta: 'Leer la política',
+          href: '/oficio/privacy/',
+        },
+        {
+          title: 'Términos y condiciones',
+          body: 'Las condiciones de uso de la app Oficio.',
+          cta: 'Leer los términos',
+          href: '/oficio/terms/',
+        },
+      ],
+    },
     footer: {
       tagline: 'Apps sencillas, hechas con calma.',
       status: 'Oficio · próximamente',
@@ -114,15 +182,18 @@ export const content = {
         {
           title: 'Navegación',
           links: [
-            { label: 'Oficio', href: '#producto' },
-            { label: 'El estudio', href: '#servicios' },
-            { label: 'Cómo trabajo', href: '#proceso' },
-            { label: 'Contacto', href: '#contacto' },
+            { label: 'Oficio', href: '/oficio/' },
+            { label: 'El estudio', href: '/#servicios' },
+            { label: 'Cómo trabajo', href: '/#proceso' },
+            { label: 'Contacto', href: '/#contacto' },
           ],
         },
         {
           title: 'Oficio',
-          links: [{ label: 'Manuales', href: '/oficio/help/' }],
+          links: [
+            { label: 'La app', href: '/oficio/' },
+            { label: 'Manuales', href: '/oficio/help/' },
+          ],
         },
         {
           title: 'Legal',
@@ -140,10 +211,10 @@ export const content = {
   en: {
     nav: {
       links: [
-        { id: 'producto', label: 'Oficio' },
-        { id: 'servicios', label: 'The studio' },
-        { id: 'proceso', label: 'How I work' },
-        { id: 'contacto', label: 'Contact' },
+        { href: '/oficio/', label: 'Oficio' },
+        { href: '/#servicios', label: 'The studio' },
+        { href: '/#proceso', label: 'How I work' },
+        { href: '/#contacto', label: 'Contact' },
       ],
       cta: "Let's talk",
       langLabel: 'ES',
@@ -164,6 +235,7 @@ export const content = {
       tag: 'App · Coming soon',
       title: 'Oficio: your personal dashboard, built your way.',
       sub: 'Whatever you need at hand — calendar, news, weather, journal, recipes — right where you want to see it. A dashboard built at your own pace that lives on your device.',
+      cta: 'Explore Oficio',
       codeLabel: 'oficio',
       uiLabel: 'Preview',
       uiTitle: 'Oficio dashboard',
@@ -242,6 +314,73 @@ export const content = {
       cta: 'Write to me',
       mailSubject: 'Hello — The Homebody Greyhound',
     },
+    oficio: {
+      crumbHome: 'Home',
+      crumbSelf: 'Oficio',
+      badge: 'Coming soon',
+      eyebrow: 'App',
+      title: 'Oficio',
+      tagline: 'Your personal dashboard, built your way.',
+      intro:
+        'Whatever you need at hand — calendar, news, weather, journal, pantry, recipes, weekly plan, culture log — right where you want to see it. A dashboard built at your own pace that lives on your device.',
+      featuresTag: 'What makes Oficio different',
+      featuresTitle: 'Simple, modular and yours.',
+      features: [
+        {
+          title: 'Modular',
+          body: 'You decide which modules to enable and how to arrange them. Your dashboard, your pace.',
+        },
+        {
+          title: 'Truly private',
+          body: 'Your data lives on your device and in the services you connect. It never goes through our servers.',
+        },
+        {
+          title: 'Bring your own AI',
+          body: 'Plug in your own agent via API to summarise your day or lend a hand. Experimental local-AI support is in the works.',
+        },
+      ],
+      modulesTag: 'Modules',
+      modulesTitle: 'Whatever you want at hand.',
+      modulesSub: 'Enable only what you use. Each module is independent.',
+      modules: [
+        'Calendar',
+        'News',
+        'Weather',
+        'Journal',
+        'Pantry',
+        'Recipes',
+        'Weekly plan',
+        'Culture log',
+      ],
+      manualsTag: 'Manuals',
+      manualsTitle: 'Setup guides.',
+      manualsSub:
+        'Each integration — TMDb, IGDB, Last.fm, Open Library and the rest — has its own guide: where to get the API key, what it costs and the most common mistakes to avoid.',
+      manualsCard: {
+        title: 'Oficio manuals',
+        body: "All the guides for setting up the app's integrations, step by step.",
+        cta: 'See manuals',
+        href: '/oficio/help/',
+      },
+      legalTag: 'Legal',
+      legalTitle: 'Privacy and terms.',
+      legalSub:
+        "Oficio works offline by design. Here are the app's legal documents: what data it stores and the conditions under which you can use it.",
+      legalCards: [
+        {
+          title: 'Privacy policy',
+          body: 'What data Oficio stores on your device, what permissions it requests and the optional external services.',
+          cta: 'Read the policy',
+          href: '/oficio/privacy/',
+        },
+        {
+          title: 'Terms & conditions',
+          body: 'The conditions of use for the Oficio app.',
+          cta: 'Read the terms',
+          href: '/oficio/terms/',
+        },
+      ],
+    },
     footer: {
       tagline: 'Simple apps, built with calm.',
       status: 'Oficio · coming soon',
@@ -249,15 +388,18 @@ export const content = {
         {
           title: 'Navigation',
           links: [
-            { label: 'Oficio', href: '#producto' },
-            { label: 'The studio', href: '#servicios' },
-            { label: 'How I work', href: '#proceso' },
-            { label: 'Contact', href: '#contacto' },
+            { label: 'Oficio', href: '/oficio/' },
+            { label: 'The studio', href: '/#servicios' },
+            { label: 'How I work', href: '/#proceso' },
+            { label: 'Contact', href: '/#contacto' },
           ],
         },
         {
           title: 'Oficio',
-          links: [{ label: 'Manuals', href: '/oficio/help/' }],
+          links: [
+            { label: 'The app', href: '/oficio/' },
+            { label: 'Manuals', href: '/oficio/help/' },
+          ],
         },
         {
           title: 'Legal',

@@ -6,7 +6,7 @@ import { content } from '../content.js'
 function Logo() {
   return (
     <a
-      href="#top"
+      href="/"
       className="flex shrink-0 items-center gap-2.5"
       aria-label="The Homebody Greyhound"
     >
@@ -47,8 +47,8 @@ export default function Navbar() {
         >
           {t.links.map((l) => (
             <a
-              key={l.id}
-              href={`#${l.id}`}
+              key={l.href}
+              href={l.href}
               className="text-[13px] text-silver transition-colors duration-200 hover:text-white"
             >
               {l.label}
@@ -67,7 +67,7 @@ export default function Navbar() {
           </button>
 
           <a
-            href="#contacto"
+            href="/#contacto"
             className="hidden rounded-full border border-hair-bright bg-white/[0.04] px-4 py-[7px] text-[12.5px] font-medium text-white transition-all duration-200 hover:border-white/40 hover:bg-white/[0.08] hover:shadow-[0_10px_34px_-14px_rgba(0,113,227,0.7)] sm:inline-flex"
           >
             {t.cta}
@@ -109,8 +109,8 @@ export default function Navbar() {
         <nav className="flex flex-col px-5 pb-4 pt-1">
           {t.links.map((l) => (
             <a
-              key={l.id}
-              href={`#${l.id}`}
+              key={l.href}
+              href={l.href}
               onClick={() => setOpen(false)}
               className="border-b border-hair/60 py-3 text-[15px] text-fog transition-colors hover:text-white"
             >
@@ -118,7 +118,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#contacto"
+            href="/#contacto"
             onClick={() => setOpen(false)}
             className="mt-4 inline-flex justify-center rounded-lg bg-white px-4 py-2.5 text-[14px] font-semibold text-ink"
           >
