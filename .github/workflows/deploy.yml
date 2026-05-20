@@ -1,0 +1,92 @@
+name: Build and deploy site
+
+# Builds the static site and deploys it to GitHub Pages.
+#
+# Manual and legal pages are generated from markdown that lives in
+# the app repository (DaRguez-Git/Vida-app-flutter, docs/web), which
+# stays the single source of truth. Reading that private repo needs
+# the APP_REPO_TOKEN secret — a fine-grained PAT with Contents:read
+# access to it.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  repository_dispatch:
+    types: [manuals-updated]
+  schedule:
+    - cron: '17 5 * * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the website
+        uses: actions/checkout@v4
+
+      - name: Check out the manuals from the app repo
+        uses: actions/checkout@v4
+        with:
+          repository: DaRguez-Git/Vida-app-flutter
+          ref: main
+          token: ${{ secrets.APP_REPO_TOKEN }}
+          path: _app
+          sparse-checkout: docs/web
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: python -m pip install --quiet markdown
+
+      - name: Stage manual and legal sources
+        run: |
+          mkdir -p assets/web/help/en
+          cp _app/docs/web/help/*.md             assets/web/help/
+          cp _app/docs/web/help/en/*.md          assets/web/help/en/
+          cp _app/docs/web/legal/PRIVACY_POLICY.md     assets/PRIVACY_POLICY.md
+          cp _app/docs/web/legal/PRIVACY_POLICY_EN.md  assets/PRIVACY_POLICY_EN.md
+          cp _app/docs/web/legal/TERMS.md              assets/TERMS.md
+          cp _app/docs/web/legal/TERMS_EN.md           assets/TERMS_EN.md
+
+      - name: Build pages
+        run: python3 scripts/build_help.py
+
+      - name: Assemble the site
+        run: |
+          mkdir _site
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='_app' \
+            --exclude='_site' \
+            --exclude='scripts' \
+            --exclude='assets/web' \
+            --exclude='assets/*.md' \
+            ./ _site/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
