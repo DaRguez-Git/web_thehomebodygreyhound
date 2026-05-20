@@ -9,8 +9,8 @@ const LangContext = createContext({
 const STORAGE_KEY = 'thg-lang'
 
 const DOC_TITLE = {
-  es: 'The Homebody Greyhound — Ingeniería de software a medida',
-  en: 'The Homebody Greyhound — Bespoke software engineering',
+  es: 'The Homebody Greyhound — Apps hechas con calma',
+  en: 'The Homebody Greyhound — Apps built with calm',
 }
 
 function readInitialLang() {
