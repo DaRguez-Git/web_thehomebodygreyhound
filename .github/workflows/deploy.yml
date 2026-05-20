@@ -7,6 +7,9 @@ name: Build and deploy site
 # stays the single source of truth. Reading that private repo needs
 # the APP_REPO_TOKEN secret — a fine-grained PAT with Contents:read
 # access to it.
+#
+# Build and deploy are separate jobs so that re-running only the
+# deploy job never produces a duplicate Pages artifact.
 
 on:
   push:
@@ -27,11 +30,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Check out the website
         uses: actions/checkout@v4
@@ -87,6 +87,13 @@ jobs:
         with:
           path: _site
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
