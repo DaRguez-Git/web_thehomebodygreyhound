@@ -9,6 +9,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         oficio: 'oficio/index.html',
+        woodshed: 'woodshed/index.html',
       },
     },
   },

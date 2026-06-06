@@ -9,14 +9,13 @@
 /en/oficio/help/
 /en/oficio/privacy/
 /en/oficio/terms/
+/woodshed/privacy/
+/en/woodshed/privacy/
 
-# Manual and legal markdown — staged from the app repo at build time.
+# Manual and legal markdown — staged from each app repo at build time.
 /assets/web/
-/assets/PRIVACY_POLICY.md
-/assets/PRIVACY_POLICY_EN.md
-/assets/TERMS.md
-/assets/TERMS_EN.md
 
 # CI working directories.
-/_app/
+/_app_oficio/
+/_app_woodshed/
 /_site/

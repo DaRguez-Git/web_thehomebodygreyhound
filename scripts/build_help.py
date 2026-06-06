@@ -3,30 +3,32 @@
 Build the static pages that wrap the markdown manual and legal
 sources with the site's shared chrome.
 
-Sources are staged before this script runs:
+The script supports several apps. Sources are staged before this
+script runs, with one directory per app under assets/web/:
 
-  assets/web/help/*.md, assets/web/help/en/*.md   manuals (ES / EN)
-  assets/PRIVACY_POLICY.md, assets/PRIVACY_POLICY_EN.md
-  assets/TERMS.md, assets/TERMS_EN.md
+  assets/web/oficio/help/*.md, assets/web/oficio/help/en/*.md
+  assets/web/oficio/legal/PRIVACY_POLICY.md (and _EN.md)
+  assets/web/oficio/legal/TERMS.md         (and _EN.md)
+  assets/web/woodshed/privacy-policy.es.md
+  assets/web/woodshed/privacy-policy.en.md
 
-In CI the sources are copied from the app repository
-(DaRguez-Git/Vida-app-flutter, docs/web) so the app stays the
-single source of truth for its own documentation.
+In CI those files are copied from each app's own repository
+(DaRguez-Git/Vida-app-flutter for Oficio, DaRguez-Git/MusicCompanion
+for Woodshed) so each app stays the single source of truth for its
+own documentation.
 
 Output layout
 -------------
 
-  /oficio/help/                       Spanish manuals index
-  /oficio/help/<slug>/                Spanish manual page per slug
-  /oficio/privacy/                    Spanish privacy policy
-  /oficio/terms/                      Spanish terms & conditions
-  /en/oficio/help/                    English manuals index
-  /en/oficio/help/<slug>/             English manual page per slug
-  /en/oficio/privacy/                 English privacy policy
-  /en/oficio/terms/                   English terms & conditions
+  /oficio/help/, /oficio/help/<slug>/        Spanish manuals
+  /oficio/privacy/, /oficio/terms/           Spanish legal pages
+  /en/oficio/help/, /en/oficio/help/<slug>/  English manuals
+  /en/oficio/privacy/, /en/oficio/terms/     English legal pages
+  /woodshed/privacy/                         Spanish privacy policy
+  /en/woodshed/privacy/                      English privacy policy
 
-Every generated page lives under the Oficio app, so its manuals and
-legal pages are reachable from /oficio/ rather than a global footer.
+Each generated page lives under its app, so it is reachable from
+that app's own React page (/oficio/, /woodshed/).
 
 The script is idempotent: it overwrites whatever was previously
 generated. Run from the repo root:
@@ -43,14 +45,20 @@ from pathlib import Path
 import markdown
 
 ROOT = Path(__file__).resolve().parent.parent
-HELP_SRC_ES = ROOT / "assets" / "web" / "help"
-HELP_SRC_EN = ROOT / "assets" / "web" / "help" / "en"
-HELP_OUT_ES = ROOT / "oficio" / "help"
-HELP_OUT_EN = ROOT / "en" / "oficio" / "help"
-PRIVACY_SRC_ES = ROOT / "assets" / "PRIVACY_POLICY.md"
-PRIVACY_SRC_EN = ROOT / "assets" / "PRIVACY_POLICY_EN.md"
-TERMS_SRC_ES = ROOT / "assets" / "TERMS.md"
-TERMS_SRC_EN = ROOT / "assets" / "TERMS_EN.md"
+
+# --- Oficio paths -----------------------------------------------
+HELP_SRC_ES_OFICIO = ROOT / "assets" / "web" / "oficio" / "help"
+HELP_SRC_EN_OFICIO = ROOT / "assets" / "web" / "oficio" / "help" / "en"
+HELP_OUT_ES_OFICIO = ROOT / "oficio" / "help"
+HELP_OUT_EN_OFICIO = ROOT / "en" / "oficio" / "help"
+PRIVACY_SRC_ES_OFICIO = ROOT / "assets" / "web" / "oficio" / "legal" / "PRIVACY_POLICY.md"
+PRIVACY_SRC_EN_OFICIO = ROOT / "assets" / "web" / "oficio" / "legal" / "PRIVACY_POLICY_EN.md"
+TERMS_SRC_ES_OFICIO = ROOT / "assets" / "web" / "oficio" / "legal" / "TERMS.md"
+TERMS_SRC_EN_OFICIO = ROOT / "assets" / "web" / "oficio" / "legal" / "TERMS_EN.md"
+
+# --- Woodshed paths ---------------------------------------------
+PRIVACY_SRC_ES_WOODSHED = ROOT / "assets" / "web" / "woodshed" / "privacy-policy.es.md"
+PRIVACY_SRC_EN_WOODSHED = ROOT / "assets" / "web" / "woodshed" / "privacy-policy.en.md"
 
 SITE_TITLE = "The Homebody Greyhound"
 EMAIL = "info@thehomebodygreyhound.com"
@@ -63,9 +71,6 @@ class Locale:
     nav_label: str          # aria-label for the primary nav
     footer_label: str       # aria-label for the footer nav
     nav_home: str
-    nav_apps: str
-    nav_about: str
-    footer_about: str
     footer_tagline: str
     lang_label: str         # text on the language switch
     lang_hreflang: str      # the *other* language code
@@ -85,9 +90,6 @@ LOCALE_ES = Locale(
     nav_label="Navegación principal",
     footer_label="Pie de página",
     nav_home="Inicio",
-    nav_apps="Aplicaciones",
-    nav_about="Sobre",
-    footer_about="Sobre el estudio",
     footer_tagline="Apps sencillas, hechas con calma.",
     lang_label="EN",
     lang_hreflang="en",
@@ -112,9 +114,6 @@ LOCALE_EN = Locale(
     nav_label="Main navigation",
     footer_label="Footer",
     nav_home="Home",
-    nav_apps="Apps",
-    nav_about="About",
-    footer_about="About the studio",
     footer_tagline="Simple apps, built with calm.",
     lang_label="ES",
     lang_hreflang="es",
@@ -134,7 +133,8 @@ LOCALE_EN = Locale(
 )
 
 
-# (slug, ES label, ES summary, EN label, EN summary)
+# Oficio manual topics: (slug, ES label, ES summary, EN label, EN summary).
+# Woodshed has no manuals.
 TOPICS: list[tuple[str, str, str, str, str]] = [
     (
         "anthropic-ai",
@@ -323,10 +323,15 @@ def crumb_text(text: str) -> str:
 SEP = '      <span aria-hidden="true">›</span>'
 
 
-def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
+def build_help(
+    loc: Locale,
+    src_dir: Path,
+    out_dir: Path,
+    app_slug: str,
+    app_name: str,
+) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     items: list[str] = []
-    other = "en/" if loc.code == "es" else ""
 
     for slug, label_es, summary_es, label_en, summary_en in TOPICS:
         src = src_dir / f"{slug}.md"
@@ -340,9 +345,9 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
         root = "../../../" if loc.code == "es" else "../../../../"
         if loc.code == "es":
             alt_es = "index.html"
-            alt_en = f"{root}en/oficio/help/{slug}/index.html"
+            alt_en = f"{root}en/{app_slug}/help/{slug}/index.html"
         else:
-            alt_es = f"{root}oficio/help/{slug}/index.html"
+            alt_es = f"{root}{app_slug}/help/{slug}/index.html"
             alt_en = "index.html"
         lang_alt = alt_en if loc.code == "es" else alt_es
 
@@ -350,7 +355,7 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
             [
                 crumb_link(f"{root}index.html", loc.crumb_home),
                 SEP,
-                crumb_link(f"{root}oficio/index.html", "Oficio"),
+                crumb_link(f"{root}{app_slug}/index.html", app_name),
                 SEP,
                 crumb_link("../index.html", loc.crumb_manuals),
                 SEP,
@@ -371,8 +376,8 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
         html = page(
             loc=loc,
             root=root,
-            title=f"{title}",
-            description=make_description(body_html, "Oficio."),
+            title=title,
+            description=make_description(body_html, f"{app_name}."),
             alt_es=alt_es,
             alt_en=alt_en,
             lang_alt=lang_alt,
@@ -387,15 +392,15 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
             f'        <li><a href="{slug}/index.html"><strong>{label}</strong>'
             f"<span>{summary}</span></a></li>"
         )
-        print(f"  ✓ [{loc.code}] oficio/help/{slug}/index.html")
+        print(f"  ✓ [{loc.code}] {app_slug}/help/{slug}/index.html")
 
     # Manuals index
     root = "../../" if loc.code == "es" else "../../../"
     if loc.code == "es":
         idx_alt_es = "index.html"
-        idx_alt_en = f"{root}en/oficio/help/index.html"
+        idx_alt_en = f"{root}en/{app_slug}/help/index.html"
     else:
-        idx_alt_es = f"{root}oficio/help/index.html"
+        idx_alt_es = f"{root}{app_slug}/help/index.html"
         idx_alt_en = "index.html"
     idx_lang_alt = idx_alt_en if loc.code == "es" else idx_alt_es
 
@@ -403,7 +408,7 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
         [
             crumb_link(f"{root}index.html", loc.crumb_home),
             SEP,
-            crumb_link(f"{root}oficio/index.html", "Oficio"),
+            crumb_link(f"{root}{app_slug}/index.html", app_name),
             SEP,
             crumb_text(loc.crumb_manuals),
         ]
@@ -416,9 +421,9 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
       </ul>
     </article>"""
     index_description = (
-        "Manuales para configurar las integraciones de la app Oficio."
+        f"Manuales para configurar las integraciones de la app {app_name}."
         if loc.code == "es"
-        else "Manuals for setting up the Oficio app integrations."
+        else f"Manuals for setting up the {app_name} app integrations."
     )
     html = page(
         loc=loc,
@@ -432,19 +437,21 @@ def build_help(loc: Locale, src_dir: Path, out_dir: Path) -> None:
         article=article,
     )
     (out_dir / "index.html").write_text(html, encoding="utf-8")
-    print(f"  ✓ [{loc.code}] oficio/help/index.html (manuals index)")
+    print(f"  ✓ [{loc.code}] {app_slug}/help/index.html (manuals index)")
 
 
 def build_legal(
     loc: Locale,
     src: Path,
     out_dir: Path,
+    app_slug: str,
+    app_name: str,
     slug: str,
     crumb_label: str,
     description: str,
 ) -> None:
     if not src.exists():
-        print(f"  ! [{loc.code}] missing {src.name}, skipping {slug}")
+        print(f"  ! [{loc.code}] missing {src.name}, skipping {app_slug}/{slug}")
         return
     out_dir.mkdir(parents=True, exist_ok=True)
     title, body_html = render_markdown(src.read_text(encoding="utf-8"))
@@ -452,9 +459,9 @@ def build_legal(
     root = "../../" if loc.code == "es" else "../../../"
     if loc.code == "es":
         alt_es = "index.html"
-        alt_en = f"{root}en/oficio/{slug}/index.html"
+        alt_en = f"{root}en/{app_slug}/{slug}/index.html"
     else:
-        alt_es = f"{root}oficio/{slug}/index.html"
+        alt_es = f"{root}{app_slug}/{slug}/index.html"
         alt_en = "index.html"
     lang_alt = alt_en if loc.code == "es" else alt_es
 
@@ -462,7 +469,7 @@ def build_legal(
         [
             crumb_link(f"{root}index.html", loc.crumb_home),
             SEP,
-            crumb_link(f"{root}oficio/index.html", "Oficio"),
+            crumb_link(f"{root}{app_slug}/index.html", app_name),
             SEP,
             crumb_text(crumb_label),
         ]
@@ -485,45 +492,77 @@ def build_legal(
         article=article,
     )
     (out_dir / "index.html").write_text(html, encoding="utf-8")
-    print(f"  ✓ [{loc.code}] oficio/{slug}/index.html")
+    print(f"  ✓ [{loc.code}] {app_slug}/{slug}/index.html")
 
 
 def main() -> None:
-    print("Building manual pages…")
-    build_help(LOCALE_ES, HELP_SRC_ES, HELP_OUT_ES)
-    build_help(LOCALE_EN, HELP_SRC_EN, HELP_OUT_EN)
-    print("Building legal pages…")
+    print("== Oficio ==")
+    print("Building Oficio manual pages…")
+    build_help(LOCALE_ES, HELP_SRC_ES_OFICIO, HELP_OUT_ES_OFICIO, "oficio", "Oficio")
+    build_help(LOCALE_EN, HELP_SRC_EN_OFICIO, HELP_OUT_EN_OFICIO, "oficio", "Oficio")
+    print("Building Oficio legal pages…")
     build_legal(
         LOCALE_ES,
-        PRIVACY_SRC_ES,
+        PRIVACY_SRC_ES_OFICIO,
         ROOT / "oficio" / "privacy",
+        "oficio",
+        "Oficio",
         "privacy",
         LOCALE_ES.crumb_privacy,
         "Política de privacidad de la app Oficio.",
     )
     build_legal(
         LOCALE_EN,
-        PRIVACY_SRC_EN,
+        PRIVACY_SRC_EN_OFICIO,
         ROOT / "en" / "oficio" / "privacy",
+        "oficio",
+        "Oficio",
         "privacy",
         LOCALE_EN.crumb_privacy,
         "Privacy policy for the Oficio app.",
     )
     build_legal(
         LOCALE_ES,
-        TERMS_SRC_ES,
+        TERMS_SRC_ES_OFICIO,
         ROOT / "oficio" / "terms",
+        "oficio",
+        "Oficio",
         "terms",
         LOCALE_ES.crumb_terms,
         "Términos y condiciones de uso de la app Oficio.",
     )
     build_legal(
         LOCALE_EN,
-        TERMS_SRC_EN,
+        TERMS_SRC_EN_OFICIO,
         ROOT / "en" / "oficio" / "terms",
+        "oficio",
+        "Oficio",
         "terms",
         LOCALE_EN.crumb_terms,
         "Terms and conditions for the Oficio app.",
+    )
+
+    print("== Woodshed ==")
+    print("Building Woodshed legal pages…")
+    build_legal(
+        LOCALE_ES,
+        PRIVACY_SRC_ES_WOODSHED,
+        ROOT / "woodshed" / "privacy",
+        "woodshed",
+        "Woodshed",
+        "privacy",
+        LOCALE_ES.crumb_privacy,
+        "Política de privacidad de la app Woodshed.",
+    )
+    build_legal(
+        LOCALE_EN,
+        PRIVACY_SRC_EN_WOODSHED,
+        ROOT / "en" / "woodshed" / "privacy",
+        "woodshed",
+        "Woodshed",
+        "privacy",
+        LOCALE_EN.crumb_privacy,
+        "Privacy policy for the Woodshed app.",
     )
 
 

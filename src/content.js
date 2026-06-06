@@ -5,7 +5,7 @@ export const content = {
   es: {
     nav: {
       links: [
-        { href: '/oficio/', label: 'Oficio' },
+        { href: '/#aplicaciones', label: 'Aplicaciones' },
         { href: '/#servicios', label: 'El estudio' },
         { href: '/#proceso', label: 'Cómo trabajo' },
         { href: '/#contacto', label: 'Contacto' },
@@ -26,10 +26,25 @@ export const content = {
       scroll: 'Desplázate',
     },
     showcase: {
-      tag: 'Aplicación · Próximamente',
-      title: 'Oficio: tu agenda personal, a tu medida.',
-      sub: 'Lo que necesites tener a mano —calendario, noticias, tiempo, diario, recetas— donde tú quieras verlo. Un panel que se monta a tu ritmo y vive en tu dispositivo.',
-      cta: 'Conocer Oficio',
+      tag: 'Aplicaciones',
+      title: 'Lo que hemos hecho.',
+      sub: 'Apps cuidadas, pocas pero terminadas. Cada una vive en su propia página.',
+      apps: [
+        {
+          name: 'Oficio',
+          tagline: 'Tu agenda personal, montada a tu medida.',
+          badge: 'Próximamente',
+          href: '/oficio/',
+          cta: 'Conocer Oficio',
+        },
+        {
+          name: 'Woodshed',
+          tagline: 'El cuarto de estudio del músico clásico.',
+          badge: 'Android',
+          href: '/woodshed/',
+          cta: 'Conocer Woodshed',
+        },
+      ],
     },
     capabilities: {
       tag: 'El estudio',
@@ -165,31 +180,83 @@ export const content = {
         },
       ],
     },
+    woodshed: {
+      crumbHome: 'Inicio',
+      crumbSelf: 'Woodshed',
+      badge: 'Android',
+      eyebrow: 'Aplicación',
+      title: 'Woodshed',
+      tagline: 'El cuarto de estudio del músico clásico.',
+      intro:
+        'Una aplicación para el estudio individual de músicos clásicos. Reúne el repertorio, la planificación del trabajo, el seguimiento de la práctica y las herramientas de apoyo —metrónomo, afinador y nota pedal— para que todo lo necesario en una sesión esté a mano sin saltar entre apps. El nombre viene de woodshedding: el trabajo intenso y reservado con el instrumento.',
+      featuresTag: 'Qué hace especial a Woodshed',
+      featuresTitle: 'Biblioteca, plan y herramientas, en un solo sitio.',
+      features: [
+        {
+          title: 'Tu repertorio organizado',
+          body: 'Biblioteca con metadatos, partituras (PDF, MusicXML), audio, vídeo y notas. Todo lo que necesitas para una obra, en un solo sitio.',
+        },
+        {
+          title: 'Plan y progreso',
+          body: 'Programas con bloques y ejercicios; cronómetro, contador de repeticiones, mapa de calor y racha. Mides lo que practicas sin esfuerzo.',
+        },
+        {
+          title: 'Herramientas a mano',
+          body: 'Metrónomo, afinador cromático y nota pedal —también dentro del visor de partituras— sin saltar a otra app.',
+        },
+      ],
+      modulesTag: 'Áreas',
+      modulesTitle: 'Lo que vas a encontrar dentro.',
+      modulesSub: 'Cada área cubre una parte del estudio. Se usan por separado o juntas.',
+      modules: [
+        'Biblioteca',
+        'Programas',
+        'Práctica',
+        'Cuaderno',
+        'Visor',
+        'Metrónomo',
+        'Afinador',
+        'Nota pedal',
+      ],
+      legalTag: 'Legal',
+      legalTitle: 'Privacidad.',
+      legalSub:
+        'Woodshed funciona sin conexión y guarda los datos en tu dispositivo. La política de privacidad detalla qué se guarda y qué servicios externos son opcionales.',
+      legalCards: [
+        {
+          title: 'Política de privacidad',
+          body: 'Qué datos guarda Woodshed, dónde vive cada cosa y qué servicios externos son opcionales.',
+          cta: 'Leer la política',
+          href: '/woodshed/privacy/',
+        },
+      ],
+    },
     footer: {
       tagline: 'Apps sencillas, hechas con calma.',
-      status: 'Oficio · próximamente',
+      status: 'Estudio activo',
       cols: [
         {
           title: 'Navegación',
           links: [
-            { label: 'Oficio', href: '/oficio/' },
+            { label: 'Aplicaciones', href: '/#aplicaciones' },
             { label: 'El estudio', href: '/#servicios' },
             { label: 'Cómo trabajo', href: '/#proceso' },
             { label: 'Contacto', href: '/#contacto' },
           ],
         },
         {
-          title: 'Oficio',
+          title: 'Aplicaciones',
           links: [
-            { label: 'La app', href: '/oficio/' },
-            { label: 'Manuales', href: '/oficio/help/' },
+            { label: 'Oficio', href: '/oficio/' },
+            { label: 'Woodshed', href: '/woodshed/' },
           ],
         },
         {
           title: 'Legal',
           links: [
-            { label: 'Privacidad', href: '/oficio/privacy/' },
-            { label: 'Términos', href: '/oficio/terms/' },
+            { label: 'Privacidad Oficio', href: '/oficio/privacy/' },
+            { label: 'Términos Oficio', href: '/oficio/terms/' },
+            { label: 'Privacidad Woodshed', href: '/woodshed/privacy/' },
           ],
         },
       ],
@@ -201,7 +268,7 @@ export const content = {
   en: {
     nav: {
       links: [
-        { href: '/oficio/', label: 'Oficio' },
+        { href: '/#aplicaciones', label: 'Apps' },
         { href: '/#servicios', label: 'The studio' },
         { href: '/#proceso', label: 'How I work' },
         { href: '/#contacto', label: 'Contact' },
@@ -222,10 +289,25 @@ export const content = {
       scroll: 'Scroll',
     },
     showcase: {
-      tag: 'App · Coming soon',
-      title: 'Oficio: your personal dashboard, built your way.',
-      sub: 'Whatever you need at hand — calendar, news, weather, journal, recipes — right where you want to see it. A dashboard built at your own pace that lives on your device.',
-      cta: 'Explore Oficio',
+      tag: 'Apps',
+      title: "What we've made.",
+      sub: 'Careful apps — few, but finished. Each one lives on its own page.',
+      apps: [
+        {
+          name: 'Oficio',
+          tagline: 'Your personal dashboard, built your way.',
+          badge: 'Coming soon',
+          href: '/oficio/',
+          cta: 'Explore Oficio',
+        },
+        {
+          name: 'Woodshed',
+          tagline: "The classical musician's practice room.",
+          badge: 'Android',
+          href: '/woodshed/',
+          cta: 'Explore Woodshed',
+        },
+      ],
     },
     capabilities: {
       tag: 'The studio',
@@ -361,31 +443,83 @@ export const content = {
         },
       ],
     },
+    woodshed: {
+      crumbHome: 'Home',
+      crumbSelf: 'Woodshed',
+      badge: 'Android',
+      eyebrow: 'App',
+      title: 'Woodshed',
+      tagline: "The classical musician's practice room.",
+      intro:
+        'An app for the individual practice of classical musicians. It brings together repertoire, practice planning, session tracking and supporting tools — metronome, tuner and drone — so everything you need in a session is on hand without jumping between apps. The name comes from woodshedding: intense, focused work with the instrument.',
+      featuresTag: 'What makes Woodshed different',
+      featuresTitle: 'Library, plan and tools, in one place.',
+      features: [
+        {
+          title: 'Your repertoire, organised',
+          body: 'A library with metadata, scores (PDF, MusicXML), audio, video and notes. Everything you need for a piece, in one place.',
+        },
+        {
+          title: 'Plan and progress',
+          body: 'Programmes with blocks and exercises; timer, rep counter, heatmap and streak. Measure what you practise without the friction.',
+        },
+        {
+          title: 'Tools at hand',
+          body: "Metronome, chromatic tuner and drone — also inside the score viewer — without jumping to another app.",
+        },
+      ],
+      modulesTag: 'Areas',
+      modulesTitle: "What you'll find inside.",
+      modulesSub: 'Each area covers a part of practice. Use them separately or together.',
+      modules: [
+        'Library',
+        'Programmes',
+        'Practice',
+        'Workbook',
+        'Viewer',
+        'Metronome',
+        'Tuner',
+        'Drone',
+      ],
+      legalTag: 'Legal',
+      legalTitle: 'Privacy.',
+      legalSub:
+        'Woodshed works offline and stores data on your device. The privacy policy details what is stored and which external services are optional.',
+      legalCards: [
+        {
+          title: 'Privacy policy',
+          body: 'What data Woodshed stores, where each thing lives, and which external services are optional.',
+          cta: 'Read the policy',
+          href: '/woodshed/privacy/',
+        },
+      ],
+    },
     footer: {
       tagline: 'Simple apps, built with calm.',
-      status: 'Oficio · coming soon',
+      status: 'Studio active',
       cols: [
         {
           title: 'Navigation',
           links: [
-            { label: 'Oficio', href: '/oficio/' },
+            { label: 'Apps', href: '/#aplicaciones' },
             { label: 'The studio', href: '/#servicios' },
             { label: 'How I work', href: '/#proceso' },
             { label: 'Contact', href: '/#contacto' },
           ],
         },
         {
-          title: 'Oficio',
+          title: 'Apps',
           links: [
-            { label: 'The app', href: '/oficio/' },
-            { label: 'Manuals', href: '/oficio/help/' },
+            { label: 'Oficio', href: '/oficio/' },
+            { label: 'Woodshed', href: '/woodshed/' },
           ],
         },
         {
           title: 'Legal',
           links: [
-            { label: 'Privacy', href: '/oficio/privacy/' },
-            { label: 'Terms', href: '/oficio/terms/' },
+            { label: 'Oficio privacy', href: '/oficio/privacy/' },
+            { label: 'Oficio terms', href: '/oficio/terms/' },
+            { label: 'Woodshed privacy', href: '/woodshed/privacy/' },
           ],
         },
       ],

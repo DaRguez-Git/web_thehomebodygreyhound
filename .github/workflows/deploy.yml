@@ -1,21 +1,24 @@
 name: Build and deploy site
 
-# Builds the React landing page (Vite) and the static manual / legal
-# pages, then deploys everything to GitHub Pages.
+# Builds the React landing page (Vite, three entry points: /, /oficio/,
+# /woodshed/) and the static manual / legal pages, then deploys
+# everything to GitHub Pages.
 #
 # Manual and legal pages are generated from markdown that lives in
-# the app repository (DaRguez-Git/Vida-app-flutter, docs/web), which
-# stays the single source of truth. Reading that private repo needs
-# the APP_REPO_TOKEN secret — a fine-grained PAT with Contents:read
-# access to it.
+# each app's own repository:
+#   - Oficio   → DaRguez-Git/Vida-app-flutter, docs/web
+#   - Woodshed → DaRguez-Git/MusicCompanion,   docs/web
+# Each app stays the single source of truth for its own documentation.
+# Reading those private repos uses the APP_REPO_TOKEN secret — a
+# fine-grained PAT with Contents:read access to both of them.
 #
 # Pages activates each deploy based on the web repo's commit SHA: if
 # the SHA hasn't changed, a re-uploaded artifact is not promoted to
-# the live site. To keep deploys flowing when only the app manuals
-# change, the build job tracks the app's revision in
-# .github/manuals-revision and pushes a bump commit when that
-# revision moves. The bump commit triggers a fresh workflow run on a
-# new SHA, and that run is the one that actually deploys.
+# the live site. To keep deploys flowing when only the app docs
+# change, the build job tracks each app's revision in
+# .github/<app>-revision and pushes a bump commit when any of them
+# moves. The bump triggers a fresh workflow run on a new SHA, and
+# that run is the one that actually deploys.
 
 on:
   push:
@@ -44,36 +47,48 @@ jobs:
       - name: Check out the website
         uses: actions/checkout@v4
 
-      - name: Check out the manuals from the app repo
+      - name: Check out the Oficio docs (Vida-app-flutter)
         uses: actions/checkout@v4
         with:
           repository: DaRguez-Git/Vida-app-flutter
           ref: main
           token: ${{ secrets.APP_REPO_TOKEN }}
-          path: _app
+          path: _app_oficio
           sparse-checkout: docs/web
 
-      - name: Bump web SHA if the app manuals revision changed
+      - name: Check out the Woodshed docs (MusicCompanion)
+        uses: actions/checkout@v4
+        with:
+          repository: DaRguez-Git/MusicCompanion
+          ref: main
+          token: ${{ secrets.APP_REPO_TOKEN }}
+          path: _app_woodshed
+          sparse-checkout: docs/web
+
+      - name: Bump web SHA if any app docs revision changed
         id: revcheck
         run: |
-          NEW_REV=$(git -C _app rev-parse HEAD)
-          OLD_REV=$(cat .github/manuals-revision 2>/dev/null || true)
-          echo "App manuals HEAD: $NEW_REV"
-          echo "Stored revision:  ${OLD_REV:-<none>}"
-          if [ "$NEW_REV" = "$OLD_REV" ]; then
+          NEW_OFICIO=$(git -C _app_oficio rev-parse HEAD)
+          NEW_WOODSHED=$(git -C _app_woodshed rev-parse HEAD)
+          OLD_OFICIO=$(cat .github/oficio-revision 2>/dev/null || true)
+          OLD_WOODSHED=$(cat .github/woodshed-revision 2>/dev/null || true)
+          echo "Oficio:   ${OLD_OFICIO:-<none>}  ->  $NEW_OFICIO"
+          echo "Woodshed: ${OLD_WOODSHED:-<none>}  ->  $NEW_WOODSHED"
+          if [ "$NEW_OFICIO" = "$OLD_OFICIO" ] && [ "$NEW_WOODSHED" = "$OLD_WOODSHED" ]; then
             echo "Revisions match; proceeding with build and deploy."
             echo "should_deploy=true" >> "$GITHUB_OUTPUT"
           else
-            echo "New manuals revision detected; bumping web repo SHA."
+            echo "App docs revision changed; bumping web repo SHA."
             mkdir -p .github
-            echo "$NEW_REV" > .github/manuals-revision
+            echo "$NEW_OFICIO" > .github/oficio-revision
+            echo "$NEW_WOODSHED" > .github/woodshed-revision
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git config user.name "github-actions[bot]"
-            git add .github/manuals-revision
-            git commit -m "Bump manuals revision to ${NEW_REV:0:8}"
+            git add .github/oficio-revision .github/woodshed-revision
+            git commit -m "Bump app docs revisions (oficio ${NEW_OFICIO:0:8}, woodshed ${NEW_WOODSHED:0:8})"
             git push origin HEAD:main
             echo "should_deploy=false" >> "$GITHUB_OUTPUT"
-            echo "Bump pushed; the resulting workflow run will publish the manuals."
+            echo "Bump pushed; the resulting workflow run will publish the docs."
           fi
 
       - name: Configure Pages
@@ -90,7 +105,7 @@ jobs:
         if: steps.revcheck.outputs.should_deploy == 'true'
         run: npm ci
 
-      - name: Build the landing page
+      - name: Build the landing pages
         if: steps.revcheck.outputs.should_deploy == 'true'
         run: npm run build
 
@@ -107,13 +122,18 @@ jobs:
       - name: Stage manual and legal sources
         if: steps.revcheck.outputs.should_deploy == 'true'
         run: |
-          mkdir -p assets/web/help/en
-          cp _app/docs/web/help/*.md             assets/web/help/
-          cp _app/docs/web/help/en/*.md          assets/web/help/en/
-          cp _app/docs/web/legal/PRIVACY_POLICY.md     assets/PRIVACY_POLICY.md
-          cp _app/docs/web/legal/PRIVACY_POLICY_EN.md  assets/PRIVACY_POLICY_EN.md
-          cp _app/docs/web/legal/TERMS.md              assets/TERMS.md
-          cp _app/docs/web/legal/TERMS_EN.md           assets/TERMS_EN.md
+          # --- Oficio ---
+          mkdir -p assets/web/oficio/help/en assets/web/oficio/legal
+          cp _app_oficio/docs/web/help/*.md            assets/web/oficio/help/
+          cp _app_oficio/docs/web/help/en/*.md         assets/web/oficio/help/en/
+          cp _app_oficio/docs/web/legal/PRIVACY_POLICY.md     assets/web/oficio/legal/PRIVACY_POLICY.md
+          cp _app_oficio/docs/web/legal/PRIVACY_POLICY_EN.md  assets/web/oficio/legal/PRIVACY_POLICY_EN.md
+          cp _app_oficio/docs/web/legal/TERMS.md              assets/web/oficio/legal/TERMS.md
+          cp _app_oficio/docs/web/legal/TERMS_EN.md           assets/web/oficio/legal/TERMS_EN.md
+          # --- Woodshed ---
+          mkdir -p assets/web/woodshed
+          cp _app_woodshed/docs/web/privacy-policy.es.md  assets/web/woodshed/privacy-policy.es.md
+          cp _app_woodshed/docs/web/privacy-policy.en.md  assets/web/woodshed/privacy-policy.en.md
 
       - name: Build manual and legal pages
         if: steps.revcheck.outputs.should_deploy == 'true'
@@ -125,7 +145,8 @@ jobs:
           mkdir _site
           cp -r dist/. _site/
           for d in oficio/help oficio/privacy oficio/terms \
-                   en/oficio/help en/oficio/privacy en/oficio/terms; do
+                   en/oficio/help en/oficio/privacy en/oficio/terms \
+                   woodshed/privacy en/woodshed/privacy; do
             if [ -d "$d" ]; then
               mkdir -p "_site/$d"
               cp -r "$d/." "_site/$d/"
