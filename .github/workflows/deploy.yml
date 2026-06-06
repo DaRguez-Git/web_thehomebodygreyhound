@@ -86,9 +86,26 @@ jobs:
             git config user.name "github-actions[bot]"
             git add .github/oficio-revision .github/woodshed-revision
             git commit -m "Bump app docs revisions (oficio ${NEW_OFICIO:0:8}, woodshed ${NEW_WOODSHED:0:8})"
-            git push origin HEAD:main
+            # Push robustly: if main moved while we built the bump, either
+            # another run already wrote matching revisions (bail out cleanly)
+            # or rebase on top and try again.
+            for try in 1 2 3 4 5; do
+              if git push origin HEAD:main; then
+                echo "Bump pushed."
+                break
+              fi
+              echo "Push rejected (attempt $try); checking if another run already bumped..."
+              git fetch origin main
+              REMOTE_OFICIO=$(git show origin/main:.github/oficio-revision 2>/dev/null || true)
+              REMOTE_WOODSHED=$(git show origin/main:.github/woodshed-revision 2>/dev/null || true)
+              if [ "$REMOTE_OFICIO" = "$NEW_OFICIO" ] && [ "$REMOTE_WOODSHED" = "$NEW_WOODSHED" ]; then
+                echo "origin/main already has matching revisions; another run handled the bump."
+                break
+              fi
+              git pull --rebase origin main
+            done
             echo "should_deploy=false" >> "$GITHUB_OUTPUT"
-            echo "Bump pushed; the resulting workflow run will publish the docs."
+            echo "Done; the workflow run on the new SHA will publish the docs."
           fi
 
       - name: Configure Pages
