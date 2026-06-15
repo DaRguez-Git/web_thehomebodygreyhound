@@ -218,6 +218,16 @@ export const content = {
         'Afinador',
         'Nota pedal',
       ],
+      manualsTag: 'Manual',
+      manualsTitle: 'Guía de uso.',
+      manualsSub:
+        'Cómo se usa Woodshed: desde montar tu biblioteca hasta planificar y seguir el estudio.',
+      manualsCard: {
+        title: 'Manual de Woodshed',
+        body: 'La guía completa de la app, paso a paso.',
+        cta: 'Leer el manual',
+        href: '/woodshed/manual/',
+      },
       legalTag: 'Legal',
       legalTitle: 'Privacidad.',
       legalSub:
@@ -481,6 +491,16 @@ export const content = {
         'Tuner',
         'Drone',
       ],
+      manualsTag: 'Manual',
+      manualsTitle: 'User guide.',
+      manualsSub:
+        'How to use Woodshed: from organising your library to planning and tracking practice.',
+      manualsCard: {
+        title: 'Woodshed manual',
+        body: 'The complete app guide, step by step.',
+        cta: 'Read the manual',
+        href: '/woodshed/manual/',
+      },
       legalTag: 'Legal',
       legalTitle: 'Privacy.',
       legalSub:

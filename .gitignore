@@ -10,7 +10,9 @@
 /en/oficio/privacy/
 /en/oficio/terms/
 /woodshed/privacy/
+/woodshed/manual/
 /en/woodshed/privacy/
+/en/woodshed/manual/
 
 # Manual and legal markdown — staged from each app repo at build time.
 /assets/web/

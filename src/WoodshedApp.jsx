@@ -58,9 +58,24 @@ function IconMetronome() {
 
 const FEATURE_ICONS = [IconScore, IconHeatmap, IconMetronome]
 
-function IconBadge({ children }) {
+function IconBook() {
   return (
-    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-hair bg-white/[0.03] text-white">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <path
+        d="M11 5.6C11 5.6 9 4.1 5.6 4.1 2.9 4.1 2 5 2 5v11s1.1-.9 3.6-.9S11 16.6 11 16.6m0-11C11 5.6 13 4.1 16.4 4.1 19.1 4.1 20 5 20 5v11s-1.1-.9-3.6-.9S11 16.6 11 16.6m0-11v11"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function IconBadge({ children, size = 'h-10 w-10' }) {
+  return (
+    <span
+      className={`inline-flex ${size} shrink-0 items-center justify-center rounded-lg border border-hair bg-white/[0.03] text-white`}
+    >
       {children}
     </span>
   )
@@ -228,6 +243,44 @@ export default function WoodshedApp() {
                 </Reveal>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Manuals */}
+        <section id="manual" className="relative py-20 sm:py-28">
+          <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+            <SectionHeading
+              eyebrow={t.manualsTag}
+              title={t.manualsTitle}
+              sub={t.manualsSub}
+            />
+            <Reveal className="mt-10">
+              <a
+                href={t.manualsCard.href}
+                className="group relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-hair bg-panel/80 p-7 transition-colors duration-300 hover:border-hair-bright sm:flex-row sm:items-center sm:gap-7"
+              >
+                <IconBadge size="h-12 w-12">
+                  <IconBook />
+                </IconBadge>
+                <div className="flex-1">
+                  <h3 className="text-[16px] font-semibold tracking-[-0.01em] text-white">
+                    {t.manualsCard.title}
+                  </h3>
+                  <p className="mt-1.5 text-[14px] leading-relaxed text-silver">
+                    {t.manualsCard.body}
+                  </p>
+                </div>
+                <span className="inline-flex items-center gap-2 text-[13.5px] font-medium text-accent-soft">
+                  {t.manualsCard.cta}
+                  <span
+                    aria-hidden="true"
+                    className="transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    →
+                  </span>
+                </span>
+              </a>
+            </Reveal>
           </div>
         </section>
 

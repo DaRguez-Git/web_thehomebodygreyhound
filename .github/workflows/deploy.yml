@@ -151,6 +151,8 @@ jobs:
           mkdir -p assets/web/woodshed
           cp _app_woodshed/docs/web/privacy-policy.es.md  assets/web/woodshed/privacy-policy.es.md
           cp _app_woodshed/docs/web/privacy-policy.en.md  assets/web/woodshed/privacy-policy.en.md
+          cp _app_woodshed/docs/web/manual.es.md          assets/web/woodshed/manual.es.md
+          cp _app_woodshed/docs/web/manual.en.md          assets/web/woodshed/manual.en.md
 
       - name: Build manual and legal pages
         if: steps.revcheck.outputs.should_deploy == 'true'
@@ -163,7 +165,8 @@ jobs:
           cp -r dist/. _site/
           for d in oficio/help oficio/privacy oficio/terms \
                    en/oficio/help en/oficio/privacy en/oficio/terms \
-                   woodshed/privacy en/woodshed/privacy; do
+                   woodshed/privacy woodshed/manual \
+                   en/woodshed/privacy en/woodshed/manual; do
             if [ -d "$d" ]; then
               mkdir -p "_site/$d"
               cp -r "$d/." "_site/$d/"

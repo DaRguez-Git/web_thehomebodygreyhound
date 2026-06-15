@@ -59,6 +59,8 @@ TERMS_SRC_EN_OFICIO = ROOT / "assets" / "web" / "oficio" / "legal" / "TERMS_EN.m
 # --- Woodshed paths ---------------------------------------------
 PRIVACY_SRC_ES_WOODSHED = ROOT / "assets" / "web" / "woodshed" / "privacy-policy.es.md"
 PRIVACY_SRC_EN_WOODSHED = ROOT / "assets" / "web" / "woodshed" / "privacy-policy.en.md"
+MANUAL_SRC_ES_WOODSHED = ROOT / "assets" / "web" / "woodshed" / "manual.es.md"
+MANUAL_SRC_EN_WOODSHED = ROOT / "assets" / "web" / "woodshed" / "manual.en.md"
 
 SITE_TITLE = "The Homebody Greyhound"
 EMAIL = "info@thehomebodygreyhound.com"
@@ -563,6 +565,27 @@ def main() -> None:
         "privacy",
         LOCALE_EN.crumb_privacy,
         "Privacy policy for the Woodshed app.",
+    )
+    print("Building Woodshed manual page…")
+    build_legal(
+        LOCALE_ES,
+        MANUAL_SRC_ES_WOODSHED,
+        ROOT / "woodshed" / "manual",
+        "woodshed",
+        "Woodshed",
+        "manual",
+        "Manual",
+        "Manual de uso de la app Woodshed.",
+    )
+    build_legal(
+        LOCALE_EN,
+        MANUAL_SRC_EN_WOODSHED,
+        ROOT / "en" / "woodshed" / "manual",
+        "woodshed",
+        "Woodshed",
+        "manual",
+        "Manual",
+        "User manual for the Woodshed app.",
     )
 
 
