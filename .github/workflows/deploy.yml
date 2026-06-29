@@ -172,6 +172,12 @@ jobs:
               cp -r "$d/." "_site/$d/"
             fi
           done
+          # Copy the Woodshed installers (Windows MSIX, Linux .deb and
+          # AppImage) straight from the app repo into the deployed site.
+          if [ -d _app_woodshed/docs/web/downloads ]; then
+            mkdir -p _site/woodshed/downloads
+            cp -r _app_woodshed/docs/web/downloads/. _site/woodshed/downloads/
+          fi
 
       - name: Upload Pages artifact
         if: steps.revcheck.outputs.should_deploy == 'true'

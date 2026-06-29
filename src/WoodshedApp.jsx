@@ -128,6 +128,136 @@ function LinkCard({ title, body, cta, href }) {
   )
 }
 
+function IconPlay() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <path
+        d="M5.5 3.5L17 11l-11.5 7.5z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+function IconApple() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="currentColor">
+      <path d="M15.5 12.1c0-2.3 1.8-3.4 1.9-3.4-1-1.5-2.6-1.7-3.2-1.7-1.4-0.1-2.6 0.8-3.3 0.8-0.7 0-1.7-0.8-2.8-0.8-1.4 0-2.8 0.8-3.5 2.1-1.5 2.6-0.4 6.5 1.1 8.7 0.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-0.7 2.8-0.7 1.3 0 1.7 0.7 2.8 0.7 1.2 0 1.9-1 2.6-2 0.8-1.2 1.1-2.3 1.1-2.4-0.1 0-2.2-0.9-2.2-3.5z" />
+      <path d="M13.2 4.9c0.6-0.7 1-1.7 0.9-2.7-0.8 0-1.8 0.6-2.4 1.3-0.5 0.6-1 1.6-0.9 2.6 0.9 0.1 1.8-0.5 2.4-1.2z" />
+    </svg>
+  )
+}
+function IconWindows() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="currentColor">
+      <rect x="3" y="3" width="7.5" height="7.5" rx="0.5" />
+      <rect x="11.5" y="3" width="7.5" height="7.5" rx="0.5" />
+      <rect x="3" y="11.5" width="7.5" height="7.5" rx="0.5" />
+      <rect x="11.5" y="11.5" width="7.5" height="7.5" rx="0.5" />
+    </svg>
+  )
+}
+function IconPackage() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <path
+        d="M11 2L19 6.5v9L11 20 3 15.5v-9z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path d="M3 6.5L11 11l8-4.5M11 20V11" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  )
+}
+function IconArrowDown() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <path
+        d="M11 3v13M5 11l6 6 6-6M3 19h16"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+const PLATFORM_ICON = {
+  play: IconPlay,
+  appstore: IconApple,
+  windows: IconWindows,
+  deb: IconPackage,
+  appimage: IconArrowDown,
+}
+
+function DownloadCard({ d }) {
+  const Icon = PLATFORM_ICON[d.key] || IconArrowDown
+  const isSoon = d.soon === true
+  const body = (
+    <>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            'radial-gradient(46% 56% at 50% 0%, rgba(0,113,227,0.12), transparent 75%)',
+        }}
+      />
+      <div className="relative flex flex-1 flex-col">
+        <div className="flex items-center gap-3">
+          <IconBadge>
+            <Icon />
+          </IconBadge>
+          <div>
+            <p className="text-[15px] font-semibold tracking-[-0.01em] text-white">
+              {d.platform}
+            </p>
+            <p className="text-[12.5px] text-silver">{d.detail}</p>
+          </div>
+        </div>
+        <span
+          className={`mt-6 inline-flex items-center gap-2 text-[13px] font-medium ${
+            isSoon ? 'text-silver/60' : 'text-accent-soft'
+          }`}
+        >
+          {d.cta}
+          {!isSoon && (
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-200 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          )}
+        </span>
+      </div>
+    </>
+  )
+
+  const baseClass =
+    'group relative flex h-full flex-col overflow-hidden rounded-2xl border p-6 transition-colors duration-300'
+  if (isSoon) {
+    return (
+      <div className={`${baseClass} cursor-default border-hair bg-panel/40 opacity-80`}>
+        {body}
+      </div>
+    )
+  }
+  const isInstaller = typeof d.href === 'string' && d.href.startsWith('/woodshed/downloads/')
+  return (
+    <a
+      href={d.href}
+      className={`${baseClass} border-hair bg-panel/80 hover:border-hair-bright`}
+      {...(isInstaller ? { download: '' } : { rel: 'noopener', target: '_blank' })}
+    >
+      {body}
+    </a>
+  )
+}
+
 export default function WoodshedApp() {
   const { lang } = useLang()
   const t = content[lang].woodshed
@@ -216,6 +346,44 @@ export default function WoodshedApp() {
                   <FeatureCard icon={FEATURE_ICONS[i]} title={f.title} body={f.body} />
                 </Reveal>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Downloads */}
+        <section id="descargas" className="relative py-20 sm:py-28">
+          <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+            <SectionHeading
+              eyebrow={t.downloadsTag}
+              title={t.downloadsTitle}
+              sub={t.downloadsSub}
+              align="center"
+            />
+
+            <div className="mt-12">
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.22em] text-silver">
+                {t.downloadsMobileTitle}
+              </h3>
+              <div className="mt-4 grid gap-4 md:grid-cols-2">
+                {t.downloads.mobile.map((d, i) => (
+                  <Reveal key={d.key} delay={i * 80}>
+                    <DownloadCard d={d} />
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <h3 className="text-[11px] font-medium uppercase tracking-[0.22em] text-silver">
+                {t.downloadsDesktopTitle}
+              </h3>
+              <div className="mt-4 grid gap-4 md:grid-cols-3">
+                {t.downloads.desktop.map((d, i) => (
+                  <Reveal key={d.key} delay={i * 80}>
+                    <DownloadCard d={d} />
+                  </Reveal>
+                ))}
+              </div>
             </div>
           </div>
         </section>
